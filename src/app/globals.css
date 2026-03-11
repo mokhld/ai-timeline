@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 :root {
+  --bg-void: #030712;
+  --bg-surface: #0f172a;
+  --bg-elevated: #1e293b;
+  --accent-primary: #6366f1;
+  --accent-glow: #818cf8;
+  --accent-cyan: #22d3ee;
+  --accent-emerald: #34d399;
+  --accent-amber: #fbbf24;
+  --text-primary: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #475569;
+
+  /* Legacy compat */
   --color-primary: #6366f1;
   --color-primary-dark: #4f46e5;
   --color-primary-light: #818cf8;
@@ -17,6 +30,47 @@ html {
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-text);
+  background: var(--bg-void);
+  color: var(--text-primary);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-elevated);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

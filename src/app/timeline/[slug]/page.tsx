@@ -24,6 +24,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${milestone.title} (${milestone.year}) — AI Timeline`,
     description: `${milestone.description} ${milestone.impact}`.slice(0, 160),
+    alternates: {
+      canonical: `/timeline/${milestone.id}`,
+    },
     openGraph: {
       title: `${milestone.title} (${milestone.year}) — AI Timeline | AI World`,
       description: milestone.description,
@@ -66,12 +69,18 @@ export default function MilestonePage({ params }: Props) {
         }}
       />
 
-      <nav className="text-sm text-[var(--color-text-muted)] mb-8 flex gap-2">
+      <nav
+        aria-label="Breadcrumb"
+        className="text-sm text-[var(--color-text-muted)] mb-8 flex gap-2"
+      >
         <a href="/" className="hover:text-primary-light">
           Home
         </a>
         <span>/</span>
-        <a href={`/era/${milestone.era}`} className="hover:text-primary-light">
+        <a
+          href={`/era/${milestone.era}`}
+          className="hover:text-primary-light"
+        >
           {era?.name}
         </a>
         <span>/</span>
@@ -80,9 +89,11 @@ export default function MilestonePage({ params }: Props) {
 
       <article>
         <header className="mb-8">
-          <time className="text-primary-light font-mono text-lg">
-            {milestone.year}
-          </time>
+          <a href={`/year/${milestone.year}`} className="hover:underline">
+            <time className="text-primary-light font-mono text-lg">
+              {milestone.year}
+            </time>
+          </a>
           <h1 className="text-4xl md:text-5xl font-bold mt-2">
             {milestone.title}
           </h1>
@@ -141,6 +152,22 @@ export default function MilestonePage({ params }: Props) {
                     className="text-sm px-3 py-1 rounded-full bg-surface border border-white/10"
                   >
                     {o}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {milestone.tags.length > 0 && (
+            <div>
+              <h2 className="text-xl font-semibold mb-2">Tags</h2>
+              <ul className="flex flex-wrap gap-2">
+                {milestone.tags.map((tag) => (
+                  <li
+                    key={tag}
+                    className="text-xs px-3 py-1 rounded-full bg-white/5 text-[var(--color-text-muted)] border border-white/10"
+                  >
+                    {tag}
                   </li>
                 ))}
               </ul>

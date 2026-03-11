@@ -25,14 +25,36 @@ export function getRelatedMilestones(
   limit = 5
 ): AITimelineMilestone[] {
   return milestones
-    .filter(
-      (m) =>
-        m.id !== milestone.id &&
-        (m.era === milestone.era ||
-          m.category === milestone.category ||
-          m.tags.some((t) => milestone.tags.includes(t)))
-    )
-    .slice(0, limit);
+    .filter((m) => m.id !== milestone.id)
+    .map((m) => {
+      let score = 0;
+      if (m.era === milestone.era) score += 2;
+      if (m.category === milestone.category) score += 3;
+      const sharedTags = m.tags.filter((t) => milestone.tags.includes(t)).length;
+      score += sharedTags * 2;
+      const sharedOrgs = m.organizations.filter((o) =>
+        milestone.organizations.includes(o)
+      ).length;
+      score += sharedOrgs * 2;
+      const yearDiff = Math.abs(m.year - milestone.year);
+      if (yearDiff <= 2) score += 2;
+      else if (yearDiff <= 5) score += 1;
+      return { milestone: m, score };
+    })
+    .filter((r) => r.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((r) => r.milestone);
+}
+
+export function getAdjacentEras(
+  eraId: string
+): { prev: AIEraInfo | null; next: AIEraInfo | null } {
+  const idx = eras.findIndex((e) => e.id === eraId);
+  return {
+    prev: idx > 0 ? eras[idx - 1] : null,
+    next: idx < eras.length - 1 ? eras[idx + 1] : null,
+  };
 }
 
 export function getAllCategories(): string[] {

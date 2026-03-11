@@ -1,8 +1,17 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { eras } from "@/data/timeline";
-import { getEraById, getMilestonesByEra } from "@/lib/timeline-utils";
-import { eraJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
+import {
+  getEraById,
+  getMilestonesByEra,
+  getAdjacentEras,
+  categoryLabel,
+} from "@/lib/timeline-utils";
+import {
+  eraJsonLd,
+  breadcrumbJsonLd,
+  itemListJsonLd,
+} from "@/lib/structured-data";
 
 interface Props {
   params: { eraId: string };
@@ -19,6 +28,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${era.name} (${era.yearStart}–${era.yearEnd}) — AI History`,
     description: era.description.slice(0, 160),
+    alternates: {
+      canonical: `/era/${era.id}`,
+    },
     openGraph: {
       title: `${era.name} (${era.yearStart}–${era.yearEnd}) — AI History | AI World`,
       description: era.description,
@@ -31,6 +43,8 @@ export default function EraPage({ params }: Props) {
   if (!era) notFound();
 
   const eraMilestones = getMilestonesByEra(params.eraId);
+  const { prev, next } = getAdjacentEras(params.eraId);
+  const eraCategories = [...new Set(eraMilestones.map((m) => m.category))];
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-12">
@@ -38,6 +52,21 @@ export default function EraPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(eraJsonLd(era, eraMilestones.length)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            itemListJsonLd(
+              `${era.name} Milestones`,
+              `${eraMilestones.length} milestones from the ${era.name} era of AI.`,
+              eraMilestones.map((m) => ({
+                name: m.title,
+                url: `https://aiworld.com/timeline/${m.id}`,
+              }))
+            )
+          ),
         }}
       />
       <script
@@ -52,7 +81,10 @@ export default function EraPage({ params }: Props) {
         }}
       />
 
-      <nav className="text-sm text-[var(--color-text-muted)] mb-8 flex gap-2">
+      <nav
+        aria-label="Breadcrumb"
+        className="text-sm text-[var(--color-text-muted)] mb-8 flex gap-2"
+      >
         <a href="/" className="hover:text-primary-light">
           Home
         </a>
@@ -91,12 +123,60 @@ export default function EraPage({ params }: Props) {
                 {m.description}
               </p>
               <span className="text-xs text-[var(--color-text-muted)] mt-1 inline-block">
-                {"★".repeat(m.impactLevel)}{"☆".repeat(5 - m.impactLevel)}
+                {"★".repeat(m.impactLevel)}
+                {"☆".repeat(5 - m.impactLevel)}
               </span>
             </a>
           ))}
         </div>
       </section>
+
+      {eraCategories.length > 0 && (
+        <section className="mt-12">
+          <h2 className="text-xl font-bold mb-4">Categories in this Era</h2>
+          <div className="flex flex-wrap gap-2">
+            {eraCategories.map((c) => (
+              <a
+                key={c}
+                href={`/category/${c}`}
+                className="text-sm px-3 py-1 rounded-full bg-primary/20 text-primary-light hover:bg-primary/30 transition-colors"
+              >
+                {categoryLabel(c)}
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <nav className="mt-16 flex justify-between items-center border-t border-white/10 pt-8">
+        {prev ? (
+          <a href={`/era/${prev.id}`} className="group flex flex-col">
+            <span className="text-xs text-[var(--color-text-muted)] group-hover:text-primary-light">
+              Previous Era
+            </span>
+            <span className="font-semibold group-hover:text-primary-light transition-colors">
+              {prev.name}
+            </span>
+          </a>
+        ) : (
+          <div />
+        )}
+        {next ? (
+          <a
+            href={`/era/${next.id}`}
+            className="group flex flex-col text-right"
+          >
+            <span className="text-xs text-[var(--color-text-muted)] group-hover:text-primary-light">
+              Next Era
+            </span>
+            <span className="font-semibold group-hover:text-primary-light transition-colors">
+              {next.name}
+            </span>
+          </a>
+        ) : (
+          <div />
+        )}
+      </nav>
     </main>
   );
 }
