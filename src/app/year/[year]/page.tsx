@@ -7,6 +7,7 @@ import {
   categoryLabel,
   getAdjacentYears,
 } from "@/lib/timeline-utils";
+import MilestoneListCard from "@/components/MilestoneListCard";
 import { breadcrumbJsonLd, itemListJsonLd, yearPageJsonLd, ogImageUrl } from "@/lib/structured-data";
 
 interface Props {
@@ -115,30 +116,19 @@ export default function YearPage({ params }: Props) {
       </header>
 
       <section>
-        <div className="space-y-6">
-          {yearMilestones.map((m) => {
+        <div className="space-y-4">
+          {yearMilestones.map((m, i) => {
             const era = getEraById(m.era);
             return (
-              <a
+              <MilestoneListCard
                 key={m.id}
-                href={`/timeline/${m.id}`}
-                className="block border-l-2 border-white/20 hover:border-primary pl-6 py-2 transition-colors"
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary-light">
-                    {categoryLabel(m.category)}
-                  </span>
-                  {era && (
-                    <span className="text-xs text-[var(--color-text-muted)]">
-                      · <span>{era.name}</span>
-                    </span>
-                  )}
-                </div>
-                <h3 className="text-lg font-semibold mt-1">{m.title}</h3>
-                <p className="text-sm text-[var(--color-text-muted)] mt-1 line-clamp-2">
-                  {m.description}
-                </p>
-              </a>
+                milestone={m}
+                eraColor={era?.color ?? "#6366f1"}
+                index={i}
+                showYear={false}
+                showCategory={true}
+                showEraName={era?.name}
+              />
             );
           })}
         </div>

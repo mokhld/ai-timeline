@@ -9,6 +9,7 @@ import {
   tagLabel,
   truncateAtWord,
 } from "@/lib/timeline-utils";
+import MilestoneListCard from "@/components/MilestoneListCard";
 import {
   eraJsonLd,
   breadcrumbJsonLd,
@@ -119,12 +120,19 @@ export default function EraPage({ params }: Props) {
         <span className="text-[var(--color-text)]">{era.name}</span>
       </nav>
 
-      <header className="mb-12">
+      <header className="mb-12 relative">
         <div
-          className="w-4 h-4 rounded-full mb-4"
+          className="absolute -top-12 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full pointer-events-none opacity-20 blur-3xl"
           style={{ backgroundColor: era.color }}
         />
-        <h1 className="text-4xl md:text-5xl font-bold">{era.name}</h1>
+        <div
+          className="w-4 h-4 rounded-full mb-4 relative"
+          style={{
+            backgroundColor: era.color,
+            boxShadow: `0 0 12px ${era.color}60`,
+          }}
+        />
+        <h1 className="text-4xl md:text-5xl font-bold relative">{era.name}</h1>
         <p className="text-xl text-[var(--color-text-muted)] mt-2">
           {era.yearStart}–{era.yearEnd} · {eraMilestones.length} milestones
         </p>
@@ -135,28 +143,16 @@ export default function EraPage({ params }: Props) {
 
       <section>
         <h2 className="text-2xl font-bold mb-8">Milestones</h2>
-        <div className="space-y-6">
-          {eraMilestones.map((m) => (
-            <a
+        <div className="space-y-4">
+          {eraMilestones.map((m, i) => (
+            <MilestoneListCard
               key={m.id}
-              href={`/timeline/${m.id}`}
-              className="block border-l-2 border-white/20 hover:border-primary pl-6 py-2 transition-colors"
-            >
-              <time dateTime={String(m.year)} className="text-sm text-primary-light font-mono">
-                {m.year}
-              </time>
-              <h3 className="text-lg font-semibold mt-1">{m.title}</h3>
-              <p className="text-sm text-[var(--color-text-muted)] mt-1 line-clamp-2">
-                {m.description}
-              </p>
-              <span
-                className="text-xs text-[var(--color-text-muted)] mt-1 inline-block"
-                aria-label={`Impact: ${m.impactLevel} out of 5`}
-              >
-                {"★".repeat(m.impactLevel)}
-                {"☆".repeat(5 - m.impactLevel)}
-              </span>
-            </a>
+              milestone={m}
+              eraColor={era.color}
+              index={i}
+              showYear={true}
+              showCategory={true}
+            />
           ))}
         </div>
       </section>

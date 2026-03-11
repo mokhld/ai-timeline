@@ -17,6 +17,10 @@ import {
   ogImageUrl,
 } from "@/lib/structured-data";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import MilestoneHeroImage from "@/components/MilestoneHeroImage";
+import MilestoneListCard from "@/components/MilestoneListCard";
+import ImpactDots from "@/components/ImpactDots";
+import { categoryColors } from "@/lib/colors";
 
 interface Props {
   params: { slug: string };
@@ -126,43 +130,65 @@ export default function MilestonePage({ params }: Props) {
         <span className="text-[var(--color-text)]">{milestone.title}</span>
       </nav>
 
+      {milestone.imageUrl && (
+        <MilestoneHeroImage
+          src={milestone.imageUrl}
+          alt={milestone.imageAlt ?? milestone.title}
+          eraColor={era?.color ?? "#6366f1"}
+        />
+      )}
+
       <article>
         <header className="mb-8">
+          {/* Era-colored accent bar */}
+          <div
+            className="w-12 h-1 rounded-full mb-4"
+            style={{ backgroundColor: era?.color ?? "#6366f1" }}
+          />
           <a href={`/year/${milestone.year}`} className="hover:underline">
-            <time dateTime={String(milestone.year)} className="text-primary-light font-mono text-lg">
+            <time dateTime={String(milestone.year)} className="font-mono text-lg" style={{ color: era?.color ?? "#6366f1" }}>
               {milestone.year}
             </time>
           </a>
           <h1 className="text-4xl md:text-5xl font-bold mt-2">
             {milestone.title}
           </h1>
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="flex flex-wrap items-center gap-2 mt-4">
             <a
               href={`/category/${milestone.category}`}
-              className="text-xs px-3 py-1 rounded-full bg-primary/20 text-primary-light hover:bg-primary/30"
+              className="text-xs px-3 py-1 rounded-full border shrink-0"
+              style={{
+                color: categoryColors[milestone.category],
+                borderColor: `${categoryColors[milestone.category]}40`,
+              }}
             >
               {categoryLabel(milestone.category)}
             </a>
-            <span
-              className="text-xs px-3 py-1 rounded-full bg-white/5 text-[var(--color-text-muted)]"
-              aria-label={`Impact: ${milestone.impactLevel} out of 5`}
-            >
-              Impact: {"★".repeat(milestone.impactLevel)}
-              {"☆".repeat(5 - milestone.impactLevel)}
-            </span>
+            {era && (
+              <a
+                href={`/era/${era.id}`}
+                className="text-xs px-3 py-1 rounded-full border border-white/10 text-[#94a3b8] hover:border-white/30 transition-colors"
+              >
+                {era.name}
+              </a>
+            )}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-[#64748b]">Impact</span>
+              <ImpactDots level={milestone.impactLevel} />
+            </div>
           </div>
         </header>
 
         <section className="space-y-6">
-          <div>
+          <div className="rounded-xl border border-white/5 bg-[#0f172a]/40 p-5">
             <h2 className="text-xl font-semibold mb-2">What Happened</h2>
             <p className="text-[var(--color-text-muted)] leading-relaxed">
               {milestone.description}
             </p>
           </div>
 
-          <div>
-            <h2 className="text-xl font-semibold mb-2">Why It Mattered</h2>
+          <div className="rounded-xl border border-white/5 bg-[#0f172a]/40 p-5">
+            <h2 className="text-xl font-semibold mb-2 text-[#22d3ee]">Why It Mattered</h2>
             <p className="text-[var(--color-text-muted)] leading-relaxed">
               {milestone.impact}
             </p>
@@ -175,7 +201,7 @@ export default function MilestonePage({ params }: Props) {
                 {milestone.people.map((p) => (
                   <li
                     key={p}
-                    className="text-sm px-3 py-1 rounded-full bg-surface border border-white/10"
+                    className="text-sm px-3 py-1 rounded-md bg-[#1e293b] text-[#94a3b8]"
                   >
                     {p}
                   </li>
@@ -191,7 +217,7 @@ export default function MilestonePage({ params }: Props) {
                 {milestone.organizations.map((o) => (
                   <li
                     key={o}
-                    className="text-sm px-3 py-1 rounded-full bg-surface border border-white/10"
+                    className="text-sm px-3 py-1 rounded-md bg-[#1e293b] text-[#818cf8] border border-[#818cf8]/10"
                   >
                     {o}
                   </li>
@@ -252,26 +278,19 @@ export default function MilestonePage({ params }: Props) {
         <section className="mt-16">
           <h2 className="text-2xl font-bold mb-6">Related Milestones</h2>
           <div className="space-y-4">
-            {related.map((m) => (
-              <a
-                key={m.id}
-                href={`/timeline/${m.id}`}
-                className="block p-4 rounded-lg border border-white/10 bg-surface hover:border-primary/50 transition-colors"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-primary-light font-mono">
-                    {m.year}
-                  </span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary-light">
-                    {categoryLabel(m.category)}
-                  </span>
-                </div>
-                <h3 className="font-semibold mt-1">{m.title}</h3>
-                <p className="text-sm text-[var(--color-text-muted)] mt-1 line-clamp-2">
-                  {m.description}
-                </p>
-              </a>
-            ))}
+            {related.map((m, i) => {
+              const relatedEra = getEraById(m.era);
+              return (
+                <MilestoneListCard
+                  key={m.id}
+                  milestone={m}
+                  eraColor={relatedEra?.color ?? "#6366f1"}
+                  index={i}
+                  showYear={true}
+                  showCategory={true}
+                />
+              );
+            })}
           </div>
         </section>
       )}

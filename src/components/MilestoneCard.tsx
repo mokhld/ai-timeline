@@ -4,41 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import type { AITimelineMilestone } from "@/data/timeline";
 import MilestoneImage from "./MilestoneImage";
-
-const categoryColors: Record<string, string> = {
-  research: "#818cf8",
-  product: "#22d3ee",
-  cultural: "#fbbf24",
-  regulation: "#f87171",
-  infrastructure: "#34d399",
-  competition: "#fb923c",
-  "open-source": "#a78bfa",
-};
-
-const categoryLabels: Record<string, string> = {
-  research: "Research",
-  product: "Product",
-  cultural: "Cultural",
-  regulation: "Regulation",
-  infrastructure: "Infrastructure",
-  competition: "Competition",
-  "open-source": "Open Source",
-};
-
-function ImpactStars({ level }: { level: number }) {
-  return (
-    <div className="flex gap-0.5" aria-label={`Impact level ${level} of 5`}>
-      {Array.from({ length: 5 }, (_, i) => (
-        <div
-          key={i}
-          className={`w-1.5 h-1.5 rounded-full ${
-            i < level ? "bg-[#fbbf24]" : "bg-[#1e293b]"
-          }`}
-        />
-      ))}
-    </div>
-  );
-}
+import ImpactDots from "./ImpactDots";
+import { categoryColors, categoryLabels } from "@/lib/colors";
 
 export default function MilestoneCard({
   milestone,
@@ -106,7 +73,7 @@ export default function MilestoneCard({
                 {milestone.month &&
                   `.${String(milestone.month).padStart(2, "0")}`}
               </time>
-              <ImpactStars level={milestone.impactLevel} />
+              <ImpactDots level={milestone.impactLevel} />
             </div>
             <span
               className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border shrink-0"

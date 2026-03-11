@@ -8,6 +8,8 @@ import {
   getEraById,
   tagLabel,
 } from "@/lib/timeline-utils";
+import { categoryColors } from "@/lib/colors";
+import MilestoneListCard from "@/components/MilestoneListCard";
 import {
   breadcrumbJsonLd,
   itemListJsonLd,
@@ -119,9 +121,13 @@ export default function CategoryPage({ params }: Props) {
         <span className="text-[var(--color-text)]">{label}</span>
       </nav>
 
-      <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold">{label}</h1>
-        <p className="text-xl text-[var(--color-text-muted)] mt-2">
+      <header className="mb-12 relative">
+        <div
+          className="absolute -top-12 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full pointer-events-none opacity-20 blur-3xl"
+          style={{ backgroundColor: categoryColors[params.category] }}
+        />
+        <h1 className="text-4xl md:text-5xl font-bold relative">{label}</h1>
+        <p className="text-xl text-[var(--color-text-muted)] mt-2 relative">
           {catMilestones.length} milestones in AI history
         </p>
       </header>
@@ -140,7 +146,10 @@ export default function CategoryPage({ params }: Props) {
                 <h2 className="text-xl font-bold mb-4 flex items-center gap-3">
                   <div
                     className="w-3 h-3 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: era.color }}
+                    style={{
+                      backgroundColor: era.color,
+                      boxShadow: `0 0 8px ${era.color}60`,
+                    }}
                   />
                   <a
                     href={`/era/${era.id}`}
@@ -153,25 +162,15 @@ export default function CategoryPage({ params }: Props) {
                   </a>
                 </h2>
                 <div className="space-y-4">
-                  {eraMilestones.map((m) => (
-                    <a
+                  {eraMilestones.map((m, i) => (
+                    <MilestoneListCard
                       key={m.id}
-                      href={`/timeline/${m.id}`}
-                      className="block border-l-2 border-white/20 hover:border-primary pl-6 py-2 transition-colors"
-                    >
-                      <time
-                        dateTime={String(m.year)}
-                        className="text-sm text-primary-light font-mono"
-                      >
-                        {m.year}
-                      </time>
-                      <h3 className="text-lg font-semibold mt-1">
-                        {m.title}
-                      </h3>
-                      <p className="text-sm text-[var(--color-text-muted)] mt-1 line-clamp-2">
-                        {m.description}
-                      </p>
-                    </a>
+                      milestone={m}
+                      eraColor={era.color}
+                      index={i}
+                      showYear={true}
+                      showCategory={false}
+                    />
                   ))}
                 </div>
               </div>

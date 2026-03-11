@@ -5,28 +5,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { milestones, eras } from "@/data/timeline";
+import { categoryColors, categoryLabels } from "@/lib/colors";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const categoryLabels: Record<string, string> = {
-  research: "Research",
-  product: "Products",
-  cultural: "Cultural",
-  regulation: "Regulation",
-  infrastructure: "Infrastructure",
-  competition: "Competitions",
-  "open-source": "Open Source",
-};
-
-const categoryColors: Record<string, string> = {
-  research: "#818cf8",
-  product: "#22d3ee",
-  cultural: "#fbbf24",
-  regulation: "#f87171",
-  infrastructure: "#34d399",
-  competition: "#fb923c",
-  "open-source": "#a78bfa",
-};
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
