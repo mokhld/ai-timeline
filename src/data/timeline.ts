@@ -171,7 +171,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "origins",
     tags: ["neural-networks", "theory", "neuroscience"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Artificial_neural_network.svg/300px-Artificial_neural_network.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Artificial_neural_network.svg/250px-Artificial_neural_network.svg.png",
     imageAlt: "Artificial neural network diagram representing McCulloch-Pitts neuron model",
   },
   {
@@ -188,7 +188,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 5,
     era: "origins",
     tags: ["philosophy", "turing-test", "foundations"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Alan_turing_header.jpg/300px-Alan_turing_header.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Alan_turing_header.jpg/250px-Alan_turing_header.jpg",
     imageAlt: "Portrait of Alan Turing",
   },
   {
@@ -246,7 +246,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 5,
     era: "birth",
     tags: ["founding", "conference", "history"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/John_McCarthy_Stanford.jpg/300px-John_McCarthy_Stanford.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/John_McCarthy_Stanford.jpg/250px-John_McCarthy_Stanford.jpg",
     imageAlt: "John McCarthy, organizer of the Dartmouth Conference",
   },
   {
@@ -263,7 +263,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "birth",
     tags: ["neural-networks", "hardware", "perception"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Frank_Rosenblatt.jpg/300px-Frank_Rosenblatt.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Frank_Rosenblatt.jpg/250px-Frank_Rosenblatt.jpg",
     imageAlt: "Frank Rosenblatt, inventor of the Perceptron",
   },
   {
@@ -280,7 +280,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "birth",
     tags: ["programming", "tools", "infrastructure"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Lisp_logo.svg/300px-Lisp_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Lisp_logo.svg/250px-Lisp_logo.svg.png",
     imageAlt: "Lisp programming language logo",
   },
   {
@@ -297,7 +297,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "birth",
     tags: ["robotics", "manufacturing", "automation"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Robot_polar.svg/300px-Robot_polar.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Robot_polar.svg/250px-Robot_polar.svg.png",
     imageAlt: "Diagram of an industrial robot arm like Unimate",
   },
   {
@@ -314,7 +314,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "birth",
     tags: ["nlp", "chatbot", "psychology"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/ELIZA_conversation.png/300px-ELIZA_conversation.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/ELIZA_conversation.png/250px-ELIZA_conversation.png",
     imageAlt: "ELIZA chatbot conversation example",
   },
   {
@@ -346,7 +346,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "birth",
     tags: ["film", "culture", "safety"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/HAL9000.svg/300px-HAL9000.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/HAL9000.svg/250px-HAL9000.svg.png",
     imageAlt: "HAL 9000 from 2001: A Space Odyssey",
   },
   {
@@ -363,7 +363,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "birth",
     tags: ["robotics", "planning", "computer-vision"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/SRI_Shakey_robot%2C_1969%2C_Computer_History_Museum.jpg/300px-SRI_Shakey_robot%2C_1969%2C_Computer_History_Museum.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/SRI_Shakey_robot%2C_1969%2C_Computer_History_Museum.jpg/250px-SRI_Shakey_robot%2C_1969%2C_Computer_History_Museum.jpg",
     imageAlt: "Shakey the robot at the Computer History Museum",
   },
 
@@ -384,7 +384,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "first-winter",
     tags: ["neural-networks", "criticism", "funding"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Marvin_Minsky_at_OLPCb_%283x4_cropped%29.jpg/300px-Marvin_Minsky_at_OLPCb_%283x4_cropped%29.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Marvin_Minsky_at_OLPCb_%283x4_cropped%29.jpg/250px-Marvin_Minsky_at_OLPCb_%283x4_cropped%29.jpg",
     imageAlt: "Marvin Minsky, co-author of Perceptrons",
   },
   {
@@ -451,7 +451,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "expert-systems",
     tags: ["neural-networks", "physics", "theory", "nobel"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/John_J._Hopfield_delivering_his_lecture_at_the_2024_Nobel_Prize_Lectures_in_Stockholm.jpg/300px-John_J._Hopfield_delivering_his_lecture_at_the_2024_Nobel_Prize_Lectures_in_Stockholm.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/John_J._Hopfield_delivering_his_lecture_at_the_2024_Nobel_Prize_Lectures_in_Stockholm.jpg/250px-John_J._Hopfield_delivering_his_lecture_at_the_2024_Nobel_Prize_Lectures_in_Stockholm.jpg",
     imageAlt: "John Hopfield, inventor of Hopfield networks",
   },
   {
@@ -468,7 +468,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "expert-systems",
     tags: ["expert-systems", "business", "commercial"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Symbolics3640_Modified.JPG/300px-Symbolics3640_Modified.JPG",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Symbolics3640_Modified.JPG/250px-Symbolics3640_Modified.JPG",
     imageAlt: "Symbolics Lisp machine used for expert systems",
   },
   {
@@ -500,7 +500,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 5,
     era: "expert-systems",
     tags: ["neural-networks", "backpropagation", "deep-learning"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Geoffrey_E._Hinton%2C_2024_Nobel_Prize_Laureate_in_Physics_%28cropped1%29.jpg/300px-Geoffrey_E._Hinton%2C_2024_Nobel_Prize_Laureate_in_Physics_%28cropped1%29.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Geoffrey_E._Hinton%2C_2024_Nobel_Prize_Laureate_in_Physics_%28cropped1%29.jpg/250px-Geoffrey_E._Hinton%2C_2024_Nobel_Prize_Laureate_in_Physics_%28cropped1%29.jpg",
     imageAlt: "Geoffrey Hinton, pioneer of backpropagation in neural networks",
   },
   {
@@ -553,7 +553,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "second-winter",
     tags: ["cnn", "computer-vision", "deep-learning", "commercial"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/LeNet-5_architecture.svg/300px-LeNet-5_architecture.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/LeNet-5_architecture.svg/250px-LeNet-5_architecture.svg.png",
     imageAlt: "LeNet-5 convolutional neural network architecture",
   },
   {
@@ -570,7 +570,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 2,
     era: "second-winter",
     tags: ["reinforcement-learning", "games", "neural-networks"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Reinforcement_learning_diagram.svg/300px-Reinforcement_learning_diagram.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Reinforcement_learning_diagram.svg/250px-Reinforcement_learning_diagram.svg.png",
     imageAlt: "Reinforcement learning agent-environment interaction diagram",
   },
 
@@ -607,7 +607,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 5,
     era: "emergence",
     tags: ["games", "chess", "ibm", "milestone"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Deep_Blue.jpg/300px-Deep_Blue.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Deep_Blue.jpg/250px-Deep_Blue.jpg",
     imageAlt: "IBM Deep Blue chess computer",
   },
   {
@@ -624,7 +624,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "emergence",
     tags: ["neural-networks", "rnn", "sequential", "nlp"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/NN_LSTM-Cell_v2.svg/300px-NN_LSTM-Cell_v2.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/NN_LSTM-Cell_v2.svg/250px-NN_LSTM-Cell_v2.svg.png",
     imageAlt: "LSTM recurrent neural network cell diagram",
   },
   {
@@ -641,7 +641,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 2,
     era: "emergence",
     tags: ["robotics", "consumer", "product"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Roomba_original.jpg/300px-Roomba_original.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Roomba_original.jpg/250px-Roomba_original.jpg",
     imageAlt: "Original iRobot Roomba vacuum robot",
   },
   {
@@ -658,7 +658,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "emergence",
     tags: ["autonomous-vehicles", "robotics", "competition"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Stanley2.JPG/300px-Stanley2.JPG",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Stanley2.JPG/250px-Stanley2.JPG",
     imageAlt: "Stanley, the autonomous vehicle that won the 2005 DARPA Grand Challenge",
   },
 
@@ -679,7 +679,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 5,
     era: "deep-learning",
     tags: ["deep-learning", "neural-networks", "training"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Deep_belief_net.svg/300px-Deep_belief_net.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Deep_belief_net.svg/250px-Deep_belief_net.svg.png",
     imageAlt: "Deep belief network architecture diagram",
   },
   {
@@ -728,7 +728,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "deep-learning",
     tags: ["hardware", "gpu", "infrastructure", "compute"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Nvidia_CUDA_Logo.jpg/300px-Nvidia_CUDA_Logo.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Nvidia_CUDA_Logo.jpg/250px-Nvidia_CUDA_Logo.jpg",
     imageAlt: "NVIDIA CUDA GPU computing logo",
   },
   {
@@ -746,7 +746,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "deep-learning",
     tags: ["nlp", "ibm", "competition", "cultural"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/IBM_Watson.PNG/300px-IBM_Watson.PNG",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/IBM_Watson.PNG/250px-IBM_Watson.PNG",
     imageAlt: "IBM Watson computer system",
   },
   {
@@ -764,7 +764,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "deep-learning",
     tags: ["voice-assistant", "product", "consumer", "nlp"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Logo_Apple_Siri_iOS_2024.svg/300px-Logo_Apple_Siri_iOS_2024.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Logo_Apple_Siri_iOS_2024.svg/250px-Logo_Apple_Siri_iOS_2024.svg.png",
     imageAlt: "Apple Siri voice assistant logo",
   },
 
@@ -786,7 +786,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 5,
     era: "breakthrough",
     tags: ["deep-learning", "computer-vision", "imagenet", "gpu"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/AlexNet_block_diagram.svg/300px-AlexNet_block_diagram.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/AlexNet_block_diagram.svg/250px-AlexNet_block_diagram.svg.png",
     imageAlt: "AlexNet deep neural network architecture diagram",
   },
   {
@@ -819,7 +819,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "breakthrough",
     tags: ["reinforcement-learning", "deep-learning", "games", "deepmind"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Google_DeepMind_logo.svg/300px-Google_DeepMind_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Google_DeepMind_logo.svg/250px-Google_DeepMind_logo.svg.png",
     imageAlt: "Google DeepMind logo",
   },
   {
@@ -837,7 +837,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "breakthrough",
     tags: ["generative", "neural-networks", "image-generation"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Generative_adversarial_network.svg/300px-Generative_adversarial_network.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Generative_adversarial_network.svg/250px-Generative_adversarial_network.svg.png",
     imageAlt: "Generative Adversarial Network architecture diagram",
   },
   {
@@ -855,7 +855,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "breakthrough",
     tags: ["voice-assistant", "product", "smart-home"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Amazon_Alexa_Logo_2024.svg/300px-Amazon_Alexa_Logo_2024.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Amazon_Alexa_Logo_2024.svg/250px-Amazon_Alexa_Logo_2024.svg.png",
     imageAlt: "Amazon Alexa voice assistant logo",
   },
   {
@@ -873,7 +873,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "breakthrough",
     tags: ["organization", "founding", "openai"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/300px-OpenAI_logo_2025_%28symbol%29.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/250px-OpenAI_logo_2025_%28symbol%29.svg.png",
     imageAlt: "OpenAI logo",
   },
   {
@@ -891,7 +891,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "breakthrough",
     tags: ["deep-learning", "computer-vision", "architecture"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/ResBlock.png/300px-ResBlock.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/ResBlock.png/250px-ResBlock.png",
     imageAlt: "Residual network skip connection block diagram",
   },
   {
@@ -909,7 +909,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "breakthrough",
     tags: ["open-source", "tools", "infrastructure", "framework"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/TensorFlow_logo.svg/300px-TensorFlow_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/TensorFlow_logo.svg/250px-TensorFlow_logo.svg.png",
     imageAlt: "TensorFlow machine learning framework logo",
   },
   {
@@ -927,7 +927,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 5,
     era: "breakthrough",
     tags: ["games", "go", "reinforcement-learning", "deepmind"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/FloorGoban.JPG/300px-FloorGoban.JPG",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/FloorGoban.JPG/250px-FloorGoban.JPG",
     imageAlt: "Go board game, the game AlphaGo mastered",
   },
   {
@@ -960,7 +960,7 @@ export const milestones: AITimelineMilestone[] = [
       "nlp",
       "foundational",
     ],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/The-Transformer-model-architecture.png/300px-The-Transformer-model-architecture.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/The-Transformer-model-architecture.png/250px-The-Transformer-model-architecture.png",
     imageAlt: "The Transformer model architecture diagram from Attention Is All You Need",
   },
   {
@@ -978,7 +978,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "breakthrough",
     tags: ["reinforcement-learning", "self-play", "deepmind", "go"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/FloorGoban.JPG/300px-FloorGoban.JPG",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/FloorGoban.JPG/250px-FloorGoban.JPG",
     imageAlt: "Go board representing AlphaGo Zero's self-play mastery",
   },
 
@@ -1016,7 +1016,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "transformer",
     tags: ["gpt", "openai", "language-model", "pre-training"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/300px-OpenAI_logo_2025_%28symbol%29.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/250px-OpenAI_logo_2025_%28symbol%29.svg.png",
     imageAlt: "OpenAI logo",
   },
   {
@@ -1034,7 +1034,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "transformer",
     tags: ["gpt", "openai", "safety", "language-model"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/GPT2-talks-about-GPT2.png/300px-GPT2-talks-about-GPT2.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/GPT2-talks-about-GPT2.png/250px-GPT2-talks-about-GPT2.png",
     imageAlt: "GPT-2 language model generating text about itself",
   },
   {
@@ -1052,7 +1052,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "transformer",
     tags: ["games", "reinforcement-learning", "deepmind", "real-time"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Google_DeepMind_logo.svg/300px-Google_DeepMind_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Google_DeepMind_logo.svg/250px-Google_DeepMind_logo.svg.png",
     imageAlt: "Google DeepMind logo, creators of AlphaStar",
   },
   {
@@ -1070,7 +1070,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 5,
     era: "transformer",
     tags: ["gpt", "openai", "scaling", "language-model", "api"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/300px-OpenAI_logo_2025_%28symbol%29.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/250px-OpenAI_logo_2025_%28symbol%29.svg.png",
     imageAlt: "OpenAI logo",
   },
   {
@@ -1088,7 +1088,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 5,
     era: "transformer",
     tags: ["science", "biology", "protein-folding", "deepmind", "nobel"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Protein_structure_%28full%29.png/300px-Protein_structure_%28full%29.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Protein_structure_%28full%29.png/250px-Protein_structure_%28full%29.png",
     imageAlt: "Protein structure visualization representing AlphaFold's predictions",
   },
   {
@@ -1106,7 +1106,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "transformer",
     tags: ["image-generation", "generative", "multimodal", "openai"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/DALL-E_2_artificial_intelligence_digital_image_generated_photo.jpg/300px-DALL-E_2_artificial_intelligence_digital_image_generated_photo.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/DALL-E_2_artificial_intelligence_digital_image_generated_photo.jpg/250px-DALL-E_2_artificial_intelligence_digital_image_generated_photo.jpg",
     imageAlt: "AI-generated image by DALL-E",
   },
   {
@@ -1123,7 +1123,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "transformer",
     tags: ["organization", "founding", "anthropic", "safety"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/300px-Anthropic_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/250px-Anthropic_logo.svg.png",
     imageAlt: "Anthropic AI safety company logo",
   },
   {
@@ -1141,7 +1141,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "transformer",
     tags: ["coding", "developer-tools", "product", "openai"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/GitHub_Copilot_logo.svg/300px-GitHub_Copilot_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/GitHub_Copilot_logo.svg/250px-GitHub_Copilot_logo.svg.png",
     imageAlt: "GitHub Copilot AI coding assistant logo",
   },
 
@@ -1163,7 +1163,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "generative",
     tags: ["image-generation", "open-source", "diffusion", "creative"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Astronaut_Riding_a_Horse_%28SD3.5%29.webp/300px-Astronaut_Riding_a_Horse_%28SD3.5%29.webp.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Astronaut_Riding_a_Horse_%28SD3.5%29.webp/250px-Astronaut_Riding_a_Horse_%28SD3.5%29.webp.png",
     imageAlt: "Astronaut riding a horse, iconic Stable Diffusion generated image",
   },
   {
@@ -1189,7 +1189,7 @@ export const milestones: AITimelineMilestone[] = [
       "mainstream",
       "cultural-moment",
     ],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/300px-OpenAI_logo_2025_%28symbol%29.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/250px-OpenAI_logo_2025_%28symbol%29.svg.png",
     imageAlt: "OpenAI logo, creators of ChatGPT",
   },
   {
@@ -1207,7 +1207,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 5,
     era: "generative",
     tags: ["gpt", "openai", "multimodal", "reasoning"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/300px-OpenAI_logo_2025_%28symbol%29.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/250px-OpenAI_logo_2025_%28symbol%29.svg.png",
     imageAlt: "OpenAI logo",
   },
   {
@@ -1225,7 +1225,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "generative",
     tags: ["anthropic", "safety", "constitutional-ai", "assistant"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/300px-Anthropic_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/250px-Anthropic_logo.svg.png",
     imageAlt: "Anthropic logo, creators of Claude",
   },
   {
@@ -1243,7 +1243,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "generative",
     tags: ["open-source", "meta", "language-model", "commercial"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Meta_AI_Logo_%28Ring_Only%29.png/300px-Meta_AI_Logo_%28Ring_Only%29.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Meta_AI_Logo_%28Ring_Only%29.png/250px-Meta_AI_Logo_%28Ring_Only%29.png",
     imageAlt: "Meta AI logo",
   },
   {
@@ -1261,7 +1261,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "generative",
     tags: ["image-generation", "misinformation", "cultural"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Midjourney_Emblem.svg/300px-Midjourney_Emblem.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Midjourney_Emblem.svg/250px-Midjourney_Emblem.svg.png",
     imageAlt: "Midjourney AI image generation logo",
   },
   {
@@ -1279,7 +1279,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "generative",
     tags: ["open-source", "moe", "efficiency", "european-ai"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Mistral_AI_logo_%282025%E2%80%93%29.svg/300px-Mistral_AI_logo_%282025%E2%80%93%29.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Mistral_AI_logo_%282025%E2%80%93%29.svg/250px-Mistral_AI_logo_%282025%E2%80%93%29.svg.png",
     imageAlt: "Mistral AI logo, creators of Mixtral",
   },
   {
@@ -1297,7 +1297,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "generative",
     tags: ["google", "multimodal", "frontier-model"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/300px-Google_Gemini_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/250px-Google_Gemini_logo.svg.png",
     imageAlt: "Google Gemini AI model logo",
   },
   {
@@ -1315,7 +1315,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "generative",
     tags: ["video-generation", "openai", "creative", "multimodal"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/300px-OpenAI_logo_2025_%28symbol%29.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/250px-OpenAI_logo_2025_%28symbol%29.svg.png",
     imageAlt: "OpenAI logo, creators of Sora",
   },
   {
@@ -1333,7 +1333,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "generative",
     tags: ["anthropic", "frontier-model", "context-window"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/300px-Anthropic_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/250px-Anthropic_logo.svg.png",
     imageAlt: "Anthropic logo, creators of Claude 3",
   },
   {
@@ -1351,7 +1351,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "generative",
     tags: ["openai", "multimodal", "voice", "real-time"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/300px-OpenAI_logo_2025_%28symbol%29.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/250px-OpenAI_logo_2025_%28symbol%29.svg.png",
     imageAlt: "OpenAI logo",
   },
   {
@@ -1369,7 +1369,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "generative",
     tags: ["google", "context-window", "scaling"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/300px-Google_Gemini_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/250px-Google_Gemini_logo.svg.png",
     imageAlt: "Google Gemini logo",
   },
   {
@@ -1387,7 +1387,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "generative",
     tags: ["open-source", "meta", "language-model"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Meta_AI_Logo_%28Ring_Only%29.png/300px-Meta_AI_Logo_%28Ring_Only%29.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Meta_AI_Logo_%28Ring_Only%29.png/250px-Meta_AI_Logo_%28Ring_Only%29.png",
     imageAlt: "Meta AI logo",
   },
   {
@@ -1405,7 +1405,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "generative",
     tags: ["reasoning", "openai", "chain-of-thought", "paradigm-shift"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/300px-OpenAI_logo_2025_%28symbol%29.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/250px-OpenAI_logo_2025_%28symbol%29.svg.png",
     imageAlt: "OpenAI logo, creators of o1",
   },
   {
@@ -1423,7 +1423,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "generative",
     tags: ["regulation", "eu", "policy", "governance"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/300px-Flag_of_Europe.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/250px-Flag_of_Europe.svg.png",
     imageAlt: "European Union flag representing the EU AI Act",
   },
   {
@@ -1447,7 +1447,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "generative",
     tags: ["nobel", "recognition", "science", "safety"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/e/ed/Nobel_Prize.png/300px-Nobel_Prize.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/e/ed/Nobel_Prize.png/250px-Nobel_Prize.png",
     imageAlt: "Nobel Prize medal",
   },
 
@@ -1475,7 +1475,7 @@ export const milestones: AITimelineMilestone[] = [
       "efficiency",
       "cost",
     ],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/DeepSeek_logo.svg/300px-DeepSeek_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/DeepSeek_logo.svg/250px-DeepSeek_logo.svg.png",
     imageAlt: "DeepSeek AI logo",
   },
   {
@@ -1493,7 +1493,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "agentic",
     tags: ["anthropic", "coding", "developer-tools"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/300px-Anthropic_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/250px-Anthropic_logo.svg.png",
     imageAlt: "Anthropic logo",
   },
   {
@@ -1532,7 +1532,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "agentic",
     tags: ["anthropic", "reasoning", "frontier-model", "agentic"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/300px-Anthropic_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/250px-Anthropic_logo.svg.png",
     imageAlt: "Anthropic logo, creators of Claude 4",
   },
   {
@@ -1549,7 +1549,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "agentic",
     tags: ["openai", "reasoning", "frontier-model"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/300px-OpenAI_logo_2025_%28symbol%29.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/250px-OpenAI_logo_2025_%28symbol%29.svg.png",
     imageAlt: "OpenAI logo",
   },
   {
@@ -1566,7 +1566,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 3,
     era: "agentic",
     tags: ["google", "agents", "platform", "integration"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/300px-Google_Gemini_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/250px-Google_Gemini_logo.svg.png",
     imageAlt: "Google Gemini logo",
   },
   {
@@ -1583,7 +1583,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "agentic",
     tags: ["coding", "agents", "developer-tools", "productivity"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/GitHub_Copilot_logo.svg/300px-GitHub_Copilot_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/GitHub_Copilot_logo.svg/250px-GitHub_Copilot_logo.svg.png",
     imageAlt: "GitHub Copilot logo representing the AI coding agents era",
   },
   {
@@ -1601,7 +1601,7 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "agentic",
     tags: ["anthropic", "frontier-model", "agentic", "autonomous"],
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/300px-Anthropic_logo.svg.png",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/250px-Anthropic_logo.svg.png",
     imageAlt: "Anthropic logo, creators of Claude 4.5 Opus",
   },
   {
