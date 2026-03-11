@@ -186,7 +186,7 @@ export default function Footer() {
         {/* Tip jar */}
         <div className="flex items-center justify-center gap-4 mb-8">
           <a
-            href="https://ko-fi.com/aitimeline"
+            href="https://buymeacoffee.com/shordle"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[#ff5e5b]/10 hover:bg-[#ff5e5b]/20 text-[#ff5e5b] border border-[#ff5e5b]/20 rounded-lg transition-colors"
