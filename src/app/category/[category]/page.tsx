@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { milestones } from "@/data/timeline";
+import { milestones, eras } from "@/data/timeline";
 import {
   getMilestonesByCategory,
   getAllCategories,
@@ -109,33 +109,56 @@ export default function CategoryPage({ params }: Props) {
       </header>
 
       <section>
-        <div className="space-y-6">
-          {catMilestones.map((m) => {
-            const era = getEraById(m.era);
+        {eras
+          .filter((era) =>
+            catMilestones.some((m) => m.era === era.id)
+          )
+          .map((era) => {
+            const eraMilestones = catMilestones.filter(
+              (m) => m.era === era.id
+            );
             return (
-              <a
-                key={m.id}
-                href={`/timeline/${m.id}`}
-                className="block border-l-2 border-white/20 hover:border-primary pl-6 py-2 transition-colors"
-              >
-                <div className="flex items-center gap-2">
-                  <time dateTime={String(m.year)} className="text-sm text-primary-light font-mono">
-                    {m.year}
-                  </time>
-                  {era && (
-                    <span className="text-xs text-[var(--color-text-muted)]">
-                      · {era.name}
+              <div key={era.id} className="mb-12">
+                <h2 className="text-xl font-bold mb-4 flex items-center gap-3">
+                  <div
+                    className="w-3 h-3 rounded-full flex-shrink-0"
+                    style={{ backgroundColor: era.color }}
+                  />
+                  <a
+                    href={`/era/${era.id}`}
+                    className="hover:text-primary-light transition-colors"
+                  >
+                    {era.name}{" "}
+                    <span className="text-[var(--color-text-muted)] font-normal text-sm">
+                      ({era.yearStart}–{era.yearEnd})
                     </span>
-                  )}
+                  </a>
+                </h2>
+                <div className="space-y-4">
+                  {eraMilestones.map((m) => (
+                    <a
+                      key={m.id}
+                      href={`/timeline/${m.id}`}
+                      className="block border-l-2 border-white/20 hover:border-primary pl-6 py-2 transition-colors"
+                    >
+                      <time
+                        dateTime={String(m.year)}
+                        className="text-sm text-primary-light font-mono"
+                      >
+                        {m.year}
+                      </time>
+                      <h3 className="text-lg font-semibold mt-1">
+                        {m.title}
+                      </h3>
+                      <p className="text-sm text-[var(--color-text-muted)] mt-1 line-clamp-2">
+                        {m.description}
+                      </p>
+                    </a>
+                  ))}
                 </div>
-                <h3 className="text-lg font-semibold mt-1">{m.title}</h3>
-                <p className="text-sm text-[var(--color-text-muted)] mt-1 line-clamp-2">
-                  {m.description}
-                </p>
-              </a>
+              </div>
             );
           })}
-        </div>
       </section>
 
       {(() => {

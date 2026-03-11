@@ -4,6 +4,7 @@ import { milestones } from "@/data/timeline";
 import {
   getMilestoneBySlug,
   getRelatedMilestones,
+  getMilestonesByEra,
   getEraById,
   categoryLabel,
   tagLabel,
@@ -13,6 +14,7 @@ import {
   breadcrumbJsonLd,
   personJsonLd,
 } from "@/lib/structured-data";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 interface Props {
   params: { slug: string };
@@ -201,6 +203,34 @@ export default function MilestonePage({ params }: Props) {
               </ul>
             </div>
           )}
+
+          {era && (
+            <div className="pt-4 border-t border-white/10">
+              <p className="text-sm text-[var(--color-text-muted)]">
+                Part of the{" "}
+                <a
+                  href={`/era/${era.id}`}
+                  className="text-primary-light hover:underline"
+                >
+                  {era.name} ({era.yearStart}–{era.yearEnd})
+                </a>{" "}
+                era · Browse{" "}
+                <a
+                  href={`/category/${milestone.category}`}
+                  className="text-primary-light hover:underline"
+                >
+                  all {categoryLabel(milestone.category).toLowerCase()}
+                </a>{" "}
+                · View{" "}
+                <a
+                  href={`/year/${milestone.year}`}
+                  className="text-primary-light hover:underline"
+                >
+                  all {milestone.year} milestones
+                </a>
+              </p>
+            </div>
+          )}
         </section>
       </article>
 
@@ -214,9 +244,14 @@ export default function MilestonePage({ params }: Props) {
                 href={`/timeline/${m.id}`}
                 className="block p-4 rounded-lg border border-white/10 bg-surface hover:border-primary/50 transition-colors"
               >
-                <span className="text-sm text-primary-light font-mono">
-                  {m.year}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-primary-light font-mono">
+                    {m.year}
+                  </span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary-light">
+                    {categoryLabel(m.category)}
+                  </span>
+                </div>
                 <h3 className="font-semibold mt-1">{m.title}</h3>
                 <p className="text-sm text-[var(--color-text-muted)] mt-1 line-clamp-2">
                   {m.description}
@@ -226,6 +261,9 @@ export default function MilestonePage({ params }: Props) {
           </div>
         </section>
       )}
+      <section className="mt-16 pt-12 border-t border-white/10">
+        <NewsletterSignup />
+      </section>
     </main>
   );
 }

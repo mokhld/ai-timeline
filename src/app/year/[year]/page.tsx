@@ -7,7 +7,7 @@ import {
   categoryLabel,
   getAdjacentYears,
 } from "@/lib/timeline-utils";
-import { breadcrumbJsonLd, itemListJsonLd } from "@/lib/structured-data";
+import { breadcrumbJsonLd, itemListJsonLd, yearPageJsonLd } from "@/lib/structured-data";
 
 interface Props {
   params: { year: string };
@@ -48,6 +48,14 @@ export default function YearPage({ params }: Props) {
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            yearPageJsonLd(year, yearMilestones.length)
+          ),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

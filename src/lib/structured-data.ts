@@ -20,20 +20,21 @@ export function websiteJsonLd() {
 }
 
 export function milestoneJsonLd(milestone: AITimelineMilestone) {
+  const dateStr = `${milestone.year}-${String(milestone.month ?? 1).padStart(2, "0")}-${String(milestone.day ?? 1).padStart(2, "0")}`;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: milestone.title,
     description: milestone.description,
-    datePublished: `${milestone.year}-${String(milestone.month ?? 1).padStart(2, "0")}-${String(milestone.day ?? 1).padStart(2, "0")}`,
-    author: milestone.people.map((p) => ({
-      "@type": "Person",
-      name: p,
-    })),
+    datePublished: dateStr,
+    author: milestone.people.length > 0
+      ? milestone.people.map((p) => ({ "@type": "Person", name: p }))
+      : { "@type": "Organization", name: "AI Timeline" },
     publisher: {
       "@type": "Organization",
       name: "AI Timeline",
       url: BASE_URL,
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.svg` },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -41,9 +42,16 @@ export function milestoneJsonLd(milestone: AITimelineMilestone) {
     },
     keywords: milestone.tags.join(", "),
     about: {
-      "@type": "Thing",
+      "@type": "Event",
       name: milestone.title,
+      startDate: dateStr,
       description: milestone.impact,
+      ...(milestone.organizations.length > 0 && {
+        organizer: milestone.organizations.map((o) => ({
+          "@type": "Organization",
+          name: o,
+        })),
+      }),
     },
   };
 }
@@ -141,6 +149,27 @@ export function tagPageJsonLd(
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${BASE_URL}/tag/${tag}`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "AI Timeline",
+      url: BASE_URL,
+    },
+  };
+}
+
+export function yearPageJsonLd(
+  year: number,
+  milestoneCount: number
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `AI Developments in ${year}`,
+    description: `${milestoneCount} artificial intelligence milestones from ${year}.`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/year/${year}`,
     },
     publisher: {
       "@type": "Organization",

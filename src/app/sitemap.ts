@@ -14,11 +14,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  const impactPriority: Record<number, number> = {
+    5: 0.9,
+    4: 0.8,
+    3: 0.7,
+    2: 0.6,
+    1: 0.5,
+  };
+
   const milestonePages: MetadataRoute.Sitemap = milestones.map((m) => ({
     url: `${baseUrl}/timeline/${m.id}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
-    priority: m.impactLevel >= 4 ? 0.9 : 0.7,
+    priority: impactPriority[m.impactLevel] ?? 0.6,
   }));
 
   const eraPages: MetadataRoute.Sitemap = eras.map((e) => ({
