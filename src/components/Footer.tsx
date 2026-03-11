@@ -1,7 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { milestones, eras } from "@/data/timeline";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const categoryLabels: Record<string, string> = {
   research: "Research",
@@ -24,40 +29,100 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function Footer() {
-  // Count milestones per category
+  const footerRef = useRef<HTMLElement>(null);
+  const closingRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
   const categoryCounts: Record<string, number> = {};
   milestones.forEach((m) => {
     categoryCounts[m.category] = (categoryCounts[m.category] || 0) + 1;
   });
 
+  useGSAP(
+    () => {
+      if (!footerRef.current) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Closing message - scale up dramatically
+        gsap.fromTo(
+          closingRef.current,
+          { scale: 0.7, opacity: 0, filter: "blur(4px)" },
+          {
+            scale: 1,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: closingRef.current,
+              start: "top 85%",
+              end: "top 50%",
+              scrub: 1,
+            },
+          }
+        );
+
+        // Category cards - stagger from bottom with scale
+        if (gridRef.current) {
+          gsap.fromTo(
+            gridRef.current.children,
+            { y: 40, opacity: 0, scale: 0.9 },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.6,
+              stagger: 0.08,
+              ease: "back.out(1.5)",
+              scrollTrigger: {
+                trigger: gridRef.current,
+                start: "top 85%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        }
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set([closingRef.current], {
+          opacity: 1,
+          scale: 1,
+          filter: "none",
+        });
+        if (gridRef.current) {
+          gsap.set(gridRef.current.children, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          });
+        }
+      });
+    },
+    { scope: footerRef }
+  );
+
   return (
-    <footer className="relative py-24 sm:py-32">
+    <footer ref={footerRef} className="relative py-24 sm:py-32">
       {/* Gradient top edge */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#818cf8]/30 to-transparent" />
 
       <div className="max-w-4xl mx-auto px-4">
         {/* Closing message */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div ref={closingRef} className="text-center mb-16" style={{ opacity: 0 }}>
           <p className="text-2xl sm:text-3xl font-bold text-[#f1f5f9] mb-3">
             The story continues...
           </p>
           <p className="text-[#475569] font-mono text-sm">
             Last updated: March 2026
           </p>
-        </motion.div>
+        </div>
 
         {/* Category summary */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+        <div
+          ref={gridRef}
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-16"
         >
           {Object.entries(categoryCounts)
@@ -66,6 +131,7 @@ export default function Footer() {
               <div
                 key={category}
                 className="bg-[#0f172a]/60 border border-white/5 rounded-lg p-4 text-center"
+                style={{ opacity: 0 }}
               >
                 <div
                   className="text-2xl font-bold font-mono mb-1"
@@ -78,7 +144,7 @@ export default function Footer() {
                 </div>
               </div>
             ))}
-        </motion.div>
+        </div>
 
         {/* Stats bar */}
         <div className="flex items-center justify-center gap-6 text-sm text-[#475569] mb-8">

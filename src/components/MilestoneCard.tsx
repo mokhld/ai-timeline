@@ -53,12 +53,8 @@ export default function MilestoneCard({
   const isLandmark = milestone.impactLevel === 5;
 
   return (
-    <motion.article
-      initial={{ opacity: 0, x: -30 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
-      className={`group relative ${isLandmark ? "col-span-full" : ""}`}
+    <article
+      className={`group relative will-change-transform ${isLandmark ? "col-span-full" : ""}`}
     >
       <div className="flex gap-4 sm:gap-6">
         {/* Timeline spine */}
@@ -215,6 +211,6 @@ export default function MilestoneCard({
           )}
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

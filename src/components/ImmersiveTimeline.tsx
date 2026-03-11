@@ -11,8 +11,8 @@ export default function ImmersiveTimeline() {
     <>
       <HeroScene />
       <TimelineNavigator />
-      {eras.map((era) => (
-        <EraSection key={era.id} era={era} />
+      {eras.map((era, index) => (
+        <EraSection key={era.id} era={era} eraIndex={index} />
       ))}
       <Footer />
     </>
