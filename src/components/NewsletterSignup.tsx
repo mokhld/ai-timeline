@@ -12,13 +12,13 @@ export default function NewsletterSignup({ variant = "default" }: { variant?: "d
 
     setStatus("loading");
     try {
-      const res = await fetch("https://buttondown.com/api/emails/embed-subscribe/aitimeline", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ email }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
 
-      if (res.ok || res.status === 303) {
+      if (res.ok) {
         setStatus("success");
         setEmail("");
       } else {

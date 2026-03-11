@@ -65,6 +65,32 @@ export function getAllYears(): number[] {
   return [...new Set(milestones.map((m) => m.year))].sort((a, b) => a - b);
 }
 
+export function getAllTags(): string[] {
+  return [...new Set(milestones.flatMap((m) => m.tags))].sort();
+}
+
+export function getMilestonesByTag(tag: string): AITimelineMilestone[] {
+  return milestones.filter((m) => m.tags.includes(tag));
+}
+
+export function tagLabel(tag: string): string {
+  return tag
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
+export function getAdjacentYears(
+  year: number
+): { prev: number | null; next: number | null } {
+  const years = getAllYears();
+  const idx = years.indexOf(year);
+  return {
+    prev: idx > 0 ? years[idx - 1] : null,
+    next: idx < years.length - 1 ? years[idx + 1] : null,
+  };
+}
+
 export function categoryLabel(category: string): string {
   const labels: Record<string, string> = {
     research: "Research Breakthroughs",
