@@ -8,6 +8,7 @@ import {
   categoryLabel,
 } from "@/lib/timeline-utils";
 import MilestoneListCard from "@/components/MilestoneListCard";
+import BackButton from "@/components/BackButton";
 import {
   breadcrumbJsonLd,
   itemListJsonLd,
@@ -105,6 +106,8 @@ export default function TagPage({ params }: Props) {
           ),
         }}
       />
+
+      <BackButton />
 
       <nav
         aria-label="Breadcrumb"

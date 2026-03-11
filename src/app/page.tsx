@@ -7,7 +7,6 @@ const ImmersiveTimeline = dynamic(
   () => import("@/components/ImmersiveTimeline"),
   {
     ssr: false,
-    loading: () => <HomeFallback />,
   }
 );
 
@@ -99,6 +98,20 @@ function HomeFallback() {
           ))}
         </div>
       </nav>
+
+      {/* Knowledge graph link for crawlers */}
+      <nav aria-label="Explore" className="mb-16">
+        <h2 className="text-2xl font-bold mb-4">Explore Connections</h2>
+        <p className="text-sm text-[var(--color-text-muted)] mb-3">
+          Discover how AI milestones connect in an interactive knowledge graph.
+        </p>
+        <a
+          href="/explore"
+          className="px-4 py-2 rounded-lg border border-white/10 hover:border-primary/50 transition-colors inline-block"
+        >
+          Explore the Knowledge Graph
+        </a>
+      </nav>
     </div>
   );
 }
@@ -131,6 +144,10 @@ export default function Home() {
         }}
       />
       <ImmersiveTimeline />
+      {/* SEO-only fallback: visible to crawlers, hidden from visual users */}
+      <div className="sr-only" aria-hidden="false">
+        <HomeFallback />
+      </div>
     </main>
   );
 }

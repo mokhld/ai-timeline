@@ -8,6 +8,7 @@ import {
   getAdjacentYears,
 } from "@/lib/timeline-utils";
 import MilestoneListCard from "@/components/MilestoneListCard";
+import BackButton from "@/components/BackButton";
 import { breadcrumbJsonLd, itemListJsonLd, yearPageJsonLd, ogImageUrl } from "@/lib/structured-data";
 
 interface Props {
@@ -98,6 +99,8 @@ export default function YearPage({ params }: Props) {
           ),
         }}
       />
+
+      <BackButton />
 
       <nav aria-label="Breadcrumb" className="text-sm text-[var(--color-text-muted)] mb-8 flex gap-2">
         <a href="/" className="hover:text-primary-light">

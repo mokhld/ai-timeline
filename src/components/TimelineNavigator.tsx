@@ -68,10 +68,10 @@ export default function TimelineNavigator() {
       <div ref={sentinelRef} className="h-0" aria-hidden="true" />
 
       <nav
-        className={`z-50 transition-all duration-300 ${
+        className={`z-50 fixed top-0 left-0 right-0 transition-all duration-300 ${
           isSticky
-            ? "fixed top-0 left-0 right-0 bg-[#030712]/80 backdrop-blur-xl border-b border-white/5"
-            : "relative bg-transparent"
+            ? "bg-[#030712]/80 backdrop-blur-xl border-b border-white/5 translate-y-0 opacity-100"
+            : "-translate-y-full opacity-0 pointer-events-none"
         }`}
         aria-label="Timeline navigation"
       >

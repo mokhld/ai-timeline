@@ -10,6 +10,7 @@ import {
 } from "@/lib/timeline-utils";
 import { categoryColors } from "@/lib/colors";
 import MilestoneListCard from "@/components/MilestoneListCard";
+import BackButton from "@/components/BackButton";
 import {
   breadcrumbJsonLd,
   itemListJsonLd,
@@ -109,6 +110,8 @@ export default function CategoryPage({ params }: Props) {
           ),
         }}
       />
+
+      <BackButton />
 
       <nav
         aria-label="Breadcrumb"

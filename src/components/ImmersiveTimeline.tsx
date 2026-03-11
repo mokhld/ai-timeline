@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { eras } from "@/data/timeline";
 import HeroScene from "./HeroScene";
 import TimelineNavigator from "./TimelineNavigator";
@@ -7,10 +8,16 @@ import EraSection from "./EraSection";
 import Footer from "./Footer";
 import NewsletterSignup from "./NewsletterSignup";
 
+const KnowledgeGraphPreview = dynamic(
+  () => import("./KnowledgeGraphPreview"),
+  { ssr: false }
+);
+
 export default function ImmersiveTimeline() {
   return (
     <>
       <HeroScene />
+      <KnowledgeGraphPreview />
       <div className="py-16 px-4 bg-gradient-to-b from-transparent to-[#0f172a]/30">
         <NewsletterSignup />
       </div>
@@ -19,7 +26,6 @@ export default function ImmersiveTimeline() {
         <EraSection key={era.id} era={era} eraIndex={index} />
       ))}
       <Footer />
-      <NewsletterSignup variant="sticky" />
     </>
   );
 }

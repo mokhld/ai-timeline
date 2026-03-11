@@ -10,6 +10,7 @@ import {
   truncateAtWord,
 } from "@/lib/timeline-utils";
 import MilestoneListCard from "@/components/MilestoneListCard";
+import BackButton from "@/components/BackButton";
 import {
   eraJsonLd,
   breadcrumbJsonLd,
@@ -108,6 +109,8 @@ export default function EraPage({ params }: Props) {
           ),
         }}
       />
+
+      <BackButton />
 
       <nav
         aria-label="Breadcrumb"

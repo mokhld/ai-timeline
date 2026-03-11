@@ -20,6 +20,7 @@ import NewsletterSignup from "@/components/NewsletterSignup";
 import MilestoneHeroImage from "@/components/MilestoneHeroImage";
 import MilestoneListCard from "@/components/MilestoneListCard";
 import ImpactDots from "@/components/ImpactDots";
+import BackButton from "@/components/BackButton";
 import { categoryColors } from "@/lib/colors";
 
 interface Props {
@@ -111,6 +112,8 @@ export default function MilestonePage({ params }: Props) {
           }}
         />
       ))}
+
+      <BackButton />
 
       <nav
         aria-label="Breadcrumb"
