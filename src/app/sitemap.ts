@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 import { milestones, eras } from "@/data/timeline";
-import { getAllCategories, getAllYears } from "@/lib/timeline-utils";
+import { getAllCategories, getAllYears, getAllTags } from "@/lib/timeline-utils";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://aiworld.com";
+  const baseUrl = "https://aitimeline.com";
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -42,11 +42,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const tagPages: MetadataRoute.Sitemap = getAllTags().map((t) => ({
+    url: `${baseUrl}/tag/${t}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+  }));
+
   return [
     ...staticPages,
     ...eraPages,
     ...milestonePages,
     ...categoryPages,
     ...yearPages,
+    ...tagPages,
   ];
 }

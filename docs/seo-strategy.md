@@ -1,4 +1,4 @@
-# AI World — SEO Strategy & On-Page Optimization Plan
+# AI Timeline — SEO Strategy & On-Page Optimization Plan
 
 **Prepared by:** CMO
 **Date:** 2026-03-11
@@ -54,7 +54,7 @@ These follow repeatable patterns mapped to the timeline data structure:
 | **Milestone page** (`/timeline/[id]`) | [milestone title], [milestone] AI history, [milestone] [year] | impact, significance, people involved |
 | **Category page** (`/category/[cat]`) | AI [category] history, [category] in artificial intelligence | timeline, breakthroughs, milestones |
 | **Person/Org page** (`/people/[slug]`) | [person] AI, [person] artificial intelligence contributions | biography, milestones, impact |
-| **About** | about AI World, AI history website | mission, methodology |
+| **About** | about AI Timeline, AI history website | mission, methodology |
 
 ---
 
@@ -62,22 +62,22 @@ These follow repeatable patterns mapped to the timeline data structure:
 
 ### 2.1 Title Tag Patterns
 
-Consistent format: `{Page-Specific Title} | AI World`
+Consistent format: `{Page-Specific Title} | AI Timeline`
 
 | Page Type | Title Pattern | Example |
 |---|---|---|
-| **Home** | `AI World — The Complete History of Artificial Intelligence` | — |
-| **Era** | `{Era Name} ({yearStart}–{yearEnd}) — AI History \| AI World` | `The Transformer Era (2018–2021) — AI History \| AI World` |
-| **Milestone** | `{Title} ({Year}) — AI Timeline \| AI World` | `GPT-3 Release (2020) — AI Timeline \| AI World` |
-| **Category** | `{Category} in AI History — Timeline & Milestones \| AI World` | `Research Breakthroughs in AI History — Timeline & Milestones \| AI World` |
-| **Person/Org** | `{Name} — Contributions to AI \| AI World` | `Geoffrey Hinton — Contributions to AI \| AI World` |
-| **About** | `About AI World — Tracking the Evolution of Artificial Intelligence` | — |
+| **Home** | `AI Timeline — The Complete History of Artificial Intelligence` | — |
+| **Era** | `{Era Name} ({yearStart}–{yearEnd}) — AI History \| AI Timeline` | `The Transformer Era (2018–2021) — AI History \| AI Timeline` |
+| **Milestone** | `{Title} ({Year}) — AI Timeline \| AI Timeline` | `GPT-3 Release (2020) — AI Timeline \| AI Timeline` |
+| **Category** | `{Category} in AI History — Timeline & Milestones \| AI Timeline` | `Research Breakthroughs in AI History — Timeline & Milestones \| AI Timeline` |
+| **Person/Org** | `{Name} — Contributions to AI \| AI Timeline` | `Geoffrey Hinton — Contributions to AI \| AI Timeline` |
+| **About** | `About AI Timeline — Tracking the Evolution of Artificial Intelligence` | — |
 
 **Rules:**
 - Keep titles under 60 characters where possible
 - Front-load the unique keyword (milestone name, era name)
 - Always include "AI" or "Artificial Intelligence" for relevance
-- Brand suffix: `| AI World` (or `— AI World` for home)
+- Brand suffix: `| AI Timeline` (or `— AI Timeline` for home)
 
 ### 2.2 Meta Description Patterns
 
@@ -101,7 +101,7 @@ Consistent format: `{Page-Specific Title} | AI World`
 ### 3.1 Default OG Tags (all pages)
 
 ```html
-<meta property="og:site_name" content="AI World" />
+<meta property="og:site_name" content="AI Timeline" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
 ```
@@ -120,7 +120,7 @@ Consistent format: `{Page-Specific Title} | AI World`
 
 ```html
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@aiworld" />
+<meta name="twitter:site" content="@aitimeline" />
 <meta name="twitter:title" content="{og:title}" />
 <meta name="twitter:description" content="{og:description}" />
 <meta name="twitter:image" content="{og:image}" />
@@ -273,12 +273,12 @@ Implement as a `<nav aria-label="Breadcrumb">` with `BreadcrumbList` JSON-LD (se
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "AI World",
-  "url": "https://aiworld.com",
+  "name": "AI Timeline",
+  "url": "https://aitimeline.com",
   "description": "The complete history of artificial intelligence from 1943 to today.",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://aiworld.com/search?q={search_term_string}",
+    "target": "https://aitimeline.com/search?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -295,19 +295,19 @@ Implement as a `<nav aria-label="Breadcrumb">` with `BreadcrumbList` JSON-LD (se
   "datePublished": "{milestone.year}-{milestone.month || '01'}-{milestone.day || '01'}",
   "author": {
     "@type": "Organization",
-    "name": "AI World"
+    "name": "AI Timeline"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "AI World",
+    "name": "AI Timeline",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://aiworld.com/logo.png"
+      "url": "https://aitimeline.com/logo.png"
     }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://aiworld.com/timeline/{milestone.id}"
+    "@id": "https://aitimeline.com/timeline/{milestone.id}"
   },
   "about": {
     "@type": "Event",
@@ -336,19 +336,19 @@ Implement as a `<nav aria-label="Breadcrumb">` with `BreadcrumbList` JSON-LD (se
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://aiworld.com"
+      "item": "https://aitimeline.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "{era.name}",
-      "item": "https://aiworld.com/era/{era.id}"
+      "item": "https://aitimeline.com/era/{era.id}"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "{milestone.title}",
-      "item": "https://aiworld.com/timeline/{milestone.id}"
+      "item": "https://aitimeline.com/timeline/{milestone.id}"
     }
   ]
 }
@@ -368,7 +368,7 @@ Implement as a `<nav aria-label="Breadcrumb">` with `BreadcrumbList` JSON-LD (se
       "@type": "ListItem",
       "position": 1,
       "name": "{milestone.title}",
-      "url": "https://aiworld.com/timeline/{milestone.id}"
+      "url": "https://aitimeline.com/timeline/{milestone.id}"
     }
   ]
 }

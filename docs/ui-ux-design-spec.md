@@ -1,4 +1,4 @@
-# AI World — UI/UX Design Specification
+# AI Timeline — UI/UX Design Specification
 
 **Prepared by:** CTO
 **Date:** 2026-03-11
@@ -59,7 +59,7 @@ Each era gets a distinct accent color that tints the entire section as the user 
 **Goal:** Jaw-dropping first impression
 
 - Full-viewport 3D scene: Matrix-style digital rain (green/cyan particles falling) or a neural network visualization using Three.js/R3F
-- Title "AI World" emerges from the particle field, large and luminous
+- Title "AI Timeline" emerges from the particle field, large and luminous
 - Subtitle fades in: "The Complete History of Artificial Intelligence"
 - Stats ribbon: "80+ milestones · 11 eras · 1943–2026"
 - Scroll indicator: animated chevron/arrow pulsing downward

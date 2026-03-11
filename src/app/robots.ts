@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://aiworld.com/sitemap.xml",
+    sitemap: "https://aitimeline.com/sitemap.xml",
   };
 }

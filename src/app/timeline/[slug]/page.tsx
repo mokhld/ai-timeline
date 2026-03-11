@@ -6,8 +6,13 @@ import {
   getRelatedMilestones,
   getEraById,
   categoryLabel,
+  tagLabel,
 } from "@/lib/timeline-utils";
-import { milestoneJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
+import {
+  milestoneJsonLd,
+  breadcrumbJsonLd,
+  personJsonLd,
+} from "@/lib/structured-data";
 
 interface Props {
   params: { slug: string };
@@ -28,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/timeline/${milestone.id}`,
     },
     openGraph: {
-      title: `${milestone.title} (${milestone.year}) — AI Timeline | AI World`,
+      title: `${milestone.title} (${milestone.year}) — AI Timeline | AI Timeline`,
       description: milestone.description,
       type: "article",
     },
@@ -55,19 +60,37 @@ export default function MilestonePage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI World", url: "https://aiworld.com" },
+              { name: "AI Timeline", url: "https://aitimeline.com" },
               {
                 name: era?.name ?? "Timeline",
-                url: `https://aiworld.com/era/${milestone.era}`,
+                url: `https://aitimeline.com/era/${milestone.era}`,
               },
               {
                 name: milestone.title,
-                url: `https://aiworld.com/timeline/${milestone.id}`,
+                url: `https://aitimeline.com/timeline/${milestone.id}`,
               },
             ])
           ),
         }}
       />
+
+      {milestone.people.map((person) => (
+        <script
+          key={person}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              personJsonLd(person, [
+                {
+                  title: milestone.title,
+                  id: milestone.id,
+                  year: milestone.year,
+                },
+              ])
+            ),
+          }}
+        />
+      ))}
 
       <nav
         aria-label="Breadcrumb"
@@ -166,11 +189,13 @@ export default function MilestonePage({ params }: Props) {
               <h2 className="text-xl font-semibold mb-2">Tags</h2>
               <ul className="flex flex-wrap gap-2">
                 {milestone.tags.map((tag) => (
-                  <li
-                    key={tag}
-                    className="text-xs px-3 py-1 rounded-full bg-white/5 text-[var(--color-text-muted)] border border-white/10"
-                  >
-                    {tag}
+                  <li key={tag}>
+                    <a
+                      href={`/tag/${tag}`}
+                      className="text-xs px-3 py-1 rounded-full bg-white/5 text-[var(--color-text-muted)] border border-white/10 hover:border-primary/50 hover:text-primary-light transition-colors inline-block"
+                    >
+                      {tagLabel(tag)}
+                    </a>
                   </li>
                 ))}
               </ul>

@@ -100,7 +100,7 @@ export default function Footer() {
 
         {/* Bottom line */}
         <div className="text-center text-xs text-[#475569]">
-          <p>AI World — An immersive journey through the history of artificial intelligence</p>
+          <p>AI Timeline — An immersive journey through the history of artificial intelligence</p>
         </div>
       </div>
     </footer>

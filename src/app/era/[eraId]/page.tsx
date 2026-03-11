@@ -6,6 +6,7 @@ import {
   getMilestonesByEra,
   getAdjacentEras,
   categoryLabel,
+  tagLabel,
 } from "@/lib/timeline-utils";
 import {
   eraJsonLd,
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/era/${era.id}`,
     },
     openGraph: {
-      title: `${era.name} (${era.yearStart}–${era.yearEnd}) — AI History | AI World`,
+      title: `${era.name} (${era.yearStart}–${era.yearEnd}) — AI History | AI Timeline`,
       description: era.description,
     },
   };
@@ -63,7 +64,7 @@ export default function EraPage({ params }: Props) {
               `${eraMilestones.length} milestones from the ${era.name} era of AI.`,
               eraMilestones.map((m) => ({
                 name: m.title,
-                url: `https://aiworld.com/timeline/${m.id}`,
+                url: `https://aitimeline.com/timeline/${m.id}`,
               }))
             )
           ),
@@ -74,8 +75,8 @@ export default function EraPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI World", url: "https://aiworld.com" },
-              { name: era.name, url: `https://aiworld.com/era/${era.id}` },
+              { name: "AI Timeline", url: "https://aitimeline.com" },
+              { name: era.name, url: `https://aitimeline.com/era/${era.id}` },
             ])
           ),
         }}
@@ -150,6 +151,35 @@ export default function EraPage({ params }: Props) {
           </div>
         </section>
       )}
+
+      {(() => {
+        const tagCounts = new Map<string, number>();
+        eraMilestones.forEach((m) =>
+          m.tags.forEach((t) => tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1))
+        );
+        const popularTags = [...tagCounts.entries()]
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 10);
+        return popularTags.length > 0 ? (
+          <section className="mt-12">
+            <h2 className="text-xl font-bold mb-4">Popular Topics</h2>
+            <div className="flex flex-wrap gap-2">
+              {popularTags.map(([tag, count]) => (
+                <a
+                  key={tag}
+                  href={`/tag/${tag}`}
+                  className="text-sm px-3 py-1 rounded-full border border-white/10 hover:border-primary/50 transition-colors"
+                >
+                  {tagLabel(tag)}{" "}
+                  <span className="text-[var(--color-text-muted)]">
+                    ({count})
+                  </span>
+                </a>
+              ))}
+            </div>
+          </section>
+        ) : null;
+      })()}
 
       <nav className="mt-16 flex justify-between items-center border-t border-white/10 pt-8">
         {prev ? (

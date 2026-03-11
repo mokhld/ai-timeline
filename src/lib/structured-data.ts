@@ -1,19 +1,19 @@
 import type { AITimelineMilestone, AIEraInfo } from "@/data/timeline";
 
-const BASE_URL = "https://aiworld.com";
+const BASE_URL = "https://aitimeline.com";
 
 export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "AI World",
+    name: "AI Timeline",
     url: BASE_URL,
     description:
       "The complete history of artificial intelligence from 1943 to today.",
     inLanguage: "en-US",
     publisher: {
       "@type": "Organization",
-      name: "AI World",
+      name: "AI Timeline",
       url: BASE_URL,
     },
   };
@@ -32,7 +32,7 @@ export function milestoneJsonLd(milestone: AITimelineMilestone) {
     })),
     publisher: {
       "@type": "Organization",
-      name: "AI World",
+      name: "AI Timeline",
       url: BASE_URL,
     },
     mainEntityOfPage: {
@@ -56,7 +56,7 @@ export function eraJsonLd(era: AIEraInfo, milestoneCount: number) {
     description: era.description,
     publisher: {
       "@type": "Organization",
-      name: "AI World",
+      name: "AI Timeline",
       url: BASE_URL,
     },
     mainEntityOfPage: {
@@ -107,7 +107,7 @@ export function categoryPageJsonLd(
     },
     publisher: {
       "@type": "Organization",
-      name: "AI World",
+      name: "AI Timeline",
       url: BASE_URL,
     },
   };
@@ -144,7 +144,7 @@ export function tagPageJsonLd(
     },
     publisher: {
       "@type": "Organization",
-      name: "AI World",
+      name: "AI Timeline",
       url: BASE_URL,
     },
   };

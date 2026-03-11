@@ -9,7 +9,7 @@ export default function NotFound() {
         href="/"
         className="px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary-dark transition-colors"
       >
-        Back to AI World
+        Back to AI Timeline
       </a>
     </main>
   );

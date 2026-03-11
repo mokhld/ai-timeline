@@ -37,7 +37,7 @@
   <line x1="600" y1="180" x2="540" y2="220" stroke="#a5b4fc" stroke-width="2" opacity="0.5"/>
   <line x1="600" y1="180" x2="660" y2="220" stroke="#a5b4fc" stroke-width="2" opacity="0.5"/>
   <!-- Title -->
-  <text x="600" y="340" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="800" font-size="72" fill="#ffffff" letter-spacing="-1">AI World</text>
+  <text x="600" y="340" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="800" font-size="72" fill="#ffffff" letter-spacing="-1">AI Timeline</text>
   <!-- Subtitle -->
   <text x="600" y="400" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="400" font-size="28" fill="#a5b4fc">The Complete History of Artificial Intelligence</text>
   <!-- Date range -->

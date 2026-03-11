@@ -39,11 +39,11 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: {
-    default: 'AI World — The Complete History of Artificial Intelligence',
-    template: '%s | AI World',
+    default: 'AI Timeline — The Complete History of Artificial Intelligence',
+    template: '%s | AI Timeline',
   },
   description: 'Explore the complete history of artificial intelligence from 1943 to today.',
-  metadataBase: new URL('https://aiworld.com'),
+  metadataBase: new URL('https://aitimeline.com'),
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '16x16 32x32' },
@@ -58,14 +58,14 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
   openGraph: {
     type: 'website',
-    siteName: 'AI World',
+    siteName: 'AI Timeline',
     locale: 'en_US',
     images: [
       {
         url: '/og-default.png',
         width: 1200,
         height: 630,
-        alt: 'AI World — The Complete History of Artificial Intelligence',
+        alt: 'AI Timeline — The Complete History of Artificial Intelligence',
       },
     ],
   },
