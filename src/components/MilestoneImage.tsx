@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 
 export default function MilestoneImage({
@@ -14,7 +13,6 @@ export default function MilestoneImage({
   eraColor: string;
   isLandmark?: boolean;
 }) {
-  const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
   if (error) return null;
@@ -23,15 +21,11 @@ export default function MilestoneImage({
 
   return (
     <div
-      className={`relative shrink-0 rounded-full overflow-hidden transition-all duration-500 ${
-        loaded ? "opacity-100" : "opacity-0"
-      }`}
+      className="relative shrink-0 rounded-full overflow-hidden"
       style={{
         width: size,
         height: size,
-        boxShadow: loaded
-          ? `0 0 ${isLandmark ? 20 : 12}px ${eraColor}40, 0 0 ${isLandmark ? 40 : 24}px ${eraColor}15`
-          : "none",
+        boxShadow: `0 0 ${isLandmark ? 20 : 12}px ${eraColor}40, 0 0 ${isLandmark ? 40 : 24}px ${eraColor}15`,
         border: `2px solid ${eraColor}50`,
       }}
     >
@@ -42,15 +36,15 @@ export default function MilestoneImage({
           background: `radial-gradient(circle at 30% 30%, ${eraColor}20 0%, transparent 60%)`,
         }}
       />
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={src}
         alt={alt}
         width={size}
         height={size}
         className="object-cover w-full h-full"
-        onLoad={() => setLoaded(true)}
         onError={() => setError(true)}
-        unoptimized={src.startsWith("http")}
+        loading="lazy"
       />
     </div>
   );
