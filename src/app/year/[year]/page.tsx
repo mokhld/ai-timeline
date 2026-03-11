@@ -7,7 +7,7 @@ import {
   categoryLabel,
   getAdjacentYears,
 } from "@/lib/timeline-utils";
-import { breadcrumbJsonLd, itemListJsonLd, yearPageJsonLd } from "@/lib/structured-data";
+import { breadcrumbJsonLd, itemListJsonLd, yearPageJsonLd, ogImageUrl } from "@/lib/structured-data";
 
 interface Props {
   params: { year: string };
@@ -32,8 +32,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/year/${year}`,
     },
     openGraph: {
-      title: `AI in ${year} — Timeline & Key Developments | AI Timeline`,
+      title: `AI in ${year} — Timeline & Key Developments`,
       description: `${yearMilestones.length} AI milestone${yearMilestones.length > 1 ? "s" : ""} from ${year}.`,
+      images: [
+        {
+          url: ogImageUrl({
+            title: `AI in ${year}`,
+            subtitle: `${yearMilestones.length} milestone${yearMilestones.length > 1 ? "s" : ""} in artificial intelligence`,
+            type: "year",
+          }),
+          width: 1200,
+          height: 630,
+          alt: `AI in ${year} — AI Timeline`,
+        },
+      ],
     },
   };
 }

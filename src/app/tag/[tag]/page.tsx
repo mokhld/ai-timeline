@@ -11,6 +11,7 @@ import {
   breadcrumbJsonLd,
   itemListJsonLd,
   tagPageJsonLd,
+  ogImageUrl,
 } from "@/lib/structured-data";
 
 interface Props {
@@ -33,8 +34,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/tag/${params.tag}`,
     },
     openGraph: {
-      title: `${label} — AI Timeline & Milestones | AI Timeline`,
+      title: `${label} — AI Timeline & Milestones`,
       description: `${tagMilestones.length} AI milestones related to ${label.toLowerCase()}.`,
+      images: [
+        {
+          url: ogImageUrl({
+            title: label,
+            subtitle: `${tagMilestones.length} milestones in AI history`,
+            type: "tag",
+          }),
+          width: 1200,
+          height: 630,
+          alt: `${label} — AI Timeline`,
+        },
+      ],
     },
   };
 }

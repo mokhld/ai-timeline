@@ -2,13 +2,17 @@ import type { MetadataRoute } from "next";
 import { milestones, eras } from "@/data/timeline";
 import { getAllCategories, getAllYears, getAllTags } from "@/lib/timeline-utils";
 
+// Use a fixed build date so sitemap cache isn't invalidated on every request.
+// Update this when content changes.
+const LAST_UPDATED = new Date("2026-03-11");
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://aitimeline.com";
 
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: LAST_UPDATED,
       changeFrequency: "weekly",
       priority: 1,
     },
@@ -24,35 +28,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const milestonePages: MetadataRoute.Sitemap = milestones.map((m) => ({
     url: `${baseUrl}/timeline/${m.id}`,
-    lastModified: new Date(),
+    lastModified: LAST_UPDATED,
     changeFrequency: "monthly" as const,
     priority: impactPriority[m.impactLevel] ?? 0.6,
   }));
 
   const eraPages: MetadataRoute.Sitemap = eras.map((e) => ({
     url: `${baseUrl}/era/${e.id}`,
-    lastModified: new Date(),
+    lastModified: LAST_UPDATED,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
   const categoryPages: MetadataRoute.Sitemap = getAllCategories().map((c) => ({
     url: `${baseUrl}/category/${c}`,
-    lastModified: new Date(),
+    lastModified: LAST_UPDATED,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
   const yearPages: MetadataRoute.Sitemap = getAllYears().map((y) => ({
     url: `${baseUrl}/year/${y}`,
-    lastModified: new Date(),
+    lastModified: LAST_UPDATED,
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
 
   const tagPages: MetadataRoute.Sitemap = getAllTags().map((t) => ({
     url: `${baseUrl}/tag/${t}`,
-    lastModified: new Date(),
+    lastModified: LAST_UPDATED,
     changeFrequency: "monthly" as const,
     priority: 0.5,
   }));

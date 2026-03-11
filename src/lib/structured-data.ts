@@ -1,6 +1,18 @@
 import type { AITimelineMilestone, AIEraInfo } from "@/data/timeline";
 
-const BASE_URL = "https://aitimeline.com";
+export const BASE_URL = "https://aitimeline.com";
+
+export function ogImageUrl(params: {
+  title: string;
+  subtitle?: string;
+  type?: string;
+}): string {
+  const url = new URL(`${BASE_URL}/api/og`);
+  url.searchParams.set("title", params.title);
+  if (params.subtitle) url.searchParams.set("subtitle", params.subtitle);
+  if (params.type) url.searchParams.set("type", params.type);
+  return url.toString();
+}
 
 export function websiteJsonLd() {
   return {
@@ -15,6 +27,12 @@ export function websiteJsonLd() {
       "@type": "Organization",
       name: "AI Timeline",
       url: BASE_URL,
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.svg` },
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${BASE_URL}/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
     },
   };
 }
@@ -27,6 +45,13 @@ export function milestoneJsonLd(milestone: AITimelineMilestone) {
     headline: milestone.title,
     description: milestone.description,
     datePublished: dateStr,
+    ...(milestone.imageUrl && {
+      image: {
+        "@type": "ImageObject",
+        url: milestone.imageUrl,
+        ...(milestone.imageAlt && { caption: milestone.imageAlt }),
+      },
+    }),
     author: milestone.people.length > 0
       ? milestone.people.map((p) => ({ "@type": "Person", name: p }))
       : { "@type": "Organization", name: "AI Timeline" },
@@ -40,6 +65,7 @@ export function milestoneJsonLd(milestone: AITimelineMilestone) {
       "@type": "WebPage",
       "@id": `${BASE_URL}/timeline/${milestone.id}`,
     },
+    inLanguage: "en-US",
     keywords: milestone.tags.join(", "),
     about: {
       "@type": "Event",
@@ -62,15 +88,22 @@ export function eraJsonLd(era: AIEraInfo, milestoneCount: number) {
     "@type": "Article",
     headline: `${era.name} (${era.yearStart}–${era.yearEnd})`,
     description: era.description,
+    inLanguage: "en-US",
     publisher: {
       "@type": "Organization",
       name: "AI Timeline",
       url: BASE_URL,
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.svg` },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${BASE_URL}/era/${era.id}`,
     },
+    image: ogImageUrl({
+      title: era.name,
+      subtitle: `${era.yearStart}–${era.yearEnd} · ${milestoneCount} milestones`,
+      type: "era",
+    }),
     about: {
       "@type": "Thing",
       name: era.name,

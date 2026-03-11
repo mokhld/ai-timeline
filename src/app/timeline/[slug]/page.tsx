@@ -8,11 +8,13 @@ import {
   getEraById,
   categoryLabel,
   tagLabel,
+  truncateAtWord,
 } from "@/lib/timeline-utils";
 import {
   milestoneJsonLd,
   breadcrumbJsonLd,
   personJsonLd,
+  ogImageUrl,
 } from "@/lib/structured-data";
 import NewsletterSignup from "@/components/NewsletterSignup";
 
@@ -30,14 +32,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${milestone.title} (${milestone.year}) — AI Timeline`,
-    description: `${milestone.description} ${milestone.impact}`.slice(0, 160),
+    description: truncateAtWord(`${milestone.description} Learn about the impact of ${milestone.title} on the history of artificial intelligence.`, 155),
     alternates: {
       canonical: `/timeline/${milestone.id}`,
     },
     openGraph: {
-      title: `${milestone.title} (${milestone.year}) — AI Timeline | AI Timeline`,
+      title: `${milestone.title} (${milestone.year})`,
       description: milestone.description,
       type: "article",
+      images: [
+        {
+          url: ogImageUrl({
+            title: milestone.title,
+            subtitle: `${milestone.year} · ${categoryLabel(milestone.category)}`,
+            type: "milestone",
+          }),
+          width: 1200,
+          height: 630,
+          alt: `${milestone.title} (${milestone.year}) — AI Timeline`,
+        },
+      ],
     },
   };
 }

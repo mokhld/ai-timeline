@@ -91,6 +91,13 @@ export function getAdjacentYears(
   };
 }
 
+export function truncateAtWord(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text;
+  const truncated = text.slice(0, maxLength);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return (lastSpace > maxLength * 0.6 ? truncated.slice(0, lastSpace) : truncated) + "...";
+}
+
 export function categoryLabel(category: string): string {
   const labels: Record<string, string> = {
     research: "Research Breakthroughs",

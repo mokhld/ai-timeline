@@ -7,11 +7,13 @@ import {
   getAdjacentEras,
   categoryLabel,
   tagLabel,
+  truncateAtWord,
 } from "@/lib/timeline-utils";
 import {
   eraJsonLd,
   breadcrumbJsonLd,
   itemListJsonLd,
+  ogImageUrl,
 } from "@/lib/structured-data";
 
 interface Props {
@@ -26,15 +28,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const era = getEraById(params.eraId);
   if (!era) return {};
 
+  const eraMilestones = getMilestonesByEra(params.eraId);
+  const topNames = eraMilestones
+    .sort((a, b) => b.impactLevel - a.impactLevel)
+    .slice(0, 3)
+    .map((m) => m.title)
+    .join(", ");
+  const description = truncateAtWord(
+    `Discover the ${era.name} era of AI (${era.yearStart}–${era.yearEnd}). ${eraMilestones.length} key milestones including ${topNames}. Learn how this period shaped artificial intelligence.`,
+    155
+  );
+
   return {
     title: `${era.name} (${era.yearStart}–${era.yearEnd}) — AI History`,
-    description: era.description.slice(0, 160),
+    description,
     alternates: {
       canonical: `/era/${era.id}`,
     },
     openGraph: {
-      title: `${era.name} (${era.yearStart}–${era.yearEnd}) — AI History | AI Timeline`,
-      description: era.description,
+      title: `${era.name} (${era.yearStart}–${era.yearEnd}) — AI History`,
+      description,
+      type: "article",
+      images: [
+        {
+          url: ogImageUrl({
+            title: era.name,
+            subtitle: `${era.yearStart}–${era.yearEnd} · ${eraMilestones.length} milestones`,
+            type: "era",
+          }),
+          width: 1200,
+          height: 630,
+          alt: `${era.name} (${era.yearStart}–${era.yearEnd}) — AI History`,
+        },
+      ],
     },
   };
 }
