@@ -10,6 +10,12 @@ export function websiteJsonLd() {
     url: BASE_URL,
     description:
       "The complete history of artificial intelligence from 1943 to today.",
+    inLanguage: "en-US",
+    publisher: {
+      "@type": "Organization",
+      name: "AI World",
+      url: BASE_URL,
+    },
   };
 }
 
@@ -118,6 +124,46 @@ export function breadcrumbJsonLd(
       position: i + 1,
       name: item.name,
       item: item.url,
+    })),
+  };
+}
+
+export function tagPageJsonLd(
+  label: string,
+  tag: string,
+  milestoneCount: number
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `${label} in AI History`,
+    description: `${milestoneCount} AI milestones related to ${label.toLowerCase()}.`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/tag/${tag}`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "AI World",
+      url: BASE_URL,
+    },
+  };
+}
+
+export function personJsonLd(
+  name: string,
+  milestones: { title: string; id: string; year: number }[]
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name,
+    knowsAbout: "Artificial Intelligence",
+    subjectOf: milestones.map((m) => ({
+      "@type": "Article",
+      headline: m.title,
+      url: `${BASE_URL}/timeline/${m.id}`,
+      datePublished: String(m.year),
     })),
   };
 }

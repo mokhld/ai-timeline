@@ -118,7 +118,7 @@ export default function CategoryPage({ params }: Props) {
                 className="block border-l-2 border-white/20 hover:border-primary pl-6 py-2 transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <time className="text-sm text-primary-light font-mono">
+                  <time dateTime={String(m.year)} className="text-sm text-primary-light font-mono">
                     {m.year}
                   </time>
                   {era && (

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import type { AITimelineMilestone } from "@/data/timeline";
+import MilestoneImage from "./MilestoneImage";
 
 const categoryColors: Record<string, string> = {
   research: "#818cf8",
@@ -101,6 +102,7 @@ export default function MilestoneCard({
           <div className="flex items-start justify-between gap-3 mb-2">
             <div className="flex items-center gap-3">
               <time
+                dateTime={`${milestone.year}${milestone.month ? `-${String(milestone.month).padStart(2, "0")}` : ""}`}
                 className="text-sm font-mono shrink-0"
                 style={{ color: eraColor }}
               >
@@ -121,21 +123,33 @@ export default function MilestoneCard({
             </span>
           </div>
 
-          <h3
-            className={`font-semibold mb-2 ${
-              isLandmark ? "text-xl sm:text-2xl text-[#f1f5f9]" : "text-base sm:text-lg text-[#e2e8f0]"
-            }`}
-          >
-            {milestone.title}
-          </h3>
+          <div className="flex gap-4 items-start">
+            {milestone.imageUrl && (
+              <MilestoneImage
+                src={milestone.imageUrl}
+                alt={milestone.imageAlt ?? milestone.title}
+                eraColor={eraColor}
+                isLandmark={isLandmark}
+              />
+            )}
+            <div className="flex-1 min-w-0">
+              <h3
+                className={`font-semibold mb-2 ${
+                  isLandmark ? "text-xl sm:text-2xl text-[#f1f5f9]" : "text-base sm:text-lg text-[#e2e8f0]"
+                }`}
+              >
+                {milestone.title}
+              </h3>
 
-          <p
-            className={`text-[#94a3b8] text-sm leading-relaxed ${
-              expanded ? "" : "line-clamp-2"
-            }`}
-          >
-            {milestone.description}
-          </p>
+              <p
+                className={`text-[#94a3b8] text-sm leading-relaxed ${
+                  expanded ? "" : "line-clamp-2"
+                }`}
+              >
+                {milestone.description}
+              </p>
+            </div>
+          </div>
 
           {/* Expanded content */}
           <motion.div

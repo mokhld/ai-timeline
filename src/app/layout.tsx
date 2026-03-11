@@ -47,7 +47,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@aiworld",
+    creator: "@aiworld",
     images: ["/og-default.png"],
+  },
+  alternates: {
+    canonical: "/",
   },
   other: {
     "theme-color": "#6366f1",

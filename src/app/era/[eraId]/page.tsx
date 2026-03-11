@@ -115,14 +115,17 @@ export default function EraPage({ params }: Props) {
               href={`/timeline/${m.id}`}
               className="block border-l-2 border-white/20 hover:border-primary pl-6 py-2 transition-colors"
             >
-              <time className="text-sm text-primary-light font-mono">
+              <time dateTime={String(m.year)} className="text-sm text-primary-light font-mono">
                 {m.year}
               </time>
               <h3 className="text-lg font-semibold mt-1">{m.title}</h3>
               <p className="text-sm text-[var(--color-text-muted)] mt-1 line-clamp-2">
                 {m.description}
               </p>
-              <span className="text-xs text-[var(--color-text-muted)] mt-1 inline-block">
+              <span
+                className="text-xs text-[var(--color-text-muted)] mt-1 inline-block"
+                aria-label={`Impact: ${m.impactLevel} out of 5`}
+              >
                 {"★".repeat(m.impactLevel)}
                 {"☆".repeat(5 - m.impactLevel)}
               </span>

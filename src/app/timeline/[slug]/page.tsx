@@ -90,7 +90,7 @@ export default function MilestonePage({ params }: Props) {
       <article>
         <header className="mb-8">
           <a href={`/year/${milestone.year}`} className="hover:underline">
-            <time className="text-primary-light font-mono text-lg">
+            <time dateTime={String(milestone.year)} className="text-primary-light font-mono text-lg">
               {milestone.year}
             </time>
           </a>
@@ -104,7 +104,10 @@ export default function MilestonePage({ params }: Props) {
             >
               {categoryLabel(milestone.category)}
             </a>
-            <span className="text-xs px-3 py-1 rounded-full bg-white/5 text-[var(--color-text-muted)]">
+            <span
+              className="text-xs px-3 py-1 rounded-full bg-white/5 text-[var(--color-text-muted)]"
+              aria-label={`Impact: ${milestone.impactLevel} out of 5`}
+            >
               Impact: {"★".repeat(milestone.impactLevel)}
               {"☆".repeat(5 - milestone.impactLevel)}
             </span>

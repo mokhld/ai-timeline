@@ -27,6 +27,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       .slice(0, 3)
       .map((m) => m.title)
       .join(", ")}.`,
+    alternates: {
+      canonical: `/year/${year}`,
+    },
     openGraph: {
       title: `AI in ${year} — Timeline & Key Developments | AI World`,
       description: `${yearMilestones.length} AI milestone${yearMilestones.length > 1 ? "s" : ""} from ${year}.`,
@@ -71,7 +74,7 @@ export default function YearPage({ params }: Props) {
         }}
       />
 
-      <nav className="text-sm text-[var(--color-text-muted)] mb-8 flex gap-2">
+      <nav aria-label="Breadcrumb" className="text-sm text-[var(--color-text-muted)] mb-8 flex gap-2">
         <a href="/" className="hover:text-primary-light">
           Home
         </a>
