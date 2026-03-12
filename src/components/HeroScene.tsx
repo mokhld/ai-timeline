@@ -76,7 +76,7 @@ export default function HeroScene() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden"
+      className="relative flex flex-col items-center justify-center min-h-svh overflow-hidden"
     >
       {/* Matrix rain background */}
       <div
@@ -134,27 +134,20 @@ export default function HeroScene() {
           animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={shouldReduceMotion ? undefined : { duration: 0.7, delay: 1.5 }}
         >
+          <a
+            href="#timeline-journey"
+            onClick={() => trackHeroCtaClick("browse_timeline")}
+            className="inline-flex items-center justify-center rounded-full bg-[#6366f1] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#4f46e5]"
+          >
+            Browse the timeline
+          </a>
           <Link
             href="/explore"
             onClick={() => trackHeroCtaClick("explore_graph")}
-            className="inline-flex items-center justify-center rounded-full bg-[#6366f1] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#4f46e5]"
+            className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-[#e2e8f0] transition-colors hover:border-white/20 hover:bg-white/10"
           >
             Explore the graph
           </Link>
-          <a
-            href="#homepage-eras"
-            onClick={() => trackHeroCtaClick("browse_era")}
-            className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-[#e2e8f0] transition-colors hover:border-white/20 hover:bg-white/10"
-          >
-            Browse by era
-          </a>
-          <a
-            href="#homepage-landmarks"
-            onClick={() => trackHeroCtaClick("landmark_milestones")}
-            className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-[#e2e8f0] transition-colors hover:border-white/20 hover:bg-white/10"
-          >
-            Start with landmark milestones
-          </a>
           <a
             href="#homepage-newsletter"
             onClick={() => trackHeroCtaClick("newsletter")}
@@ -173,8 +166,11 @@ export default function HeroScene() {
         animate={shouldReduceMotion ? undefined : { opacity: 1 }}
         transition={shouldReduceMotion ? undefined : { delay: 2.5 }}
       >
-        <span className="text-xs text-[#475569] uppercase tracking-widest">
-          Scroll to explore
+        <span className="text-[10px] text-[#475569] uppercase tracking-[0.32em]">
+          Scroll into the chronology
+        </span>
+        <span className="text-xs text-[#94a3b8] uppercase tracking-[0.28em]">
+          Timeline first, tools appear below
         </span>
         <motion.div
           animate={shouldReduceMotion ? undefined : { y: [0, 8, 0] }}

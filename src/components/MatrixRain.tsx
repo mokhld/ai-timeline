@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
-const CHARS = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const CHARS =
+  "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const FONT_SIZE = 14;
 const FADE_OPACITY = 0.05;
 
@@ -24,8 +25,9 @@ export default function MatrixRain() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       columns = Math.floor(canvas.width / FONT_SIZE);
-      drops = Array.from({ length: columns }, () =>
-        Math.random() * -canvas.height / FONT_SIZE
+      drops = Array.from(
+        { length: columns },
+        () => (Math.random() * -canvas.height) / FONT_SIZE,
       );
     };
 
@@ -41,17 +43,25 @@ export default function MatrixRain() {
         const x = i * FONT_SIZE;
         const y = drops[i] * FONT_SIZE;
 
-        // Brighter head, dimmer trail
-        const brightness = Math.random();
-        if (brightness > 0.95) {
-          ctx.fillStyle = "#ffffff";
+        // Occasional red "alert" glyphs
+        const isRedGlyph = Math.random() < 0.02;
+
+        if (isRedGlyph) {
+          ctx.fillStyle = "#ef4444"; // red accent
           ctx.font = `bold ${FONT_SIZE}px monospace`;
-        } else if (brightness > 0.8) {
-          ctx.fillStyle = "#22d3ee";
-          ctx.font = `${FONT_SIZE}px monospace`;
         } else {
-          ctx.fillStyle = `rgba(99, 102, 241, ${0.3 + Math.random() * 0.7})`;
-          ctx.font = `${FONT_SIZE}px monospace`;
+          // Brighter head, dimmer trail
+          const brightness = Math.random();
+          if (brightness > 0.95) {
+            ctx.fillStyle = "#ffffff";
+            ctx.font = `bold ${FONT_SIZE}px monospace`;
+          } else if (brightness > 0.8) {
+            ctx.fillStyle = "#22d3ee";
+            ctx.font = `${FONT_SIZE}px monospace`;
+          } else {
+            ctx.fillStyle = `rgba(99, 102, 241, ${0.3 + Math.random() * 0.7})`;
+            ctx.font = `${FONT_SIZE}px monospace`;
+          }
         }
 
         ctx.fillText(char, x, y);
@@ -68,7 +78,7 @@ export default function MatrixRain() {
 
     // Check reduced motion preference
     const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
 
     if (!prefersReducedMotion) {
@@ -81,11 +91,7 @@ export default function MatrixRain() {
         const char = CHARS[Math.floor(Math.random() * CHARS.length)];
         ctx.fillStyle = `rgba(99, 102, 241, ${0.1 + Math.random() * 0.3})`;
         ctx.font = `${FONT_SIZE}px monospace`;
-        ctx.fillText(
-          char,
-          i * FONT_SIZE,
-          Math.random() * canvas.height
-        );
+        ctx.fillText(char, i * FONT_SIZE, Math.random() * canvas.height);
       }
     }
 
