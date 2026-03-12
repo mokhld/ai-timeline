@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { eras, milestones, timelineStats } from "@/data/timeline";
 import { getHomepageStartingPoints } from "@/lib/homepage";
@@ -49,6 +50,7 @@ const historyHighlights = [
 ];
 
 export default function ImmersiveTimeline() {
+  const shouldReduceMotion = useReducedMotion();
   const desktopStartPanelId = useId();
   const desktopGraphPanelId = useId();
   const mobileSheetTitleId = useId();
@@ -76,7 +78,7 @@ export default function ImmersiveTimeline() {
 
     const updateVisibility = () => {
       const entryTop = entry.getBoundingClientRect().top;
-      setShowUtilities(entryTop <= 0);
+      setShowUtilities(entryTop <= window.innerHeight * 0.42);
     };
 
     updateVisibility();
@@ -360,8 +362,18 @@ export default function ImmersiveTimeline() {
         />
       </div>
       {showUtilities && (
-        <>
-          <div className="fixed right-5 top-1/2 z-40 hidden -translate-y-1/2 lg:flex">
+        <AnimatePresence>
+          <motion.div
+            initial={shouldReduceMotion ? false : { opacity: 0, x: 36, y: 12 }}
+            animate={shouldReduceMotion ? undefined : { opacity: 1, x: 0, y: 0 }}
+            exit={shouldReduceMotion ? undefined : { opacity: 0, x: 36, y: 12 }}
+            transition={
+              shouldReduceMotion
+                ? undefined
+                : { duration: 0.45, ease: "easeOut" }
+            }
+            className="fixed right-5 top-28 z-40 hidden lg:flex"
+          >
             <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-[#020617]/85 p-3 shadow-2xl shadow-black/30 backdrop-blur-md">
               <button
                 ref={desktopStartTriggerRef}
@@ -426,46 +438,67 @@ export default function ImmersiveTimeline() {
               </button>
             </div>
 
-            {desktopPanel && (
-              <div
-                id={
-                  desktopPanel === "start"
-                    ? desktopStartPanelId
-                    : desktopGraphPanelId
-                }
-                role="region"
-                aria-label={
-                  desktopPanel === "start"
-                    ? "Start Here shortcuts"
-                    : "Knowledge Graph"
-                }
-                className="ml-3 w-80 max-h-[70vh] overflow-y-auto rounded-3xl border border-white/10 bg-[#0f172a]/92 p-5 shadow-2xl shadow-black/40 backdrop-blur-md"
-              >
-                <div className="mb-4 flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-xs font-mono uppercase tracking-[0.24em] text-[#64748b]">
-                      Utility
-                    </p>
-                    <h2 className="mt-1 text-lg font-semibold text-[#f8fafc]">
-                      {desktopPanel === "start"
-                        ? "Start Here shortcuts"
-                        : "Knowledge Graph"}
-                    </h2>
+            <AnimatePresence mode="wait">
+              {desktopPanel && (
+                <motion.div
+                  key={desktopPanel}
+                  id={
+                    desktopPanel === "start"
+                      ? desktopStartPanelId
+                      : desktopGraphPanelId
+                  }
+                  role="region"
+                  aria-label={
+                    desktopPanel === "start"
+                      ? "Start Here shortcuts"
+                      : "Knowledge Graph"
+                  }
+                  initial={
+                    shouldReduceMotion ? false : { opacity: 0, x: 20, scale: 0.98 }
+                  }
+                  animate={
+                    shouldReduceMotion
+                      ? undefined
+                      : { opacity: 1, x: 0, scale: 1 }
+                  }
+                  exit={
+                    shouldReduceMotion
+                      ? undefined
+                      : { opacity: 0, x: 20, scale: 0.98 }
+                  }
+                  transition={
+                    shouldReduceMotion
+                      ? undefined
+                      : { duration: 0.3, ease: "easeOut" }
+                  }
+                  className="ml-3 w-80 max-h-[calc(100vh-9rem)] overflow-y-auto rounded-3xl border border-white/10 bg-[#0f172a]/92 p-5 shadow-2xl shadow-black/40 backdrop-blur-md"
+                >
+                  <div className="mb-4 flex items-center justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-mono uppercase tracking-[0.24em] text-[#64748b]">
+                        Utility
+                      </p>
+                      <h2 className="mt-1 text-lg font-semibold text-[#f8fafc]">
+                        {desktopPanel === "start"
+                          ? "Start Here shortcuts"
+                          : "Knowledge Graph"}
+                      </h2>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={closeDesktopPanel}
+                      className="rounded-full border border-white/10 px-2.5 py-1 text-xs text-[#94a3b8] transition-colors hover:border-white/20 hover:text-white"
+                    >
+                      Close
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    onClick={closeDesktopPanel}
-                    className="rounded-full border border-white/10 px-2.5 py-1 text-xs text-[#94a3b8] transition-colors hover:border-white/20 hover:text-white"
-                  >
-                    Close
-                  </button>
-                </div>
-                {desktopPanel === "start"
-                  ? renderStartHereContent()
-                  : renderGraphContent()}
-              </div>
-            )}
-          </div>
+                  {desktopPanel === "start"
+                    ? renderStartHereContent()
+                    : renderGraphContent()}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
 
           <div className="fixed bottom-5 right-4 z-40 lg:hidden">
             <button
@@ -570,7 +603,7 @@ export default function ImmersiveTimeline() {
               </div>
             </div>
           )}
-        </>
+        </AnimatePresence>
       )}
       <div
         ref={timelineEntryRef}

@@ -76,7 +76,7 @@ export default function HeroScene() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex flex-col items-center justify-center min-h-svh overflow-hidden"
+      className="relative flex flex-col items-center justify-center min-h-[115svh] overflow-hidden"
     >
       {/* Matrix rain background */}
       <div
