@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -231,13 +232,11 @@ export default function EraSection({
               style={{
                 backgroundColor: era.color,
                 boxShadow: `0 0 12px ${era.color}60`,
-                opacity: 0,
               }}
             />
             <span
               ref={yearRef}
               className="text-sm font-mono text-[#475569]"
-              style={{ opacity: 0 }}
             >
               {era.yearStart}–{era.yearEnd}
             </span>
@@ -246,7 +245,7 @@ export default function EraSection({
           <h2
             ref={titleRef}
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: era.color, opacity: 0 }}
+            style={{ color: era.color }}
           >
             {era.name}
           </h2>
@@ -254,7 +253,6 @@ export default function EraSection({
           <p
             ref={descRef}
             className="text-lg text-[#94a3b8] max-w-2xl leading-relaxed"
-            style={{ opacity: 0 }}
           >
             {era.description}
           </p>
@@ -262,7 +260,6 @@ export default function EraSection({
           <div
             ref={countRef}
             className="mt-4 text-sm text-[#475569] font-mono"
-            style={{ opacity: 0 }}
           >
             {eraMilestones.length} milestone
             {eraMilestones.length !== 1 ? "s" : ""}
@@ -283,7 +280,7 @@ export default function EraSection({
 
         {/* Explore era link */}
         <div className="mt-10 text-center">
-          <a
+          <Link
             href={`/era/${era.id}`}
             className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:brightness-125"
             style={{ color: era.color }}
@@ -292,7 +289,7 @@ export default function EraSection({
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </a>
+          </Link>
         </div>
 
         {/* Era divider */}
@@ -301,7 +298,6 @@ export default function EraSection({
           className="mt-16 h-px origin-left"
           style={{
             background: `linear-gradient(to right, transparent, ${era.color}40, transparent)`,
-            opacity: 0,
           }}
         />
       </div>

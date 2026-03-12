@@ -1,12 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { trackKnowledgeGraphCtaClick } from "@/lib/analytics";
 
 const KnowledgeGraph = dynamic(() => import("./KnowledgeGraph"), { ssr: false });
 
 export default function KnowledgeGraphPreview() {
+  const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const [dims, setDims] = useState({ width: 0, height: 0 });
 
@@ -24,10 +27,12 @@ export default function KnowledgeGraphPreview() {
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={false}
+      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      transition={
+        shouldReduceMotion ? undefined : { duration: 0.7, ease: "easeOut" }
+      }
       className="px-4 py-8 md:py-12"
     >
       <div
@@ -41,7 +46,7 @@ export default function KnowledgeGraphPreview() {
           </h2>
           <p className="text-sm md:text-base text-[#94a3b8] max-w-xl">
             See how milestones, eras, and breakthroughs connect across the
-            history of AI.
+            history of AI before you open the full interactive graph.
           </p>
         </div>
 
@@ -64,11 +69,12 @@ export default function KnowledgeGraphPreview() {
 
         {/* CTA */}
         <div className="relative z-10 flex justify-center pb-6 -mt-12">
-          <a
+          <Link
             href="/explore"
+            onClick={() => trackKnowledgeGraphCtaClick("homepage_preview")}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#6366f1] hover:bg-[#4f46e5] text-white font-medium text-sm transition-colors shadow-lg shadow-[#6366f1]/20"
           >
-            Explore Full Graph
+            Explore the graph
             <svg
               className="w-4 h-4"
               fill="none"
@@ -82,7 +88,7 @@ export default function KnowledgeGraphPreview() {
                 d="M13 7l5 5m0 0l-5 5m5-5H6"
               />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </motion.section>

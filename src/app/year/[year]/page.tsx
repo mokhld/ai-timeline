@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   getMilestonesByYear,
   getAllYears,
@@ -103,9 +104,9 @@ export default function YearPage({ params }: Props) {
       <BackButton />
 
       <nav aria-label="Breadcrumb" className="text-sm text-[var(--color-text-muted)] mb-8 flex gap-2">
-        <a href="/" className="hover:text-primary-light">
+        <Link href="/" className="hover:text-primary-light">
           Home
-        </a>
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text)]">{year}</span>
       </nav>

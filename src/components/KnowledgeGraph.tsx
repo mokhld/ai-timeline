@@ -30,7 +30,6 @@ export default function KnowledgeGraph({
   highlightCategory,
   searchQuery,
 }: KnowledgeGraphProps) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const graphRef = useRef<any>(undefined);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [neighborSet, setNeighborSet] = useState<Set<string>>(new Set());
@@ -72,11 +71,9 @@ export default function KnowledgeGraph({
     const fg = graphRef.current;
     if (!fg) return;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const charge = fg.d3Force("charge") as any;
     if (charge?.strength) charge.strength(-120);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const link = fg.d3Force("link") as any;
     if (link?.distance) {
       link.distance((l: FGLink) => {
@@ -86,7 +83,6 @@ export default function KnowledgeGraph({
     }
 
     // Collision force
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     fg.d3Force("collision", forceCollide<FGNode>((node) => Math.sqrt(node.val) * 4 + 2) as any);
 
     // Auto-fit after warmup
@@ -264,7 +260,6 @@ export default function KnowledgeGraph({
   return (
     <ForceGraph2D
       ref={graphRef}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       graphData={graphData as any}
       width={width}
       height={height}

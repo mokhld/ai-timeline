@@ -29,11 +29,6 @@ export function websiteJsonLd() {
       url: BASE_URL,
       logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.svg` },
     },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${BASE_URL}/search?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 
@@ -212,6 +207,56 @@ export function yearPageJsonLd(
   };
 }
 
+export function collectionPageJsonLd(params: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: params.name,
+    description: params.description,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}${params.path}`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "AI Timeline",
+      url: BASE_URL,
+    },
+  };
+}
+
+export function editorialPageJsonLd(params: {
+  title: string;
+  description: string;
+  path: string;
+  keywords?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: params.title,
+    description: params.description,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}${params.path}`,
+    },
+    ...(params.keywords && params.keywords.length > 0
+      ? { keywords: params.keywords.join(", ") }
+      : {}),
+    publisher: {
+      "@type": "Organization",
+      name: "AI Timeline",
+      url: BASE_URL,
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.svg` },
+    },
+    inLanguage: "en-US",
+  };
+}
+
 export function personJsonLd(
   name: string,
   milestones: { title: string; id: string; year: number }[]
@@ -219,6 +264,24 @@ export function personJsonLd(
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    name,
+    knowsAbout: "Artificial Intelligence",
+    subjectOf: milestones.map((m) => ({
+      "@type": "Article",
+      headline: m.title,
+      url: `${BASE_URL}/timeline/${m.id}`,
+      datePublished: String(m.year),
+    })),
+  };
+}
+
+export function organizationJsonLd(
+  name: string,
+  milestones: { title: string; id: string; year: number }[]
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
     name,
     knowsAbout: "Artificial Intelligence",
     subjectOf: milestones.map((m) => ({

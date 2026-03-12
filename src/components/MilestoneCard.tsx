@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { AITimelineMilestone } from "@/data/timeline";
 import MilestoneImage from "./MilestoneImage";
 import ImpactDots from "./ImpactDots";
 import { categoryColors, categoryLabels } from "@/lib/colors";
+import { trackMilestoneDetailClick } from "@/lib/analytics";
 
 export default function MilestoneCard({
   milestone,
@@ -18,6 +20,8 @@ export default function MilestoneCard({
 }) {
   const [expanded, setExpanded] = useState(false);
   const isLandmark = milestone.impactLevel === 5;
+  const detailsId = `${milestone.id}-details`;
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <article
@@ -46,11 +50,7 @@ export default function MilestoneCard({
 
         {/* Card content */}
         <div
-          onClick={() => setExpanded(!expanded)}
-          onKeyDown={(e) => e.key === "Enter" && setExpanded(!expanded)}
-          role="button"
-          tabIndex={0}
-          className={`flex-1 rounded-xl border transition-all duration-300 cursor-pointer mb-4 ${
+          className={`flex-1 rounded-xl border transition-all duration-300 mb-4 ${
             isLandmark
               ? "bg-gradient-to-br from-[#0f172a] to-[#1e293b] border-white/20 p-5 sm:p-6"
               : "bg-[#0f172a]/60 border-white/5 p-4 sm:p-5 hover:border-white/15 hover:bg-[#0f172a]/80"
@@ -116,12 +116,14 @@ export default function MilestoneCard({
 
           {/* Expanded content */}
           <motion.div
+            id={detailsId}
             initial={false}
             animate={{
               height: expanded ? "auto" : 0,
               opacity: expanded ? 1 : 0,
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.3 }}
+            aria-hidden={!expanded}
             className="overflow-hidden"
           >
             <div className="pt-3 mt-3 border-t border-white/5">
@@ -170,12 +172,38 @@ export default function MilestoneCard({
             </div>
           </motion.div>
 
-          {/* Expand hint */}
-          {!expanded && (
-            <div className="mt-2 text-[10px] text-[#475569] group-hover:text-[#94a3b8] transition-colors">
-              Click to expand
-            </div>
-          )}
+          <div className="mt-3 flex items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={() => setExpanded(!expanded)}
+              aria-expanded={expanded}
+              aria-controls={detailsId}
+              className="inline-flex min-h-9 items-center rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-[#cbd5e1] transition-colors hover:border-white/20 hover:text-white"
+            >
+              {expanded ? "Collapse details" : "Expand details"}
+            </button>
+            <Link
+              href={`/timeline/${milestone.id}`}
+              onClick={() =>
+                trackMilestoneDetailClick("immersive_timeline", milestone.id)
+              }
+              className="inline-flex items-center gap-1 rounded-full border border-white/10 px-3 py-1 text-[11px] font-medium text-[#cbd5e1] transition-colors hover:border-[#818cf8]/40 hover:text-white"
+            >
+              Read full milestone
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </div>
     </article>

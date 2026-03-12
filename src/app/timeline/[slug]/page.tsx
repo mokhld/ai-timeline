@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { milestones } from "@/data/timeline";
 import {
   getMilestoneBySlug,
@@ -14,6 +15,7 @@ import {
   milestoneJsonLd,
   breadcrumbJsonLd,
   personJsonLd,
+  organizationJsonLd,
   ogImageUrl,
 } from "@/lib/structured-data";
 import NewsletterSignup from "@/components/NewsletterSignup";
@@ -21,7 +23,9 @@ import MilestoneHeroImage from "@/components/MilestoneHeroImage";
 import MilestoneListCard from "@/components/MilestoneListCard";
 import ImpactDots from "@/components/ImpactDots";
 import BackButton from "@/components/BackButton";
+import PageVisitTracker from "@/components/PageVisitTracker";
 import { categoryColors } from "@/lib/colors";
+import { slugifyEntityName } from "@/lib/entities";
 
 interface Props {
   params: { slug: string };
@@ -36,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!milestone) return {};
 
   return {
-    title: `${milestone.title} (${milestone.year}) — AI Timeline`,
+    title: `${milestone.title} (${milestone.year})`,
     description: truncateAtWord(`${milestone.description} Learn about the impact of ${milestone.title} on the history of artificial intelligence.`, 155),
     alternates: {
       canonical: `/timeline/${milestone.id}`,
@@ -70,6 +74,7 @@ export default function MilestonePage({ params }: Props) {
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-12">
+      <PageVisitTracker page="milestone" milestoneId={milestone.id} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -112,6 +117,23 @@ export default function MilestonePage({ params }: Props) {
           }}
         />
       ))}
+      {milestone.organizations.map((organization) => (
+        <script
+          key={organization}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              organizationJsonLd(organization, [
+                {
+                  title: milestone.title,
+                  id: milestone.id,
+                  year: milestone.year,
+                },
+              ])
+            ),
+          }}
+        />
+      ))}
 
       <BackButton />
 
@@ -119,16 +141,16 @@ export default function MilestonePage({ params }: Props) {
         aria-label="Breadcrumb"
         className="text-sm text-[var(--color-text-muted)] mb-8 flex gap-2"
       >
-        <a href="/" className="hover:text-primary-light">
+        <Link href="/" className="hover:text-primary-light">
           Home
-        </a>
+        </Link>
         <span>/</span>
-        <a
+        <Link
           href={`/era/${milestone.era}`}
           className="hover:text-primary-light"
         >
           {era?.name}
-        </a>
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text)]">{milestone.title}</span>
       </nav>
@@ -202,11 +224,13 @@ export default function MilestonePage({ params }: Props) {
               <h2 className="text-xl font-semibold mb-2">Key People</h2>
               <ul className="flex flex-wrap gap-2">
                 {milestone.people.map((p) => (
-                  <li
-                    key={p}
-                    className="text-sm px-3 py-1 rounded-md bg-[#1e293b] text-[#94a3b8]"
-                  >
-                    {p}
+                  <li key={p}>
+                    <a
+                      href={`/person/${slugifyEntityName(p)}`}
+                      className="text-sm px-3 py-1 rounded-md bg-[#1e293b] text-[#94a3b8] hover:text-cyan-300 transition-colors inline-block"
+                    >
+                      {p}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -218,11 +242,13 @@ export default function MilestonePage({ params }: Props) {
               <h2 className="text-xl font-semibold mb-2">Organizations</h2>
               <ul className="flex flex-wrap gap-2">
                 {milestone.organizations.map((o) => (
-                  <li
-                    key={o}
-                    className="text-sm px-3 py-1 rounded-md bg-[#1e293b] text-[#818cf8] border border-[#818cf8]/10"
-                  >
-                    {o}
+                  <li key={o}>
+                    <a
+                      href={`/organization/${slugifyEntityName(o)}`}
+                      className="text-sm px-3 py-1 rounded-md bg-[#1e293b] text-[#818cf8] border border-[#818cf8]/10 hover:border-[#818cf8]/30 transition-colors inline-block"
+                    >
+                      {o}
+                    </a>
                   </li>
                 ))}
               </ul>

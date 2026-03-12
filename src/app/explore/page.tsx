@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import PageVisitTracker from "@/components/PageVisitTracker";
 import { eras, milestones } from "@/data/timeline";
 import {
   BASE_URL,
@@ -20,7 +21,7 @@ const ExploreGraph = dynamic(() => import("@/components/ExploreGraph"), {
 });
 
 export const metadata: Metadata = {
-  title: "Explore the AI Knowledge Graph | AI Timeline",
+  title: "Explore the AI Knowledge Graph",
   description:
     "Visually explore how AI milestones, eras, and breakthroughs connect in an interactive knowledge graph spanning 1943 to today.",
   alternates: { canonical: `${BASE_URL}/explore` },
@@ -50,6 +51,14 @@ export const metadata: Metadata = {
 export default function ExplorePage() {
   return (
     <main className="min-h-screen">
+      <PageVisitTracker page="explore" />
+      <div className="sr-only">
+        <h1>Explore the AI Knowledge Graph</h1>
+        <p>
+          Search, filter, and browse AI milestones through the interactive graph
+          and the keyboard-friendly milestone list.
+        </p>
+      </div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -1,6 +1,11 @@
 import type { MetadataRoute } from "next";
 import { milestones, eras } from "@/data/timeline";
 import { getAllCategories, getAllYears, getAllTags } from "@/lib/timeline-utils";
+import {
+  getAllOrganizationEntities,
+  getAllPeopleEntities,
+} from "@/lib/entities";
+import { getAllEditorialPages } from "@/data/editorial-pages";
 
 // Use a fixed build date so sitemap cache isn't invalidated on every request.
 // Update this when content changes.
@@ -18,6 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/explore`,
+      lastModified: LAST_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/history`,
       lastModified: LAST_UPDATED,
       changeFrequency: "monthly",
       priority: 0.8,
@@ -67,6 +78,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
+  const peoplePages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/people`,
+      lastModified: LAST_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...getAllPeopleEntities().map((person) => ({
+      url: `${baseUrl}/person/${person.slug}`,
+      lastModified: LAST_UPDATED,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+  ];
+
+  const organizationPages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/organizations`,
+      lastModified: LAST_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...getAllOrganizationEntities().map((organization) => ({
+      url: `${baseUrl}/organization/${organization.slug}`,
+      lastModified: LAST_UPDATED,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+  ];
+
+  const editorialPages: MetadataRoute.Sitemap = getAllEditorialPages().map(
+    (page) => ({
+      url: `${baseUrl}${page.canonicalPath}`,
+      lastModified: LAST_UPDATED,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })
+  );
+
   return [
     ...staticPages,
     ...eraPages,
@@ -74,5 +124,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...categoryPages,
     ...yearPages,
     ...tagPages,
+    ...peoplePages,
+    ...organizationPages,
+    ...editorialPages,
   ];
 }

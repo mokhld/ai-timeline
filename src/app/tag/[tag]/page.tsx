@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   getMilestonesByTag,
   getAllTags,
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (tagMilestones.length === 0) return {};
 
   return {
-    title: `${label} — AI Timeline & Milestones`,
+    title: `${label} Milestones`,
     description: `Explore ${tagMilestones.length} artificial intelligence milestone${tagMilestones.length > 1 ? "s" : ""} related to ${label.toLowerCase()}, from the 1940s to today.`,
     alternates: {
       canonical: `/tag/${params.tag}`,
@@ -113,9 +114,9 @@ export default function TagPage({ params }: Props) {
         aria-label="Breadcrumb"
         className="text-sm text-[var(--color-text-muted)] mb-8 flex gap-2"
       >
-        <a href="/" className="hover:text-primary-light">
+        <Link href="/" className="hover:text-primary-light">
           Home
-        </a>
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text)]">{label}</span>
       </nav>

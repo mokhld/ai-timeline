@@ -201,7 +201,7 @@ export const milestones: AITimelineMilestone[] = [
     description:
       "Arthur Samuel created a checkers-playing program at IBM that could learn from experience, improving its play over time. He coined the term 'machine learning' to describe programs that learn without being explicitly programmed.",
     impact:
-      "First demonstration of machine learning. Coined the term that would define an entire field decades later.",
+      "One of the first systems to improve through experience rather than fixed rules. Samuel also gave the field its enduring name: 'machine learning' would later become the dominant paradigm in AI.",
     impactLevel: 3,
     era: "origins",
     tags: ["machine-learning", "games", "ibm"],
@@ -217,7 +217,7 @@ export const milestones: AITimelineMilestone[] = [
     description:
       "Newell and Simon created the Logic Theorist, often called the first AI program. It could prove mathematical theorems from Whitehead and Russell's Principia Mathematica — and even found a more elegant proof than the original for one theorem. It was debuted at the Dartmouth Conference.",
     impact:
-      "Demonstrated that machines could perform symbolic reasoning — thinking that had been considered uniquely human. Established the paradigm of AI as symbolic computation.",
+      "Often regarded as the first true AI program, Logic Theorist showed that symbolic manipulation could automate forms of reasoning previously treated as uniquely human. It helped establish the symbolic-AI tradition that dominated the field's early decades.",
     impactLevel: 3,
     era: "origins",
     tags: ["symbolic-ai", "theorem-proving", "reasoning"],
@@ -276,7 +276,7 @@ export const milestones: AITimelineMilestone[] = [
     description:
       "John McCarthy created LISP (LISt Processing), a programming language designed specifically for AI research. Its features — recursion, dynamic typing, garbage collection, and homoiconicity — were decades ahead of their time.",
     impact:
-      "Became the dominant language of AI research for 30+ years. Introduced programming concepts that influenced every modern language. Still used in some AI applications today.",
+      "Became the dominant language of AI research for more than three decades. It introduced programming concepts that influenced generations of languages and remained part of the AI toolkit long after its commercial peak.",
     impactLevel: 3,
     era: "birth",
     tags: ["programming", "tools", "infrastructure"],
@@ -397,7 +397,7 @@ export const milestones: AITimelineMilestone[] = [
     description:
       "British mathematician James Lighthill published a devastating critique of AI research, concluding that the field had failed to deliver on its promises. 'In no part of the field have the discoveries made so far produced the major impact that was then promised.' The report led to massive funding cuts for AI research in the UK.",
     impact:
-      "Triggered the first AI Winter. UK AI research was decimated for a decade. Set the precedent for government skepticism about AI hype.",
+      "Helped trigger the first AI Winter, especially in the United Kingdom. The report became one of the clearest historical examples of how inflated expectations can provoke a funding backlash when narrow successes are mistaken for general intelligence.",
     impactLevel: 4,
     era: "first-winter",
     tags: ["funding", "criticism", "uk", "policy"],
@@ -412,7 +412,7 @@ export const milestones: AITimelineMilestone[] = [
     description:
       "Paul Werbos described the backpropagation algorithm in his PhD thesis — a method for training multi-layer neural networks by propagating errors backward through the network. However, in the anti-neural-network climate of the 1970s, the work went largely unnoticed.",
     impact:
-      "Would later become the single most important algorithm in deep learning when rediscovered by Rumelhart, Hinton, and Williams in 1986. A decade of progress was lost.",
+      "Showed that multi-layer neural networks could, in principle, be trained end-to-end. Its long neglect became a cautionary example of how important ideas can stall for years when a field turns against an entire line of research.",
     impactLevel: 3,
     era: "first-winter",
     tags: ["neural-networks", "algorithms", "backpropagation"],
@@ -428,7 +428,7 @@ export const milestones: AITimelineMilestone[] = [
     description:
       "DENDRAL automated chemical structure determination from mass spectrometry data. It used heuristic rules from domain experts to solve problems that normally required PhD-level expertise. Its successor Meta-DENDRAL could even generate new rules automatically.",
     impact:
-      "Created the expert systems paradigm — encoding domain knowledge in rules to build practical AI. This approach would dominate AI commercially for two decades.",
+      "Created the expert systems paradigm: encoding specialist knowledge in software to solve narrow, high-value problems. It proved AI could deliver practical results in scientific work long before the modern machine learning boom.",
     impactLevel: 3,
     era: "birth",
     tags: ["expert-systems", "chemistry", "knowledge-engineering"],
@@ -496,7 +496,7 @@ export const milestones: AITimelineMilestone[] = [
     description:
       "Rumelhart, Hinton, and Williams published 'Learning Representations by Back-propagating Errors' in Nature, demonstrating that backpropagation could train multi-layer neural networks effectively. The same year, the PDP (Parallel Distributed Processing) group published their influential two-volume work on connectionism.",
     impact:
-      "Revived neural network research from its decade-long exile. Backpropagation became THE algorithm for training neural networks — it remains the foundation of all deep learning today.",
+      "Revived neural network research from its decade-long exile. Backpropagation became the standard training method for multi-layer neural networks and underpinned the deep learning wave that followed.",
     impactLevel: 5,
     era: "expert-systems",
     tags: ["neural-networks", "backpropagation", "deep-learning"],
@@ -585,9 +585,9 @@ export const milestones: AITimelineMilestone[] = [
     people: ["Vladimir Vapnik", "Corinna Cortes"],
     organizations: ["AT&T Bell Labs"],
     description:
-      "Vapnik and Cortes published their work on Support Vector Machines (SVMs), which became the dominant machine learning technique for over a decade. SVMs could find optimal decision boundaries in high-dimensional spaces with strong theoretical guarantees.",
+      "Vapnik and Cortes published their work on Support Vector Machines (SVMs), a method for finding maximum-margin decision boundaries in high-dimensional spaces with unusually strong theoretical guarantees. SVMs quickly became one of the leading approaches for classification problems across text, vision, and bioinformatics.",
     impact:
-      "Dominated machine learning through the 2000s. Showed that statistical learning theory could produce practical, powerful classifiers — keeping ML alive during the neural network drought.",
+      "Became one of the defining machine learning methods of the late 1990s and 2000s. SVMs showed that statistical learning theory could yield practical, high-performance systems and helped carry machine learning forward during the long gap before deep learning took over.",
     impactLevel: 3,
     era: "emergence",
     tags: ["machine-learning", "statistical-learning", "classification"],
@@ -709,10 +709,12 @@ export const milestones: AITimelineMilestone[] = [
     description:
       "Fei-Fei Li and her team created ImageNet, a dataset of over 14 million hand-labeled images in 20,000+ categories. Starting in 2010, the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) became the benchmark for computer vision progress.",
     impact:
-      "Provided the fuel for the deep learning revolution in computer vision. AlexNet's 2012 victory on ImageNet was the 'Big Bang' of modern AI — and it wouldn't have happened without this dataset.",
+      "Provided the large-scale benchmark and training data that made modern computer vision progress measurable at an unprecedented scale. AlexNet's 2012 breakthrough happened on ImageNet, making the dataset the launchpad for deep learning's takeover of vision.",
     impactLevel: 4,
     era: "deep-learning",
     tags: ["datasets", "computer-vision", "benchmark"],
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Fei-Fei_Li_at_AI_for_Good_2017.jpg",
+    imageAlt: "Fei-Fei Li, creator of ImageNet",
   },
   {
     id: "gpu-computing-2009",
@@ -797,12 +799,14 @@ export const milestones: AITimelineMilestone[] = [
     people: ["Tomas Mikolov"],
     organizations: ["Google"],
     description:
-      "Google researchers published Word2Vec, showing that neural networks could learn meaningful vector representations of words from large text corpora. Famous example: vector('King') - vector('Man') + vector('Woman') ≈ vector('Queen'). Words with similar meanings clustered together in vector space.",
+      "Google researchers published Word2Vec, showing that relatively small neural networks could efficiently learn meaningful vector representations of words from large text corpora. The famous example `king - man + woman ≈ queen` made the idea vivid: semantic relationships could be captured geometrically in vector space.",
     impact:
-      "Revolutionized NLP by giving computers a way to understand word meaning through geometry. Word embeddings became the foundation for all subsequent NLP breakthroughs, leading directly to the Transformer revolution.",
+      "Made word embeddings practical at scale and gave NLP a shared representation layer that was easy to train, reuse, and reason about. It helped bridge older statistical NLP and the neural language-model era that eventually led to transformers.",
     impactLevel: 3,
     era: "breakthrough",
     tags: ["nlp", "embeddings", "representation-learning"],
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/70/Tom%C3%A1%C5%A1_Mikolov_%282020%29.jpg",
+    imageAlt: "Tomáš Mikolov, lead author of Word2Vec",
   },
   {
     id: "deepmind-atari-2013",
@@ -996,7 +1000,7 @@ export const milestones: AITimelineMilestone[] = [
     description:
       "Google published BERT (Bidirectional Encoder Representations from Transformers), which could understand language context from both directions simultaneously. BERT shattered records on 11 NLP benchmarks. Google integrated it into Search, affecting 10% of all queries.",
     impact:
-      "Transformed NLP overnight. Pre-training + fine-tuning became the dominant paradigm. BERT showed that large language models, properly trained, could understand nuanced language in ways that shocked the field.",
+      "Transformed NLP overnight. Pre-training plus fine-tuning became the dominant paradigm, and BERT showed how transformer-based language models could capture context with a depth that reset expectations for search and language understanding.",
     impactLevel: 4,
     era: "transformer",
     tags: ["transformer", "nlp", "pre-training", "google"],
@@ -1157,7 +1161,7 @@ export const milestones: AITimelineMilestone[] = [
     people: ["Emad Mostaque"],
     organizations: ["Stability AI", "CompVis (LMU Munich)", "Runway"],
     description:
-      "Stable Diffusion was released as a fully open-source text-to-image model that could run on consumer hardware. Unlike DALL-E (API-only), anyone could download and run it locally. The model and weights were free. An explosion of community modifications, fine-tunes, and applications followed.",
+      "Stable Diffusion was released as a widely available text-to-image model that could run on consumer hardware, with model weights distributed under an open release rather than an API-only product. Unlike DALL-E, anyone could download it, run it locally, and build on top of it. An explosion of community modifications, fine-tunes, and applications followed.",
     impact:
       "Democratized AI image generation overnight. Created an entire open-source ecosystem (LoRA, ControlNet, community models). Triggered the AI art revolution and massive copyright debates. Changed the art, design, and creative industries permanently.",
     impactLevel: 4,
@@ -1178,7 +1182,7 @@ export const milestones: AITimelineMilestone[] = [
     description:
       "OpenAI released ChatGPT, a conversational AI based on GPT-3.5 fine-tuned with RLHF (Reinforcement Learning from Human Feedback). It reached 1 million users in 5 days and 100 million in 2 months — the fastest-growing consumer application in history. People used it to write emails, debug code, brainstorm ideas, and a thousand other tasks.",
     impact:
-      "THE defining moment of the AI era. ChatGPT didn't just introduce AI to the public — it made AI feel personal, useful, and immediate. It triggered a global AI gold rush, billions in investment, and fundamentally changed how the world thinks about technology, work, and intelligence.",
+      "The defining consumer moment of the modern AI era. ChatGPT didn't just introduce AI to the public — it made AI feel personal, useful, and immediate. It triggered a global AI investment boom and fundamentally changed how the world thought about technology, work, and machine intelligence.",
     impactLevel: 5,
     era: "generative",
     tags: [
@@ -1237,12 +1241,12 @@ export const milestones: AITimelineMilestone[] = [
     people: ["Mark Zuckerberg"],
     organizations: ["Meta"],
     description:
-      "Meta released Llama 2, a family of open-source large language models (7B, 13B, 70B parameters) with a permissive license allowing commercial use. This gave every company and researcher access to a frontier-quality model they could customize, deploy, and build upon.",
+      "Meta released Llama 2, a family of widely available large language models (7B, 13B, 70B parameters) distributed as open weights under a custom license that allowed broad commercial use. While not open-source in the strict OSI sense, it gave companies and researchers access to a frontier-quality model they could run, customize, and deploy themselves.",
     impact:
-      "Transformed the LLM landscape. Open-source models exploded — thousands of fine-tunes appeared within weeks. Proved that open-source AI could compete with closed models. Forced a rethinking of the 'API-only' business model.",
+      "Transformed the LLM landscape by making self-hosted, customizable large models a mainstream option. Thousands of fine-tunes appeared within weeks, and the release forced a rethinking of the API-only business model even if the licensing debate over 'open source' never fully went away.",
     impactLevel: 4,
     era: "generative",
-    tags: ["open-source", "meta", "language-model", "commercial"],
+    tags: ["open-source", "open-weight", "meta", "language-model", "commercial"],
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Meta_AI_Logo_%28Ring_Only%29.png/250px-Meta_AI_Logo_%28Ring_Only%29.png",
     imageAlt: "Meta AI logo",
   },
@@ -1347,7 +1351,7 @@ export const milestones: AITimelineMilestone[] = [
     description:
       "OpenAI released GPT-4o ('omni'), a unified model that natively processed text, audio, images, and video with near-instant response times. It could hold natural voice conversations with emotional expression, sing, laugh, and respond to visual input in real time.",
     impact:
-      "Made AI interaction feel genuinely natural for the first time. The voice demo — where GPT-4o responded with emotion and humor — went viral and showed a glimpse of human-level conversational AI.",
+      "Made multimodal AI interaction feel dramatically more natural and immediate. The voice demo went viral because it suggested a future where AI assistants felt less like text interfaces and more like responsive, ambient computing systems.",
     impactLevel: 3,
     era: "generative",
     tags: ["openai", "multimodal", "voice", "real-time"],
@@ -1381,12 +1385,12 @@ export const milestones: AITimelineMilestone[] = [
     people: [],
     organizations: ["Meta"],
     description:
-      "Meta released Llama 3 (8B and 70B, later 405B), closing the gap with closed-source frontier models. The 405B model matched GPT-4-class performance on many benchmarks while being fully open-source. Meta committed to the open-source AI strategy.",
+      "Meta released Llama 3 (8B and 70B, later 405B), closing the gap with closed frontier models. The 405B release put near-frontier open-weight models into more developers' hands, even though Meta's licensing still sat outside a strict open-source definition.",
     impact:
-      "Proved open-source could match closed frontier models. Democratized access to near-frontier AI capabilities. Catalyzed the open-source AI ecosystem further.",
+      "Showed that widely released model weights could approach frontier performance without requiring an API from a top lab. It accelerated the open-model ecosystem and intensified the debate over what should count as truly open AI.",
     impactLevel: 3,
     era: "generative",
-    tags: ["open-source", "meta", "language-model"],
+    tags: ["open-source", "open-weight", "meta", "language-model"],
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Meta_AI_Logo_%28Ring_Only%29.png/250px-Meta_AI_Logo_%28Ring_Only%29.png",
     imageAlt: "Meta AI logo",
   },
@@ -1463,7 +1467,7 @@ export const milestones: AITimelineMilestone[] = [
     people: [],
     organizations: ["DeepSeek"],
     description:
-      "Chinese AI lab DeepSeek released R1, an open-source reasoning model that matched OpenAI's o1 performance at a fraction of the cost. Trained with reportedly modest compute budgets, it challenged the assumption that frontier AI required massive Western-scale investment. The model was fully open-weight.",
+      "Chinese AI lab DeepSeek released R1, an openly released reasoning model that approached OpenAI's o1-class performance at a fraction of the cost. Trained with reportedly modest compute budgets, it challenged the assumption that frontier reasoning required the largest Western-scale investment programs.",
     impact:
       "Sent shockwaves through the AI industry. NVIDIA stock dropped temporarily. Forced a reassessment of the 'scaling requires billions' narrative. Demonstrated that compute efficiency and algorithmic innovation could rival brute-force scaling.",
     impactLevel: 4,
@@ -1482,14 +1486,14 @@ export const milestones: AITimelineMilestone[] = [
     id: "claude-3-5-sonnet-2025",
     year: 2025,
     month: 1,
-    title: "Claude 3.5 Sonnet: Best-in-Class Coding",
+    title: "Claude 3.5 Sonnet: A Leading Coding Model",
     category: "product",
     people: [],
     organizations: ["Anthropic"],
     description:
-      "Anthropic's Claude 3.5 Sonnet became the top-performing model for coding tasks, with developers widely praising its code generation, debugging, and software engineering capabilities. It powered tools like Claude Code, enabling AI to work directly in developer environments.",
+      "Anthropic's Claude 3.5 Sonnet emerged as one of the strongest widely used models for coding tasks, with developers praising its code generation, debugging, and software engineering capabilities. It powered tools like Claude Code, enabling AI to work directly inside developer environments.",
     impact:
-      "Established Claude as the go-to model for software development. Showed that you could be the best at specific high-value tasks without winning every benchmark. The coding-first strategy proved commercially successful.",
+      "Helped establish Claude as a preferred model family for software development and showed that strong real-world coding performance could matter more than headline benchmark wins. It was an important step toward AI systems acting inside live engineering workflows rather than just answering coding questions.",
     impactLevel: 3,
     era: "agentic",
     tags: ["anthropic", "coding", "developer-tools"],
@@ -1507,15 +1511,16 @@ export const milestones: AITimelineMilestone[] = [
       "OpenAI",
       "Google",
       "Microsoft",
+      "OpenClaw",
       "Various startups",
     ],
     description:
-      "2025 became 'the year of agents.' AI systems evolved from conversation partners to autonomous workers that could browse the web, write and execute code, manage files, use tools, and complete multi-step tasks with minimal human oversight. Claude Code, OpenAI's Operator, Google's Project Mariner, and dozens of agent frameworks emerged.",
+      "By 2025, frontier models were being wrapped in systems that could browse the web, call tools, edit files, execute code, manage state, and carry multi-step tasks forward with limited supervision. Claude Code, OpenAI's Operator, Google's Project Mariner, OpenClaw, and a wave of agent frameworks turned 'AI agent' from a research label into a practical product category.",
     impact:
-      "Shifted the paradigm from AI-as-chatbot to AI-as-worker. For the first time, AI could take independent action in the real world — not just answer questions. This raised new questions about autonomy, oversight, and the future of knowledge work.",
+      "Shifted the paradigm from AI-as-chatbot to AI-as-operator. The important change was not just better conversation, but systems that could observe, plan, and act across real software environments. That raised sharper questions about permissions, oversight, reliability, and the future of knowledge work.",
     impactLevel: 5,
     era: "agentic",
-    tags: ["agents", "autonomy", "tools", "paradigm-shift"],
+    tags: ["agents", "autonomy", "tools", "computer-use", "paradigm-shift"],
   },
   {
     id: "claude-4-2025",
@@ -1543,7 +1548,7 @@ export const milestones: AITimelineMilestone[] = [
     people: [],
     organizations: ["OpenAI"],
     description:
-      "OpenAI released o3, the successor to o1, with dramatically improved reasoning capabilities. It achieved near-perfect scores on many math and coding benchmarks and could solve problems that previously required human experts with years of domain knowledge.",
+      "OpenAI released o3, the successor to o1, with markedly improved reasoning capabilities. It posted state-of-the-art results on many math and coding benchmarks and handled problems that previously required expert-level multi-step analysis.",
     impact:
       "Advanced the reasoning model paradigm further. Combined with GPT-4o for conversational tasks, it gave OpenAI a two-model strategy: fast + deep thinking.",
     impactLevel: 3,
@@ -1577,9 +1582,9 @@ export const milestones: AITimelineMilestone[] = [
     people: [],
     organizations: ["Anthropic", "Cursor", "GitHub", "Various"],
     description:
-      "AI coding agents like Claude Code, Cursor, GitHub Copilot Workspace, and others became standard tools in software development. These agents could understand entire codebases, implement features from descriptions, fix bugs, write tests, and submit pull requests — not just autocomplete individual lines.",
+      "AI coding agents like Claude Code, Cursor, GitHub Copilot's agentic workflows, and OpenClaw-linked remote coding loops pushed beyond autocomplete into delegated engineering work. These systems could inspect repositories, run tests, edit files, use terminals and browsers, and iterate on tasks over multiple turns.",
     impact:
-      "Fundamentally changed how software is built. Junior and senior developers alike reported 30-50% productivity gains. The nature of programming shifted from writing code to directing AI agents that write code.",
+      "Moved software development from code completion toward goal-driven execution. Developers increasingly spent more time specifying tasks, reviewing diffs, and steering autonomous loops instead of typing every line by hand.",
     impactLevel: 4,
     era: "agentic",
     tags: ["coding", "agents", "developer-tools", "productivity"],
@@ -1587,17 +1592,43 @@ export const milestones: AITimelineMilestone[] = [
     imageAlt: "GitHub Copilot logo representing the AI coding agents era",
   },
   {
+    id: "openclaw-2025",
+    year: 2025,
+    month: 11,
+    day: 24,
+    title: "OpenClaw: The Personal AI Assistant Goes Open Source",
+    category: "open-source",
+    people: ["Peter Steinberger"],
+    organizations: ["OpenClaw"],
+    description:
+      "The `openclaw/openclaw` repository launched on GitHub, framing itself as 'your own personal AI assistant' that ran on users' own devices across the channels they already used, from WhatsApp and Telegram to Slack, Discord, and iMessage. Instead of keeping the assistant trapped in a single app, OpenClaw combined messaging integrations, voice, tools, browser control, local skills, and device-side control into an always-on personal agent.",
+    impact:
+      "OpenClaw became one of the clearest demonstrations that AI had crossed from chatbot novelty into personal-assistant software. Its rapid climb past 300,000 GitHub stars by early 2026 showed enormous appetite for open, user-controlled agents that could remember context, act across channels, and feel more like a digital chief of staff than a prompt box.",
+    impactLevel: 4,
+    era: "agentic",
+    tags: [
+      "open-source",
+      "agents",
+      "assistant",
+      "personal-assistant",
+      "self-hosted",
+      "multi-channel",
+    ],
+    imageUrl: "https://avatars.githubusercontent.com/u/252820863?v=4",
+    imageAlt: "OpenClaw GitHub organization avatar",
+  },
+  {
     id: "claude-4-5-opus-2026",
     year: 2026,
     month: 1,
-    title: "Claude 4.5 / 4.6 Opus: The Most Capable AI",
+    title: "Claude 4.5 / 4.6 Opus: Frontier Agentic Capability",
     category: "product",
     people: [],
     organizations: ["Anthropic"],
     description:
       "Anthropic released Claude 4.5 and 4.6 Opus, representing the frontier of AI capability in early 2026. These models demonstrated unprecedented reasoning depth, coding ability, and capacity for autonomous multi-step work. They could sustain complex agentic workflows, manage entire projects, and collaborate with other AI agents.",
     impact:
-      "Marked a new threshold in AI capability where autonomous agent workflows became reliable enough for production use. The gap between AI and human expert performance on well-defined tasks narrowed significantly.",
+      "Marked a new threshold where autonomous agent workflows started to feel reliable enough for serious production use in bounded domains. The gap between advanced AI systems and human experts on well-defined cognitive tasks narrowed further.",
     impactLevel: 4,
     era: "agentic",
     tags: ["anthropic", "frontier-model", "agentic", "autonomous"],
@@ -1613,9 +1644,9 @@ export const milestones: AITimelineMilestone[] = [
     people: [],
     organizations: [],
     description:
-      "By March 2026, AI agents were operating as genuine team members in organizations worldwide — handling customer support, writing code, managing projects, conducting research, and coordinating with other AI agents. The concept of 'agentic AI' moved from research demos to production reality.",
+      "By March 2026, AI agents were being used in day-to-day operations for coding, research, support, scheduling, and internal automation. Rather than replacing whole teams outright, the clearest pattern was AI taking over narrow but valuable chunks of knowledge work and operating as an always-available teammate inside existing tools and channels.",
     impact:
-      "The integration of AI agents into daily work represents the current frontier of the AI revolution. We are living in the most transformative period since the birth of AI in 1956 — and it's accelerating.",
+      "Marked the point where agentic AI felt operational rather than experimental. For many organizations, the frontier shifted from 'can this work at all?' to 'where should we trust it, how do we supervise it, and which workflows are worth handing over?'",
     impactLevel: 5,
     era: "agentic",
     tags: ["agents", "workforce", "current", "transformation"],

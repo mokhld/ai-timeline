@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { eras, milestones } from "@/data/timeline";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | AI Timeline",
   },
   description:
-    "Explore the complete history of artificial intelligence from 1943 to today. 80+ milestones across 11 eras — from Turing to the Agentic Age.",
+    `Explore the complete history of artificial intelligence from 1943 to today. ${milestones.length}+ milestones across ${eras.length} eras — from Turing to the Agentic Age.`,
   metadataBase: new URL("https://aitimeline.com"),
   icons: {
     icon: [

@@ -1,16 +1,25 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import Link from "next/link";
+import { useId, useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { eras } from "@/data/timeline";
 import { categoryColors, categoryLabels } from "@/lib/colors";
 import { buildGraphData } from "@/lib/graph-data";
+import {
+  trackExploreFilterUsed,
+  trackExploreSearchUsed,
+  trackMilestoneDetailClick,
+} from "@/lib/analytics";
 
 const KnowledgeGraph = dynamic(() => import("./KnowledgeGraph"), { ssr: false });
 
 export default function ExploreGraph() {
   const router = useRouter();
+  const searchInputId = useId();
+  const filterPanelId = useId();
+  const legendPanelId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
   const [dims, setDims] = useState({ width: 0, height: 0 });
   const [searchQuery, setSearchQuery] = useState("");
@@ -18,6 +27,7 @@ export default function ExploreGraph() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [legendOpen, setLegendOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [searchTracked, setSearchTracked] = useState(false);
   const [hintsVisible, setHintsVisible] = useState(() => {
     if (typeof window === "undefined") return false;
     return !localStorage.getItem("explore-hints-seen");
@@ -61,22 +71,70 @@ export default function ExploreGraph() {
 
   const handleNodeClick = useCallback(
     (slug: string) => {
+      trackMilestoneDetailClick("explore_graph", slug);
       router.push(`/timeline/${slug}`);
     },
     [router]
   );
 
   const toggleEra = (eraId: string) => {
-    setActiveEra((prev) => (prev === eraId ? null : eraId));
+    setActiveEra((prev) => {
+      const nextEra = prev === eraId ? null : eraId;
+      trackExploreFilterUsed({
+        filterType: "era",
+        filterValue: eraId,
+        active: Boolean(nextEra),
+      });
+      return nextEra;
+    });
     setActiveCategory(null);
   };
 
   const toggleCategory = (cat: string) => {
-    setActiveCategory((prev) => (prev === cat ? null : cat));
+    setActiveCategory((prev) => {
+      const nextCategory = prev === cat ? null : cat;
+      trackExploreFilterUsed({
+        filterType: "category",
+        filterValue: cat,
+        active: Boolean(nextCategory),
+      });
+      return nextCategory;
+    });
     setActiveEra(null);
   };
 
   const hasActiveFilter = activeEra || activeCategory;
+  const accessibleMilestones = useMemo(() => {
+    const normalizedQuery = searchQuery.trim().toLowerCase();
+    const filtered = graphData.nodes.filter((node) => {
+      if (normalizedQuery.length > 1) {
+        return (
+          node.title.toLowerCase().includes(normalizedQuery) ||
+          node.tags.some((tag) => tag.toLowerCase().includes(normalizedQuery))
+        );
+      }
+
+      if (activeEra && node.era !== activeEra) return false;
+      if (activeCategory && node.category !== activeCategory) return false;
+      return true;
+    });
+
+    return filtered
+      .sort(
+        (a, b) =>
+          b.impactLevel - a.impactLevel ||
+          a.year - b.year ||
+          a.title.localeCompare(b.title)
+      )
+      .slice(0, 10);
+  }, [activeCategory, activeEra, graphData.nodes, searchQuery]);
+
+  const accessibleListTitle =
+    searchQuery.trim().length > 1
+      ? "Matching milestones"
+      : hasActiveFilter
+        ? "Filtered milestones"
+        : "Featured milestones";
 
   return (
     <div ref={containerRef} className="relative w-full h-screen bg-[#030712] overflow-hidden">
@@ -113,6 +171,7 @@ export default function ExploreGraph() {
         {!hintsVisible && (
           <button
             onClick={() => setHintsVisible(true)}
+            aria-label="Show graph exploration help"
             className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-sm font-medium text-[#94a3b8] hover:text-white transition-colors"
             title="How to explore"
           >
@@ -125,6 +184,9 @@ export default function ExploreGraph() {
       <div className="absolute top-4 inset-x-0 z-20 flex justify-center pointer-events-none">
         <div className="pointer-events-auto w-full max-w-sm mx-16 sm:mx-auto">
           <div className="relative">
+            <label htmlFor={searchInputId} className="sr-only">
+              Search milestones or tags
+            </label>
             <svg
               className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]"
               fill="none"
@@ -139,15 +201,24 @@ export default function ExploreGraph() {
               />
             </svg>
             <input
+              id={searchInputId}
               type="text"
               placeholder="Search milestones or tags..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                setSearchQuery(value);
+                if (!searchTracked && value.trim().length > 1) {
+                  trackExploreSearchUsed(value.trim().length);
+                  setSearchTracked(true);
+                }
+              }}
               className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-sm text-white placeholder-[#64748b] outline-none focus:border-[#6366f1]/50 transition-colors"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
+                aria-label="Clear search"
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748b] hover:text-white transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -166,6 +237,9 @@ export default function ExploreGraph() {
         </div>
         <button
           onClick={() => setFiltersOpen((v) => !v)}
+          aria-expanded={filtersOpen}
+          aria-controls={filterPanelId}
+          aria-label="Toggle graph filters"
           className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm transition-all border ${
             filtersOpen || hasActiveFilter
               ? "bg-[#6366f1]/20 border-[#6366f1]/30 text-white"
@@ -184,7 +258,10 @@ export default function ExploreGraph() {
 
       {/* Filter panel — slides down from top right */}
       {filtersOpen && (
-        <div className="absolute top-16 right-4 z-20 w-80 max-h-[70vh] overflow-y-auto p-4 rounded-xl bg-[#0f172a]/90 backdrop-blur-md border border-white/10 space-y-4">
+        <div
+          id={filterPanelId}
+          className="absolute top-16 right-4 z-20 w-80 max-h-[70vh] overflow-y-auto p-4 rounded-xl bg-[#0f172a]/90 backdrop-blur-md border border-white/10 space-y-4"
+        >
           {/* Era filters */}
           <div>
             <p className="text-xs font-medium text-[#64748b] mb-2 uppercase tracking-wide">Eras</p>
@@ -303,25 +380,67 @@ export default function ExploreGraph() {
 
       {/* Bottom bar — back + legend */}
       <div className="absolute bottom-4 left-4 z-20">
-        <a
+        <Link
           href="/"
           className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-sm text-[#94a3b8] hover:text-white transition-colors"
         >
           Home
-        </a>
+        </Link>
       </div>
+
+      <aside className="absolute bottom-20 left-4 z-20 w-72 max-w-[calc(100vw-2rem)] rounded-2xl border border-white/10 bg-[#0f172a]/85 p-4 backdrop-blur-md">
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <h2 className="text-sm font-semibold text-white">
+            {accessibleListTitle}
+          </h2>
+          <span className="text-[11px] text-[#64748b]">
+            {accessibleMilestones.length} shown
+          </span>
+        </div>
+        <p className="text-xs text-[#94a3b8] mb-3">
+          A keyboard-friendly list of milestones currently surfaced by the graph.
+        </p>
+        <nav aria-label="Graph milestone list">
+          <ul className="space-y-2 max-h-64 overflow-y-auto pr-1">
+            {accessibleMilestones.map((node) => (
+              <li key={node.id}>
+                <Link
+                  href={`/timeline/${node.id}`}
+                  className="flex items-start justify-between gap-3 rounded-xl border border-white/5 bg-white/[0.03] px-3 py-2 text-sm text-[#cbd5e1] transition-colors hover:border-white/15 hover:text-white"
+                >
+                  <span className="min-w-0">
+                    <span className="block font-medium">{node.title}</span>
+                    <span className="block text-xs text-[#64748b]">
+                      {node.eraName}
+                    </span>
+                  </span>
+                  <span className="shrink-0 text-xs font-mono text-[#22d3ee]">
+                    {node.year}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
 
       {/* Legend toggle */}
       <div className="absolute bottom-4 right-4 z-20">
         <button
           onClick={() => setLegendOpen((v) => !v)}
+          aria-expanded={legendOpen}
+          aria-controls={legendPanelId}
+          aria-label="Toggle graph legend"
           className="px-4 py-2 rounded-xl bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-sm text-[#94a3b8] hover:text-white transition-colors"
         >
           {legendOpen ? "Hide Legend" : "Legend"}
         </button>
 
         {legendOpen && (
-          <div className="absolute bottom-12 right-0 w-64 p-4 rounded-xl bg-[#0f172a]/90 backdrop-blur-md border border-white/10 text-xs space-y-3">
+          <div
+            id={legendPanelId}
+            className="absolute bottom-12 right-0 w-64 p-4 rounded-xl bg-[#0f172a]/90 backdrop-blur-md border border-white/10 text-xs space-y-3"
+          >
             <div>
               <p className="text-[#64748b] mb-1.5 font-medium">Node Color = Era</p>
               <div className="grid grid-cols-2 gap-1">

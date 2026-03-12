@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,6 +9,16 @@ import { milestones, eras } from "@/data/timeline";
 import { categoryColors, categoryLabels } from "@/lib/colors";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const historyGuides = [
+  { href: "/history", label: "History hub" },
+  { href: "/history/history-of-openai", label: "History of OpenAI" },
+  { href: "/history/history-of-ai-agents", label: "History of AI Agents" },
+  {
+    href: "/history/most-important-ai-milestones",
+    label: "Most Important AI Milestones",
+  },
+];
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
@@ -109,7 +120,7 @@ export default function Footer() {
           {Object.entries(categoryCounts)
             .sort(([, a], [, b]) => b - a)
             .map(([category, count]) => (
-              <a
+              <Link
                 key={category}
                 href={`/category/${category}`}
                 className="bg-[#0f172a]/60 border border-white/5 hover:border-white/20 rounded-lg p-4 text-center transition-colors block"
@@ -124,7 +135,7 @@ export default function Footer() {
                 <div className="text-xs text-[#94a3b8]">
                   {categoryLabels[category]}
                 </div>
-              </a>
+              </Link>
             ))}
         </div>
 
@@ -135,13 +146,50 @@ export default function Footer() {
           </h2>
           <div className="flex flex-wrap justify-center gap-2">
             {eras.map((era) => (
-              <a
+              <Link
                 key={era.id}
                 href={`/era/${era.id}`}
                 className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-[#94a3b8] hover:border-white/30 hover:text-[#f1f5f9] transition-colors"
               >
                 {era.name}
-              </a>
+              </Link>
+            ))}
+          </div>
+        </nav>
+
+        <nav aria-label="Entity Hubs" className="mb-12">
+          <h2 className="text-sm font-semibold text-[#94a3b8] uppercase tracking-wider mb-4 text-center">
+            Explore by Entity
+          </h2>
+          <div className="flex flex-wrap justify-center gap-2">
+            <Link
+              href="/people"
+              className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-[#94a3b8] hover:border-white/30 hover:text-[#f1f5f9] transition-colors"
+            >
+              People
+            </Link>
+            <Link
+              href="/organizations"
+              className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-[#94a3b8] hover:border-white/30 hover:text-[#f1f5f9] transition-colors"
+            >
+              Organizations
+            </Link>
+          </div>
+        </nav>
+
+        <nav aria-label="History Guides" className="mb-12">
+          <h2 className="text-sm font-semibold text-[#94a3b8] uppercase tracking-wider mb-4 text-center">
+            Read Curated Guides
+          </h2>
+          <div className="flex flex-wrap justify-center gap-2">
+            {historyGuides.map((guide) => (
+              <Link
+                key={guide.href}
+                href={guide.href}
+                className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-[#94a3b8] hover:border-white/30 hover:text-[#f1f5f9] transition-colors"
+              >
+                {guide.label}
+              </Link>
             ))}
           </div>
         </nav>
