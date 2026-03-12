@@ -18,7 +18,15 @@ export default function ExploreGraph() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [legendOpen, setLegendOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [hintsVisible, setHintsVisible] = useState(true);
+  const [hintsVisible, setHintsVisible] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return !localStorage.getItem("explore-hints-seen");
+  });
+
+  const dismissHints = useCallback(() => {
+    setHintsVisible(false);
+    localStorage.setItem("explore-hints-seen", "1");
+  }, []);
 
   const graphData = useMemo(() => buildGraphData(), []);
 
@@ -27,9 +35,9 @@ export default function ExploreGraph() {
   // Auto-dismiss hints after 8 seconds
   useEffect(() => {
     if (!hintsVisible) return;
-    const t = setTimeout(() => setHintsVisible(false), 8000);
+    const t = setTimeout(dismissHints, 8000);
     return () => clearTimeout(t);
-  }, [hintsVisible]);
+  }, [hintsVisible, dismissHints]);
 
   // Responsive sizing
   useEffect(() => {
@@ -85,22 +93,33 @@ export default function ExploreGraph() {
         />
       )}
 
-      {/* Back button — top left */}
-      <button
-        onClick={() => router.back()}
-        className="absolute top-4 left-4 z-20 inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-sm text-[#94a3b8] hover:text-white transition-colors group"
-      >
-        <svg
-          className="w-4 h-4 transition-transform group-hover:-translate-x-0.5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
+      {/* Back button + help — top left */}
+      <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
+        <button
+          onClick={() => router.back()}
+          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-sm text-[#94a3b8] hover:text-white transition-colors group"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Back
-      </button>
+          <svg
+            className="w-4 h-4 transition-transform group-hover:-translate-x-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back
+        </button>
+        {!hintsVisible && (
+          <button
+            onClick={() => setHintsVisible(true)}
+            className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-sm font-medium text-[#94a3b8] hover:text-white transition-colors"
+            title="How to explore"
+          >
+            ?
+          </button>
+        )}
+      </div>
 
       {/* Centered search bar — top center */}
       <div className="absolute top-4 inset-x-0 z-20 flex justify-center pointer-events-none">
@@ -273,7 +292,7 @@ export default function ExploreGraph() {
               </li>
             </ul>
             <button
-              onClick={() => setHintsVisible(false)}
+              onClick={dismissHints}
               className="text-xs text-[#64748b] hover:text-white transition-colors mt-2"
             >
               Got it
