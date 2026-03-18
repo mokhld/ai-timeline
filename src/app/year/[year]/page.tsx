@@ -76,10 +76,10 @@ export default function YearPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI Timeline", url: "https://aitimeline.com" },
+              { name: "AI Timeline", url: "https://aitimeline.world" },
               {
                 name: String(year),
-                url: `https://aitimeline.com/year/${year}`,
+                url: `https://aitimeline.world/year/${year}`,
               },
             ])
           ),
@@ -94,7 +94,7 @@ export default function YearPage({ params }: Props) {
               `${yearMilestones.length} artificial intelligence milestones from ${year}.`,
               yearMilestones.map((m) => ({
                 name: m.title,
-                url: `https://aitimeline.com/timeline/${m.id}`,
+                url: `https://aitimeline.world/timeline/${m.id}`,
               }))
             )
           ),

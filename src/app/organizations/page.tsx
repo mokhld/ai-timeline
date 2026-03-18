@@ -60,7 +60,7 @@ export default function OrganizationsPage() {
               `${organizations.length} organizations featured across the AI Timeline.`,
               organizations.map((organization) => ({
                 name: organization.name,
-                url: `https://aitimeline.com/organization/${organization.slug}`,
+                url: `https://aitimeline.world/organization/${organization.slug}`,
               }))
             )
           ),
@@ -71,10 +71,10 @@ export default function OrganizationsPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI Timeline", url: "https://aitimeline.com" },
+              { name: "AI Timeline", url: "https://aitimeline.world" },
               {
                 name: "Organizations",
-                url: "https://aitimeline.com/organizations",
+                url: "https://aitimeline.world/organizations",
               },
             ])
           ),

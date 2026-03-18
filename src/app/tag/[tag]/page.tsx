@@ -87,7 +87,7 @@ export default function TagPage({ params }: Props) {
               `${tagMilestones.length} milestones related to ${label.toLowerCase()}.`,
               tagMilestones.map((m) => ({
                 name: m.title,
-                url: `https://aitimeline.com/timeline/${m.id}`,
+                url: `https://aitimeline.world/timeline/${m.id}`,
               }))
             )
           ),
@@ -98,10 +98,10 @@ export default function TagPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI Timeline", url: "https://aitimeline.com" },
+              { name: "AI Timeline", url: "https://aitimeline.world" },
               {
                 name: label,
-                url: `https://aitimeline.com/tag/${params.tag}`,
+                url: `https://aitimeline.world/tag/${params.tag}`,
               },
             ])
           ),

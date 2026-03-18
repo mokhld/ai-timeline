@@ -1,6 +1,6 @@
 import type { AITimelineMilestone, AIEraInfo } from "@/data/timeline";
 
-export const BASE_URL = "https://aitimeline.com";
+export const BASE_URL = "https://aitimeline.world";
 
 export function ogImageUrl(params: {
   title: string;

@@ -89,7 +89,7 @@ export default function OrganizationPage({ params }: Props) {
               organization.summary,
               organization.milestones.map((milestone) => ({
                 name: milestone.title,
-                url: `https://aitimeline.com/timeline/${milestone.id}`,
+                url: `https://aitimeline.world/timeline/${milestone.id}`,
               }))
             )
           ),
@@ -100,14 +100,14 @@ export default function OrganizationPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI Timeline", url: "https://aitimeline.com" },
+              { name: "AI Timeline", url: "https://aitimeline.world" },
               {
                 name: "Organizations",
-                url: "https://aitimeline.com/organizations",
+                url: "https://aitimeline.world/organizations",
               },
               {
                 name: organization.name,
-                url: `https://aitimeline.com/organization/${organization.slug}`,
+                url: `https://aitimeline.world/organization/${organization.slug}`,
               },
             ])
           ),

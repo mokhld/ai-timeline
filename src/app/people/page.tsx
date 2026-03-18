@@ -60,7 +60,7 @@ export default function PeoplePage() {
               `${people.length} notable people featured across the AI Timeline.`,
               people.map((person) => ({
                 name: person.name,
-                url: `https://aitimeline.com/person/${person.slug}`,
+                url: `https://aitimeline.world/person/${person.slug}`,
               }))
             )
           ),
@@ -71,8 +71,8 @@ export default function PeoplePage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI Timeline", url: "https://aitimeline.com" },
-              { name: "People", url: "https://aitimeline.com/people" },
+              { name: "AI Timeline", url: "https://aitimeline.world" },
+              { name: "People", url: "https://aitimeline.world/people" },
             ])
           ),
         }}

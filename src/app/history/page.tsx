@@ -63,7 +63,7 @@ export default function HistoryHubPage() {
               "Curated editorial pages that connect major AI milestones into evergreen histories.",
               editorialPages.map((page) => ({
                 name: page.title,
-                url: `https://aitimeline.com${page.canonicalPath}`,
+                url: `https://aitimeline.world${page.canonicalPath}`,
               }))
             )
           ),
@@ -74,8 +74,8 @@ export default function HistoryHubPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI Timeline", url: "https://aitimeline.com" },
-              { name: "History", url: "https://aitimeline.com/history" },
+              { name: "AI Timeline", url: "https://aitimeline.world" },
+              { name: "History", url: "https://aitimeline.world/history" },
             ])
           ),
         }}

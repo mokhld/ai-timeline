@@ -23,7 +23,7 @@ export default function Home() {
                 .slice(0, 50)
                 .map((m) => ({
                   name: `${m.title} (${m.year})`,
-                  url: `https://aitimeline.com/timeline/${m.id}`,
+                  url: `https://aitimeline.world/timeline/${m.id}`,
                 }))
             )
           ),

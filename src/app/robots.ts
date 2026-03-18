@@ -21,6 +21,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/"],
       },
     ],
-    sitemap: "https://aitimeline.com/sitemap.xml",
+    sitemap: "https://aitimeline.world/sitemap.xml",
   };
 }

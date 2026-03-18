@@ -93,7 +93,7 @@ export default function EraPage({ params }: Props) {
               `${eraMilestones.length} milestones from the ${era.name} era of AI.`,
               eraMilestones.map((m) => ({
                 name: m.title,
-                url: `https://aitimeline.com/timeline/${m.id}`,
+                url: `https://aitimeline.world/timeline/${m.id}`,
               }))
             )
           ),
@@ -104,8 +104,8 @@ export default function EraPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI Timeline", url: "https://aitimeline.com" },
-              { name: era.name, url: `https://aitimeline.com/era/${era.id}` },
+              { name: "AI Timeline", url: "https://aitimeline.world" },
+              { name: era.name, url: `https://aitimeline.world/era/${era.id}` },
             ])
           ),
         }}

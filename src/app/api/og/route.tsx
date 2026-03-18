@@ -154,7 +154,7 @@ export async function GET(request: NextRequest) {
               AI
             </div>
             <div style={{ fontSize: "20px", fontWeight: 600, color: "#94a3b8" }}>
-              aitimeline.com
+              aitimeline.world
             </div>
           </div>
           <div style={{ fontSize: "16px", color: "#475569" }}>

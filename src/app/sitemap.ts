@@ -12,7 +12,7 @@ import { getAllEditorialPages } from "@/data/editorial-pages";
 const LAST_UPDATED = new Date("2026-03-11");
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://aitimeline.com";
+  const baseUrl = "https://aitimeline.world";
 
   const staticPages: MetadataRoute.Sitemap = [
     {

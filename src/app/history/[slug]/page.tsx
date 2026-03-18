@@ -89,7 +89,7 @@ export default function HistoryDetailPage({ params }: Props) {
               `Featured milestones for ${page.title}.`,
               featuredMilestones.map((milestone) => ({
                 name: `${milestone.title} (${milestone.year})`,
-                url: `https://aitimeline.com/timeline/${milestone.id}`,
+                url: `https://aitimeline.world/timeline/${milestone.id}`,
               }))
             )
           ),
@@ -100,11 +100,11 @@ export default function HistoryDetailPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI Timeline", url: "https://aitimeline.com" },
-              { name: "History", url: "https://aitimeline.com/history" },
+              { name: "AI Timeline", url: "https://aitimeline.world" },
+              { name: "History", url: "https://aitimeline.world/history" },
               {
                 name: page.title,
-                url: `https://aitimeline.com${page.canonicalPath}`,
+                url: `https://aitimeline.world${page.canonicalPath}`,
               },
             ])
           ),

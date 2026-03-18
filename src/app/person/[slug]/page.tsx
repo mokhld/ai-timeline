@@ -87,7 +87,7 @@ export default function PersonPage({ params }: Props) {
               person.summary,
               person.milestones.map((milestone) => ({
                 name: milestone.title,
-                url: `https://aitimeline.com/timeline/${milestone.id}`,
+                url: `https://aitimeline.world/timeline/${milestone.id}`,
               }))
             )
           ),
@@ -98,11 +98,11 @@ export default function PersonPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI Timeline", url: "https://aitimeline.com" },
-              { name: "People", url: "https://aitimeline.com/people" },
+              { name: "AI Timeline", url: "https://aitimeline.world" },
+              { name: "People", url: "https://aitimeline.world/people" },
               {
                 name: person.name,
-                url: `https://aitimeline.com/person/${person.slug}`,
+                url: `https://aitimeline.world/person/${person.slug}`,
               },
             ])
           ),

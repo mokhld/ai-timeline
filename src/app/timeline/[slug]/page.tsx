@@ -86,14 +86,14 @@ export default function MilestonePage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI Timeline", url: "https://aitimeline.com" },
+              { name: "AI Timeline", url: "https://aitimeline.world" },
               {
                 name: era?.name ?? "Timeline",
-                url: `https://aitimeline.com/era/${milestone.era}`,
+                url: `https://aitimeline.world/era/${milestone.era}`,
               },
               {
                 name: milestone.title,
-                url: `https://aitimeline.com/timeline/${milestone.id}`,
+                url: `https://aitimeline.world/timeline/${milestone.id}`,
               },
             ])
           ),

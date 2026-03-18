@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   description:
     `Explore the complete history of artificial intelligence from 1943 to today. ${milestones.length}+ milestones across ${eras.length} eras — from Turing to the Agentic Age.`,
-  metadataBase: new URL("https://aitimeline.com"),
+  metadataBase: new URL("https://aitimeline.world"),
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "16x16 32x32" },

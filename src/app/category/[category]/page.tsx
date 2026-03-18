@@ -91,7 +91,7 @@ export default function CategoryPage({ params }: Props) {
               `${catMilestones.length} milestones in ${label.toLowerCase()} across AI history.`,
               catMilestones.map((m) => ({
                 name: m.title,
-                url: `https://aitimeline.com/timeline/${m.id}`,
+                url: `https://aitimeline.world/timeline/${m.id}`,
               }))
             )
           ),
@@ -102,10 +102,10 @@ export default function CategoryPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "AI Timeline", url: "https://aitimeline.com" },
+              { name: "AI Timeline", url: "https://aitimeline.world" },
               {
                 name: label,
-                url: `https://aitimeline.com/category/${params.category}`,
+                url: `https://aitimeline.world/category/${params.category}`,
               },
             ])
           ),
