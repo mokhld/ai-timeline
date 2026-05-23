@@ -9,7 +9,7 @@ import { getAllEditorialPages } from "@/data/editorial-pages";
 
 // Use a fixed build date so sitemap cache isn't invalidated on every request.
 // Update this when content changes.
-const LAST_UPDATED = new Date("2026-03-11");
+const LAST_UPDATED = new Date("2026-05-23");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://aitimeline.world";
@@ -32,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_UPDATED,
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: LAST_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.5,
     },
   ];
 

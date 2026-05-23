@@ -16,8 +16,10 @@ import {
   breadcrumbJsonLd,
   personJsonLd,
   organizationJsonLd,
+  faqPageJsonLd,
   ogImageUrl,
 } from "@/lib/structured-data";
+import { getMilestoneFaqs, formatMilestoneDate } from "@/lib/faq";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import MilestoneHeroImage from "@/components/MilestoneHeroImage";
 import MilestoneListCard from "@/components/MilestoneListCard";
@@ -71,6 +73,7 @@ export default function MilestonePage({ params }: Props) {
 
   const era = getEraById(milestone.era);
   const related = getRelatedMilestones(milestone);
+  const faqs = getMilestoneFaqs(milestone, era);
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-12">
@@ -97,6 +100,13 @@ export default function MilestonePage({ params }: Props) {
               },
             ])
           ),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqPageJsonLd(faqs)),
         }}
       />
 
@@ -204,6 +214,44 @@ export default function MilestonePage({ params }: Props) {
           </div>
         </header>
 
+        <section className="rounded-xl border border-white/5 bg-[#0f172a]/40 p-5 mb-6">
+          <h2 className="text-xl font-semibold mb-3">At a glance</h2>
+          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
+            <div>
+              <dt className="text-[#64748b] uppercase tracking-wide text-xs mb-0.5">Date</dt>
+              <dd className="text-[var(--color-text)]">{formatMilestoneDate(milestone)}</dd>
+            </div>
+            {era && (
+              <div>
+                <dt className="text-[#64748b] uppercase tracking-wide text-xs mb-0.5">Era</dt>
+                <dd className="text-[var(--color-text)]">
+                  {era.name} ({era.yearStart}–{era.yearEnd})
+                </dd>
+              </div>
+            )}
+            <div>
+              <dt className="text-[#64748b] uppercase tracking-wide text-xs mb-0.5">Category</dt>
+              <dd className="text-[var(--color-text)]">{categoryLabel(milestone.category)}</dd>
+            </div>
+            <div>
+              <dt className="text-[#64748b] uppercase tracking-wide text-xs mb-0.5">Impact</dt>
+              <dd className="text-[var(--color-text)]">{milestone.impactLevel} / 5</dd>
+            </div>
+            {milestone.people.length > 0 && (
+              <div className="sm:col-span-2">
+                <dt className="text-[#64748b] uppercase tracking-wide text-xs mb-0.5">Key people</dt>
+                <dd className="text-[var(--color-text)]">{milestone.people.join(", ")}</dd>
+              </div>
+            )}
+            {milestone.organizations.length > 0 && (
+              <div className="sm:col-span-2">
+                <dt className="text-[#64748b] uppercase tracking-wide text-xs mb-0.5">Organizations</dt>
+                <dd className="text-[var(--color-text)]">{milestone.organizations.join(", ")}</dd>
+              </div>
+            )}
+          </dl>
+        </section>
+
         <section className="space-y-6">
           <div className="rounded-xl border border-white/5 bg-[#0f172a]/40 p-5">
             <h2 className="text-xl font-semibold mb-2">What Happened</h2>
@@ -302,6 +350,30 @@ export default function MilestonePage({ params }: Props) {
           )}
         </section>
       </article>
+
+      {faqs.length > 0 && (
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold mb-6">Frequently asked questions</h2>
+          <div className="space-y-4">
+            {faqs.map((faq) => (
+              <details
+                key={faq.question}
+                className="rounded-xl border border-white/5 bg-[#0f172a]/40 p-5 group"
+              >
+                <summary className="font-semibold cursor-pointer list-none flex justify-between items-center gap-4">
+                  {faq.question}
+                  <span className="text-[#64748b] transition-transform group-open:rotate-45 shrink-0">
+                    +
+                  </span>
+                </summary>
+                <p className="text-[var(--color-text-muted)] leading-relaxed mt-3">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
 
       {related.length > 0 && (
         <section className="mt-16">
