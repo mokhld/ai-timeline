@@ -228,7 +228,18 @@ export default function Footer() {
         </div>
 
         {/* Bottom line */}
-        <div className="text-center text-xs text-[#475569]">
+        <div className="text-center text-xs text-[#475569] space-y-3">
+          <nav aria-label="Site" className="flex flex-wrap justify-center gap-x-4 gap-y-2">
+            <Link href="/about" className="hover:text-[#94a3b8] transition-colors">
+              About & methodology
+            </Link>
+            <Link href="/history" className="hover:text-[#94a3b8] transition-colors">
+              History guides
+            </Link>
+            <Link href="/explore" className="hover:text-[#94a3b8] transition-colors">
+              Explore graph
+            </Link>
+          </nav>
           <p>AI Timeline — An immersive journey through the history of artificial intelligence</p>
         </div>
       </div>

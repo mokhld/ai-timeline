@@ -1,10 +1,20 @@
 import ImmersiveTimeline from "@/components/ImmersiveTimeline";
-import { websiteJsonLd, itemListJsonLd } from "@/lib/structured-data";
+import {
+  websiteJsonLd,
+  itemListJsonLd,
+  siteOrganizationJsonLd,
+} from "@/lib/structured-data";
 import { milestones, eras } from "@/data/timeline";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(siteOrganizationJsonLd()),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
