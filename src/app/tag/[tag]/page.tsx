@@ -30,9 +30,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tagMilestones = getMilestonesByTag(params.tag);
   if (tagMilestones.length === 0) return {};
 
+  const description = `Explore ${tagMilestones.length} artificial intelligence milestone${tagMilestones.length > 1 ? "s" : ""} related to ${label.toLowerCase()}, from the 1940s to today.`;
+  const ogImage = ogImageUrl({
+    title: label,
+    subtitle: `${tagMilestones.length} milestones in AI history`,
+    type: "tag",
+  });
+
   return {
-    title: `${label} Milestones`,
-    description: `Explore ${tagMilestones.length} artificial intelligence milestone${tagMilestones.length > 1 ? "s" : ""} related to ${label.toLowerCase()}, from the 1940s to today.`,
+    title: `${label} in AI History — ${tagMilestones.length} Milestone${tagMilestones.length > 1 ? "s" : ""}`,
+    description,
     alternates: {
       canonical: `/tag/${params.tag}`,
     },
@@ -41,16 +48,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: `${tagMilestones.length} AI milestones related to ${label.toLowerCase()}.`,
       images: [
         {
-          url: ogImageUrl({
-            title: label,
-            subtitle: `${tagMilestones.length} milestones in AI history`,
-            type: "tag",
-          }),
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: `${label} — AI Timeline`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${label} — AI Timeline & Milestones`,
+      description,
+      images: [ogImage],
     },
   };
 }

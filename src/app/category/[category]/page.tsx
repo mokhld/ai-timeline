@@ -37,6 +37,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const earliest = Math.min(...years);
   const latest = Math.max(...years);
   const description = `Explore ${count} ${label.toLowerCase()} milestones in AI history. From ${earliest} to ${latest}, track every major ${label.toLowerCase().replace(/ &.*/, "")} that shaped artificial intelligence.`;
+  const ogImage = ogImageUrl({
+    title: `${label} in AI History`,
+    subtitle: `${count} milestones · ${earliest}–${latest}`,
+    type: "category",
+  });
 
   return {
     title: `${label} in AI History — Timeline & Milestones`,
@@ -49,16 +54,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       images: [
         {
-          url: ogImageUrl({
-            title: `${label} in AI History`,
-            subtitle: `${count} milestones · ${earliest}–${latest}`,
-            type: "category",
-          }),
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: `${label} in AI History — AI Timeline`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${label} in AI History — Timeline & Milestones`,
+      description,
+      images: [ogImage],
     },
   };
 }

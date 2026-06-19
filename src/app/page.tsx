@@ -1,10 +1,31 @@
+import type { Metadata } from "next";
 import ImmersiveTimeline from "@/components/ImmersiveTimeline";
-import { websiteJsonLd, itemListJsonLd } from "@/lib/structured-data";
+import {
+  websiteJsonLd,
+  organizationNodeJsonLd,
+  itemListJsonLd,
+  BASE_URL,
+} from "@/lib/structured-data";
 import { milestones, eras } from "@/data/timeline";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    url: BASE_URL,
+  },
+};
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationNodeJsonLd()),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

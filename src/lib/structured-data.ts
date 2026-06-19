@@ -2,6 +2,38 @@ import type { AITimelineMilestone, AIEraInfo } from "@/data/timeline";
 
 export const BASE_URL = "https://aitimeline.world";
 
+// Stable identifier for the publishing organization. Pages reference this node by
+// @id so the entity is defined once (on the homepage) and linked everywhere else.
+export const ORGANIZATION_ID = `${BASE_URL}/#organization`;
+
+// Raster logo for rich results. Google does not process SVG logos, so this points
+// at a square PNG that ships in /public.
+const ORGANIZATION_LOGO = {
+  "@type": "ImageObject" as const,
+  url: `${BASE_URL}/android-chrome-512x512.png`,
+  width: 512,
+  height: 512,
+};
+
+const PUBLISHER_REF = {
+  "@type": "Organization" as const,
+  "@id": ORGANIZATION_ID,
+  name: "AI Timeline",
+};
+
+export function organizationNodeJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": ORGANIZATION_ID,
+    name: "AI Timeline",
+    url: BASE_URL,
+    description:
+      "The complete history of artificial intelligence from 1943 to today.",
+    logo: ORGANIZATION_LOGO,
+  };
+}
+
 export function ogImageUrl(params: {
   title: string;
   subtitle?: string;
@@ -18,28 +50,35 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${BASE_URL}/#website`,
     name: "AI Timeline",
     url: BASE_URL,
     description:
       "The complete history of artificial intelligence from 1943 to today.",
     inLanguage: "en-US",
-    publisher: {
-      "@type": "Organization",
-      name: "AI Timeline",
-      url: BASE_URL,
-      logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.svg` },
-    },
+    publisher: PUBLISHER_REF,
   };
 }
 
+// Build an ISO 8601 date at the precision we actually have. Many historical
+// milestones only carry a year, so we avoid inventing a fake month/day.
+function milestoneDate(milestone: AITimelineMilestone): string {
+  if (milestone.month == null) return String(milestone.year);
+  const month = String(milestone.month).padStart(2, "0");
+  if (milestone.day == null) return `${milestone.year}-${month}`;
+  return `${milestone.year}-${month}-${String(milestone.day).padStart(2, "0")}`;
+}
+
 export function milestoneJsonLd(milestone: AITimelineMilestone) {
-  const dateStr = `${milestone.year}-${String(milestone.month ?? 1).padStart(2, "0")}-${String(milestone.day ?? 1).padStart(2, "0")}`;
+  const dateStr = milestoneDate(milestone);
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: milestone.title,
     description: milestone.description,
+    url: `${BASE_URL}/timeline/${milestone.id}`,
     datePublished: dateStr,
+    dateModified: dateStr,
     ...(milestone.imageUrl && {
       image: {
         "@type": "ImageObject",
@@ -49,13 +88,8 @@ export function milestoneJsonLd(milestone: AITimelineMilestone) {
     }),
     author: milestone.people.length > 0
       ? milestone.people.map((p) => ({ "@type": "Person", name: p }))
-      : { "@type": "Organization", name: "AI Timeline" },
-    publisher: {
-      "@type": "Organization",
-      name: "AI Timeline",
-      url: BASE_URL,
-      logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.svg` },
-    },
+      : PUBLISHER_REF,
+    publisher: PUBLISHER_REF,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${BASE_URL}/timeline/${milestone.id}`,
@@ -83,13 +117,11 @@ export function eraJsonLd(era: AIEraInfo, milestoneCount: number) {
     "@type": "Article",
     headline: `${era.name} (${era.yearStart}–${era.yearEnd})`,
     description: era.description,
+    url: `${BASE_URL}/era/${era.id}`,
+    datePublished: String(era.yearStart),
     inLanguage: "en-US",
-    publisher: {
-      "@type": "Organization",
-      name: "AI Timeline",
-      url: BASE_URL,
-      logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.svg` },
-    },
+    author: PUBLISHER_REF,
+    publisher: PUBLISHER_REF,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${BASE_URL}/era/${era.id}`,
@@ -137,15 +169,12 @@ export function categoryPageJsonLd(
     "@type": "CollectionPage",
     name: `${label} in AI History`,
     description: `${milestoneCount} ${label.toLowerCase()} milestones across the history of artificial intelligence.`,
+    url: `${BASE_URL}/category/${category}`,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${BASE_URL}/category/${category}`,
     },
-    publisher: {
-      "@type": "Organization",
-      name: "AI Timeline",
-      url: BASE_URL,
-    },
+    publisher: PUBLISHER_REF,
   };
 }
 
@@ -174,15 +203,12 @@ export function tagPageJsonLd(
     "@type": "CollectionPage",
     name: `${label} in AI History`,
     description: `${milestoneCount} AI milestones related to ${label.toLowerCase()}.`,
+    url: `${BASE_URL}/tag/${tag}`,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${BASE_URL}/tag/${tag}`,
     },
-    publisher: {
-      "@type": "Organization",
-      name: "AI Timeline",
-      url: BASE_URL,
-    },
+    publisher: PUBLISHER_REF,
   };
 }
 
@@ -195,15 +221,12 @@ export function yearPageJsonLd(
     "@type": "CollectionPage",
     name: `AI Developments in ${year}`,
     description: `${milestoneCount} artificial intelligence milestones from ${year}.`,
+    url: `${BASE_URL}/year/${year}`,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${BASE_URL}/year/${year}`,
     },
-    publisher: {
-      "@type": "Organization",
-      name: "AI Timeline",
-      url: BASE_URL,
-    },
+    publisher: PUBLISHER_REF,
   };
 }
 
@@ -217,15 +240,12 @@ export function collectionPageJsonLd(params: {
     "@type": "CollectionPage",
     name: params.name,
     description: params.description,
+    url: `${BASE_URL}${params.path}`,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${BASE_URL}${params.path}`,
     },
-    publisher: {
-      "@type": "Organization",
-      name: "AI Timeline",
-      url: BASE_URL,
-    },
+    publisher: PUBLISHER_REF,
   };
 }
 
@@ -240,6 +260,7 @@ export function editorialPageJsonLd(params: {
     "@type": "Article",
     headline: params.title,
     description: params.description,
+    url: `${BASE_URL}${params.path}`,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${BASE_URL}${params.path}`,
@@ -247,24 +268,22 @@ export function editorialPageJsonLd(params: {
     ...(params.keywords && params.keywords.length > 0
       ? { keywords: params.keywords.join(", ") }
       : {}),
-    publisher: {
-      "@type": "Organization",
-      name: "AI Timeline",
-      url: BASE_URL,
-      logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.svg` },
-    },
+    author: PUBLISHER_REF,
+    publisher: PUBLISHER_REF,
     inLanguage: "en-US",
   };
 }
 
 export function personJsonLd(
   name: string,
-  milestones: { title: string; id: string; year: number }[]
+  milestones: { title: string; id: string; year: number }[],
+  slug?: string
 ) {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
     name,
+    ...(slug && { url: `${BASE_URL}/person/${slug}` }),
     knowsAbout: "Artificial Intelligence",
     subjectOf: milestones.map((m) => ({
       "@type": "Article",
@@ -277,12 +296,14 @@ export function personJsonLd(
 
 export function organizationJsonLd(
   name: string,
-  milestones: { title: string; id: string; year: number }[]
+  milestones: { title: string; id: string; year: number }[],
+  slug?: string
 ) {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     name,
+    ...(slug && { url: `${BASE_URL}/organization/${slug}` }),
     knowsAbout: "Artificial Intelligence",
     subjectOf: milestones.map((m) => ({
       "@type": "Article",

@@ -42,6 +42,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     155
   );
 
+  const ogImage = ogImageUrl({
+    title: era.name,
+    subtitle: `${era.yearStart}–${era.yearEnd} · ${eraMilestones.length} milestones`,
+    type: "era",
+  });
+
   return {
     title: `${era.name} (${era.yearStart}–${era.yearEnd}) — AI History`,
     description,
@@ -54,16 +60,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       images: [
         {
-          url: ogImageUrl({
-            title: era.name,
-            subtitle: `${era.yearStart}–${era.yearEnd} · ${eraMilestones.length} milestones`,
-            type: "era",
-          }),
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: `${era.name} (${era.yearStart}–${era.yearEnd}) — AI History`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${era.name} (${era.yearStart}–${era.yearEnd}) — AI History`,
+      description,
+      images: [ogImage],
     },
   };
 }

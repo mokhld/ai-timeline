@@ -28,6 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!person) return {};
 
   const description = truncateAtWord(person.summary, 155);
+  const ogImage = ogImageUrl({
+    title: person.name,
+    subtitle: `${person.milestoneCount} milestone${person.milestoneCount > 1 ? "s" : ""} · ${person.yearRange.start}${person.yearRange.start === person.yearRange.end ? "" : `–${person.yearRange.end}`}`,
+    type: "person",
+  });
 
   return {
     title: `${person.name} Contributions to AI`,
@@ -40,16 +45,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       images: [
         {
-          url: ogImageUrl({
-            title: person.name,
-            subtitle: `${person.milestoneCount} milestone${person.milestoneCount > 1 ? "s" : ""} · ${person.yearRange.start}${person.yearRange.start === person.yearRange.end ? "" : `–${person.yearRange.end}`}`,
-            type: "person",
-          }),
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: `${person.name} — AI Timeline`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${person.name} — AI Timeline Person Profile`,
+      description,
+      images: [ogImage],
     },
   };
 }
@@ -73,7 +80,8 @@ export default function PersonPage({ params }: Props) {
                 title: milestone.title,
                 id: milestone.id,
                 year: milestone.year,
-              }))
+              })),
+              person.slug
             )
           ),
         }}

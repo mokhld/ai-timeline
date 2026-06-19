@@ -30,6 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!organization) return {};
 
   const description = truncateAtWord(organization.summary, 155);
+  const ogImage = ogImageUrl({
+    title: organization.name,
+    subtitle: `${organization.milestoneCount} milestone${organization.milestoneCount > 1 ? "s" : ""} · ${organization.yearRange.start}${organization.yearRange.start === organization.yearRange.end ? "" : `–${organization.yearRange.end}`}`,
+    type: "organization",
+  });
 
   return {
     title: `${organization.name} AI History`,
@@ -42,16 +47,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       images: [
         {
-          url: ogImageUrl({
-            title: organization.name,
-            subtitle: `${organization.milestoneCount} milestone${organization.milestoneCount > 1 ? "s" : ""} · ${organization.yearRange.start}${organization.yearRange.start === organization.yearRange.end ? "" : `–${organization.yearRange.end}`}`,
-            type: "organization",
-          }),
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: `${organization.name} — AI Timeline`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${organization.name} — AI Timeline Organization Profile`,
+      description,
+      images: [ogImage],
     },
   };
 }
@@ -75,7 +82,8 @@ export default function OrganizationPage({ params }: Props) {
                 title: milestone.title,
                 id: milestone.id,
                 year: milestone.year,
-              }))
+              })),
+              organization.slug
             )
           ),
         }}

@@ -39,9 +39,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const milestone = getMilestoneBySlug(params.slug);
   if (!milestone) return {};
 
+  const description = truncateAtWord(`${milestone.description} Learn about the impact of ${milestone.title} on the history of artificial intelligence.`, 155);
+  const ogImage = ogImageUrl({
+    title: milestone.title,
+    subtitle: `${milestone.year} · ${categoryLabel(milestone.category)}`,
+    type: "milestone",
+  });
+
   return {
     title: `${milestone.title} (${milestone.year})`,
-    description: truncateAtWord(`${milestone.description} Learn about the impact of ${milestone.title} on the history of artificial intelligence.`, 155),
+    description,
     alternates: {
       canonical: `/timeline/${milestone.id}`,
     },
@@ -51,16 +58,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       images: [
         {
-          url: ogImageUrl({
-            title: milestone.title,
-            subtitle: `${milestone.year} · ${categoryLabel(milestone.category)}`,
-            type: "milestone",
-          }),
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: `${milestone.title} (${milestone.year}) — AI Timeline`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${milestone.title} (${milestone.year})`,
+      description: milestone.description,
+      images: [ogImage],
     },
   };
 }

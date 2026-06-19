@@ -33,8 +33,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = getEditorialPageBySlug(params.slug);
   if (!page) return {};
 
-  return {
+  const ogImage = ogImageUrl({
     title: page.title,
+    subtitle: `${page.featuredMilestoneIds.length} linked milestones`,
+    type: "history",
+  });
+
+  return {
+    title: `${page.title}: AI History Guide`,
     description: truncateAtWord(page.description, 155),
     alternates: {
       canonical: page.canonicalPath,
@@ -45,16 +51,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       images: [
         {
-          url: ogImageUrl({
-            title: page.title,
-            subtitle: `${page.featuredMilestoneIds.length} linked milestones`,
-            type: "history",
-          }),
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: `${page.title} — AI Timeline`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${page.title} — AI Timeline`,
+      description: truncateAtWord(page.description, 155),
+      images: [ogImage],
     },
   };
 }
