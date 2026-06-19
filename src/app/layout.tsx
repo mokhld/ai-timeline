@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { eras, milestones } from "@/data/timeline";
@@ -53,12 +53,6 @@ export const metadata: Metadata = {
     creator: "@aitimeline",
     images: ["/og-default.png"],
   },
-  alternates: {
-    canonical: "/",
-  },
-  other: {
-    "theme-color": "#6366f1",
-  },
   robots: {
     index: true,
     follow: true,
@@ -70,6 +64,12 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#6366f1",
 };
 
 export default function RootLayout({

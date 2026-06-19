@@ -41,6 +41,9 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: offLimits,
       },
+      // AI Timeline is a public educational reference. We want AI search engines
+      // and assistants to crawl, index, and cite the site, so the crawlers that
+      // power those products are explicitly allowed.
       {
         userAgent: ANSWER_ENGINE_BOTS,
         allow: "/",

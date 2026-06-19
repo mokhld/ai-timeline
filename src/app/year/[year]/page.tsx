@@ -25,12 +25,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const yearMilestones = getMilestonesByYear(year);
   if (yearMilestones.length === 0) return {};
 
+  const description = `Explore ${yearMilestones.length} artificial intelligence milestone${yearMilestones.length > 1 ? "s" : ""} from ${year}, including ${yearMilestones
+    .slice(0, 3)
+    .map((m) => m.title)
+    .join(", ")}.`;
+  const ogImage = ogImageUrl({
+    title: `AI in ${year}`,
+    subtitle: `${yearMilestones.length} milestone${yearMilestones.length > 1 ? "s" : ""} in artificial intelligence`,
+    type: "year",
+  });
+
   return {
     title: `AI in ${year} — Timeline & Key Developments`,
-    description: `Explore ${yearMilestones.length} artificial intelligence milestone${yearMilestones.length > 1 ? "s" : ""} from ${year}, including ${yearMilestones
-      .slice(0, 3)
-      .map((m) => m.title)
-      .join(", ")}.`,
+    description,
     alternates: {
       canonical: `/year/${year}`,
     },
@@ -39,16 +46,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: `${yearMilestones.length} AI milestone${yearMilestones.length > 1 ? "s" : ""} from ${year}.`,
       images: [
         {
-          url: ogImageUrl({
-            title: `AI in ${year}`,
-            subtitle: `${yearMilestones.length} milestone${yearMilestones.length > 1 ? "s" : ""} in artificial intelligence`,
-            type: "year",
-          }),
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: `AI in ${year} — AI Timeline`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `AI in ${year} — Timeline & Key Developments`,
+      description: `${yearMilestones.length} AI milestone${yearMilestones.length > 1 ? "s" : ""} from ${year}.`,
+      images: [ogImage],
     },
   };
 }

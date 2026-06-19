@@ -103,6 +103,9 @@ export default function HeroScene() {
             AI
           </span>{" "}
           <span className="text-[#f1f5f9]">Timeline</span>
+          <span className="sr-only">
+            : the complete history of artificial intelligence
+          </span>
         </motion.h1>
 
         <motion.p

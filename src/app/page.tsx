@@ -1,10 +1,21 @@
+import type { Metadata } from "next";
 import ImmersiveTimeline from "@/components/ImmersiveTimeline";
 import {
   websiteJsonLd,
-  itemListJsonLd,
   siteOrganizationJsonLd,
+  itemListJsonLd,
+  BASE_URL,
 } from "@/lib/structured-data";
 import { milestones, eras } from "@/data/timeline";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    url: BASE_URL,
+  },
+};
 
 export default function Home() {
   return (
