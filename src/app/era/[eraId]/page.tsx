@@ -16,8 +16,10 @@ import {
   eraJsonLd,
   breadcrumbJsonLd,
   itemListJsonLd,
+  faqPageJsonLd,
   ogImageUrl,
 } from "@/lib/structured-data";
+import { getEraFaqs } from "@/lib/faq";
 
 interface Props {
   params: { eraId: string };
@@ -83,6 +85,7 @@ export default function EraPage({ params }: Props) {
   const eraMilestones = getMilestonesByEra(params.eraId);
   const { prev, next } = getAdjacentEras(params.eraId);
   const eraCategories = [...new Set(eraMilestones.map((m) => m.category))];
+  const faqs = getEraFaqs(era, eraMilestones);
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-12">
@@ -116,6 +119,12 @@ export default function EraPage({ params }: Props) {
               { name: era.name, url: `https://aitimeline.world/era/${era.id}` },
             ])
           ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqPageJsonLd(faqs)),
         }}
       />
 
@@ -214,6 +223,30 @@ export default function EraPage({ params }: Props) {
           </section>
         ) : null;
       })()}
+
+      {faqs.length > 0 && (
+        <section className="mt-12">
+          <h2 className="text-xl font-bold mb-4">Frequently asked questions</h2>
+          <div className="space-y-3">
+            {faqs.map((faq) => (
+              <details
+                key={faq.question}
+                className="rounded-xl border border-white/5 bg-[#0f172a]/40 p-5 group"
+              >
+                <summary className="font-semibold cursor-pointer list-none flex justify-between items-center gap-4">
+                  {faq.question}
+                  <span className="text-[#64748b] transition-transform group-open:rotate-45 shrink-0">
+                    +
+                  </span>
+                </summary>
+                <p className="text-[var(--color-text-muted)] leading-relaxed mt-3">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
 
       <nav className="mt-16 flex justify-between items-center border-t border-white/10 pt-8">
         {prev ? (

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ImmersiveTimeline from "@/components/ImmersiveTimeline";
 import {
   websiteJsonLd,
-  organizationNodeJsonLd,
+  siteOrganizationJsonLd,
   itemListJsonLd,
   BASE_URL,
 } from "@/lib/structured-data";
@@ -23,7 +23,7 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationNodeJsonLd()),
+          __html: JSON.stringify(siteOrganizationJsonLd()),
         }}
       />
       <script

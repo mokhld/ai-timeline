@@ -460,3 +460,86 @@ Implement as a `<nav aria-label="Breadcrumb">` with `BreadcrumbList` JSON-LD (se
 | Core Web Vitals | All "Good" | PageSpeed Insights |
 | Rich results | Active for Article + BreadcrumbList | Rich Results Test |
 | Structured data errors | 0 | Google Search Console |
+
+---
+
+## 11. Generative Engine Optimization (GEO)
+
+Search is no longer the only discovery surface. ChatGPT, Claude, Perplexity,
+Google AI Overviews/Gemini, and Copilot increasingly answer questions directly
+and cite sources. GEO is the practice of making AI Timeline both *retrievable*
+by these systems and *quotable* in their answers.
+
+### 11.1 Crawler access policy (`/robots.txt`)
+
+The single biggest GEO lever: an answer engine can only cite a source it is
+allowed to read. `src/app/robots.ts` therefore **explicitly welcomes** the
+answer-engine crawlers rather than blocking them:
+
+- **OpenAI:** `GPTBot`, `OAI-SearchBot`, `ChatGPT-User`
+- **Anthropic:** `ClaudeBot`, `anthropic-ai`, `Claude-Web`, `Claude-User`, `Claude-SearchBot`
+- **Perplexity:** `PerplexityBot`, `Perplexity-User`
+- **Google (Gemini / AI Overviews grounding):** `Google-Extended`
+- **Apple Intelligence:** `Applebot-Extended`
+- **Common Crawl (feeds many open models):** `CCBot`
+- **Other:** `Amazonbot`, `meta-externalagent`, `Bytespider`
+
+Only `/api/` and `/health` are disallowed (for all agents). The file also
+declares `Host` and the `Sitemap` location.
+
+> Note: this is a deliberate, reversible stance. If the project later wants to
+> withhold content from model *training* while keeping it available for live
+> citation, split the list — e.g. allow `OAI-SearchBot`/`ChatGPT-User` and
+> `PerplexityBot` while disallowing `GPTBot`/`CCBot`/`Google-Extended`.
+
+### 11.2 `/llms.txt`
+
+A curated, machine-readable site map for LLMs (the emerging `llms.txt`
+convention), generated dynamically from the dataset at `src/app/llms.txt/route.ts`:
+project summary, canonical entry points, editorial guides, every era, every
+category, the highest-impact milestones, and the top people/organizations —
+each as a labelled link. This gives generative engines a high-signal index so
+answers point at the right canonical page.
+
+### 11.3 Extractable Q&A (FAQ)
+
+Answer engines preferentially lift self-contained question/answer pairs.
+`src/lib/faq.ts` generates grounded FAQs **directly from the dataset** (no
+inferred claims):
+
+- **Milestone pages** — "When did X happen?", "Who was behind X?", "Why was X
+  important?", "Which era does X belong to?"
+- **Era pages** — "When was the X era?", "What defined it?", "What are the key
+  milestones?"
+
+Each set is rendered as visible `<details>` Q&A **and** emitted as `FAQPage`
+JSON-LD. Milestone pages also expose an "At a glance" `<dl>` (date, era,
+category, impact, people, organizations) — a compact, highly-extractable fact
+block.
+
+### 11.4 Entity consolidation & E-E-A-T
+
+- A sitewide **`Organization`** node (`#organization`, with `sameAs`) is rendered
+  on the home and about pages; every `Article`/`CollectionPage` `publisher`
+  references the same `@id`, consolidating the site to one citeable entity.
+- A dedicated **`/about`** page documents methodology, the 1–5 impact scale,
+  sourcing, and citation/reuse terms — establishing the experience, expertise,
+  authoritativeness, and trust (E-E-A-T) that both ranking and citation depend
+  on. It carries `AboutPage` + `Organization` + `FAQPage` schema.
+
+### 11.5 Freshness
+
+`Article` schemas now carry `dateModified` (`SITE_UPDATED` in
+`structured-data.ts`), and the sitemap `lastModified` is kept current, signalling
+to both crawlers and answer engines how recent the content is.
+
+### 11.6 GEO checklist
+
+- [x] AI/answer-engine crawlers allowed in `robots.txt`
+- [x] `/llms.txt` index generated from data
+- [x] `FAQPage` schema + visible Q&A on milestone and era pages
+- [x] "At a glance" structured fact block on milestone pages
+- [x] Sitewide `Organization` entity with `sameAs`, referenced by `@id`
+- [x] `/about` page (methodology, impact scale, citation terms)
+- [x] `dateModified` freshness on Article schemas
+- [x] Self-contained, attribution-friendly factual statements
