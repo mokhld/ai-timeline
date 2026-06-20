@@ -9,7 +9,7 @@ import { editorialPages } from "@/data/editorial-pages";
 
 describe("editorialPages", () => {
   test("exposes a stable unique slug registry with canonical history paths", () => {
-    expect(editorialPages).toHaveLength(3);
+    expect(editorialPages).toHaveLength(11);
 
     const slugs = editorialPages.map((page) => page.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
@@ -17,10 +17,29 @@ describe("editorialPages", () => {
       "history-of-openai",
       "history-of-ai-agents",
       "most-important-ai-milestones",
+      "history-of-artificial-intelligence",
+      "history-of-neural-networks",
+      "history-of-large-language-models",
+      "history-of-generative-ai",
+      "history-of-ai-winters",
+      "who-invented-ai",
+      "history-of-deepmind",
+      "gpt-timeline",
     ]);
 
     for (const page of editorialPages) {
       expect(page.canonicalPath).toBe(`/history/${page.slug}`);
+    }
+  });
+
+  test("related guide links reference existing editorial slugs and never self-link", () => {
+    const validSlugs = new Set(editorialPages.map((page) => page.slug));
+
+    for (const page of editorialPages) {
+      for (const slug of page.relatedGuideSlugs ?? []) {
+        expect(validSlugs.has(slug)).toBe(true);
+        expect(slug).not.toBe(page.slug);
+      }
     }
   });
 

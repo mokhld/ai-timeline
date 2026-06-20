@@ -5,7 +5,7 @@ export const BASE_URL = "https://aitimeline.world";
 
 // Date the site's content/structure was last reviewed. Used as a freshness
 // signal (dateModified) for crawlers and answer engines. Update on releases.
-export const SITE_UPDATED = "2026-06-19";
+export const SITE_UPDATED = "2026-06-20";
 
 // Stable identifier for the publishing organization. Pages reference this node by
 // @id so the entity is defined once (on the home and about pages) and linked
