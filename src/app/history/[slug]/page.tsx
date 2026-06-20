@@ -8,11 +8,13 @@ import {
   getAllEditorialPages,
   getEditorialPageBySlug,
   getEditorialPageMilestones,
+  getRelatedGuides,
 } from "@/data/editorial-pages";
 import { getEraById, tagLabel, truncateAtWord } from "@/lib/timeline-utils";
 import {
   breadcrumbJsonLd,
   editorialPageJsonLd,
+  faqPageJsonLd,
   itemListJsonLd,
   ogImageUrl,
 } from "@/lib/structured-data";
@@ -72,6 +74,8 @@ export default function HistoryDetailPage({ params }: Props) {
   if (!page) notFound();
 
   const featuredMilestones = getEditorialPageMilestones(page);
+  const relatedGuides = getRelatedGuides(page);
+  const faqs = page.faqs ?? [];
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-12">
@@ -118,6 +122,15 @@ export default function HistoryDetailPage({ params }: Props) {
           ),
         }}
       />
+
+      {faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqPageJsonLd(faqs)),
+          }}
+        />
+      )}
 
       <BackButton />
 
@@ -266,6 +279,55 @@ export default function HistoryDetailPage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {relatedGuides.length > 0 && (
+          <section className="mb-16">
+            <h2 className="text-2xl font-bold mb-6">Related guides</h2>
+            <div className="grid gap-5 md:grid-cols-3">
+              {relatedGuides.map((guide) => (
+                <Link
+                  key={guide.slug}
+                  href={guide.canonicalPath}
+                  className="rounded-2xl border border-white/10 bg-[#0f172a]/55 p-5 hover:border-[#818cf8]/30 hover:bg-[#0f172a]/75 transition-colors"
+                >
+                  <span className="text-xs font-mono uppercase tracking-[0.22em] text-[#22d3ee]">
+                    History
+                  </span>
+                  <h3 className="text-lg font-semibold text-[#f8fafc] mt-3 mb-2">
+                    {guide.title}
+                  </h3>
+                  <p className="text-sm text-[#94a3b8] leading-relaxed">
+                    {guide.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {faqs.length > 0 && (
+          <section className="mb-4">
+            <h2 className="text-2xl font-bold mb-6">Frequently asked questions</h2>
+            <div className="space-y-4">
+              {faqs.map((faq) => (
+                <details
+                  key={faq.question}
+                  className="rounded-xl border border-white/5 bg-[#0f172a]/40 p-5 group"
+                >
+                  <summary className="font-semibold cursor-pointer list-none flex justify-between items-center gap-4">
+                    {faq.question}
+                    <span className="text-[#64748b] transition-transform group-open:rotate-45 shrink-0">
+                      +
+                    </span>
+                  </summary>
+                  <p className="text-[var(--color-text-muted)] leading-relaxed mt-3">
+                    {faq.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
       </article>
 
       <section className="pt-12 border-t border-white/10">
