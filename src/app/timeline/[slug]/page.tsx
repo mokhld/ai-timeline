@@ -20,6 +20,7 @@ import {
   ogImageUrl,
 } from "@/lib/structured-data";
 import { getMilestoneFaqs, formatMilestoneDate } from "@/lib/faq";
+import { getEditorialPagesForMilestone } from "@/data/editorial-pages";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import MilestoneHeroImage from "@/components/MilestoneHeroImage";
 import MilestoneListCard from "@/components/MilestoneListCard";
@@ -83,6 +84,7 @@ export default function MilestonePage({ params }: Props) {
   const era = getEraById(milestone.era);
   const related = getRelatedMilestones(milestone);
   const faqs = getMilestoneFaqs(milestone, era);
+  const featuredInGuides = getEditorialPagesForMilestone(milestone.id);
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-12">
@@ -359,6 +361,31 @@ export default function MilestonePage({ params }: Props) {
           )}
         </section>
       </article>
+
+      {featuredInGuides.length > 0 && (
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold mb-6">Featured in these guides</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {featuredInGuides.map((guide) => (
+              <Link
+                key={guide.slug}
+                href={guide.canonicalPath}
+                className="rounded-xl border border-white/10 bg-[#0f172a]/50 p-5 hover:border-[#818cf8]/30 hover:bg-[#0f172a]/75 transition-colors"
+              >
+                <span className="text-xs font-mono uppercase tracking-[0.22em] text-[#22d3ee]">
+                  History guide
+                </span>
+                <h3 className="text-lg font-semibold text-[#f8fafc] mt-2 mb-1">
+                  {guide.title}
+                </h3>
+                <p className="text-sm text-[#94a3b8] leading-relaxed">
+                  {guide.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {faqs.length > 0 && (
         <section className="mt-16">
