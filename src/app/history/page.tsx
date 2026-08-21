@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BackButton from "@/components/BackButton";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import AdvertiseSlot from "@/components/AdvertiseSlot";
 import { getAllEditorialPages } from "@/data/editorial-pages";
 import {
   breadcrumbJsonLd,
@@ -139,6 +140,10 @@ export default function HistoryHubPage() {
           </a>
         ))}
       </section>
+
+      <div className="mt-12">
+        <AdvertiseSlot />
+      </div>
 
       <section className="mt-16 pt-12 border-t border-white/10">
         <NewsletterSignup

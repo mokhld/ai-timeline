@@ -4,6 +4,7 @@ import Link from "next/link";
 import BackButton from "@/components/BackButton";
 import MilestoneListCard from "@/components/MilestoneListCard";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import AdvertiseSlot from "@/components/AdvertiseSlot";
 import {
   getAllEditorialPages,
   getEditorialPageBySlug,
@@ -222,6 +223,10 @@ export default function HistoryDetailPage({ params }: Props) {
             </div>
           ))}
         </section>
+
+        <div className="mb-16">
+          <AdvertiseSlot />
+        </div>
 
         <section className="mb-16">
           <div className="flex flex-col gap-2 mb-6">

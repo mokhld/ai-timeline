@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { milestones, eras } from "@/data/timeline";
 import { categoryColors, categoryLabels } from "@/lib/colors";
+import AdvertiseSlot from "./AdvertiseSlot";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -210,6 +211,11 @@ export default function Footer() {
           <span>
             <span className="text-[#f1f5f9] font-mono">83</span> years
           </span>
+        </div>
+
+        {/* Advertising slot */}
+        <div className="max-w-md mx-auto mb-8">
+          <AdvertiseSlot />
         </div>
 
         {/* Tip jar */}
