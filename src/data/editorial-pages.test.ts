@@ -9,7 +9,7 @@ import { editorialPages } from "@/data/editorial-pages";
 
 describe("editorialPages", () => {
   test("exposes a stable unique slug registry with canonical history paths", () => {
-    expect(editorialPages).toHaveLength(11);
+    expect(editorialPages).toHaveLength(14);
 
     const slugs = editorialPages.map((page) => page.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
@@ -25,6 +25,9 @@ describe("editorialPages", () => {
       "who-invented-ai",
       "history-of-deepmind",
       "gpt-timeline",
+      "history-of-machine-learning",
+      "history-of-chatbots",
+      "history-of-anthropic",
     ]);
 
     for (const page of editorialPages) {

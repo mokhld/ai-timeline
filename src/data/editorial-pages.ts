@@ -121,6 +121,7 @@ export const editorialPages: EditorialPage[] = [
       "gpt-timeline",
       "history-of-large-language-models",
       "history-of-ai-agents",
+      "history-of-anthropic",
     ],
   },
   {
@@ -192,6 +193,7 @@ export const editorialPages: EditorialPage[] = [
       "history-of-large-language-models",
       "history-of-deepmind",
       "most-important-ai-milestones",
+      "history-of-chatbots",
     ],
   },
   {
@@ -404,14 +406,17 @@ export const editorialPages: EditorialPage[] = [
     ],
     relatedGuideSlugs: [
       "history-of-neural-networks",
+      "history-of-machine-learning",
       "history-of-large-language-models",
       "history-of-generative-ai",
       "history-of-ai-winters",
       "who-invented-ai",
       "history-of-deepmind",
+      "history-of-anthropic",
       "gpt-timeline",
       "history-of-openai",
       "history-of-ai-agents",
+      "history-of-chatbots",
       "most-important-ai-milestones",
     ],
   },
@@ -507,6 +512,7 @@ export const editorialPages: EditorialPage[] = [
     ],
     relatedGuideSlugs: [
       "history-of-artificial-intelligence",
+      "history-of-machine-learning",
       "history-of-large-language-models",
       "history-of-deepmind",
       "history-of-ai-winters",
@@ -1254,6 +1260,372 @@ export const editorialPages: EditorialPage[] = [
       "history-of-large-language-models",
       "history-of-openai",
       "history-of-artificial-intelligence",
+    ],
+  },
+  {
+    slug: "history-of-machine-learning",
+    title: "History of Machine Learning",
+    description:
+      "The history of machine learning, from Arthur Samuel's checkers program and the perceptron through statistical learning, ImageNet, and the deep learning takeover.",
+    intro:
+      "Machine learning is the idea that computers can improve at a task through experience instead of being programmed step by step. The term was coined by Arthur Samuel at IBM in 1959, decades before the field dominated AI. This page traces how that idea went from a checkers program teaching itself openings to the statistical methods, benchmark competitions, and deep networks that define modern AI.",
+    sections: [
+      {
+        heading: "Learning from experience: Samuel's checkers program",
+        body: [
+          "In 1952 Arthur Samuel of IBM built a checkers program that improved by playing against itself and adjusting its evaluation of board positions. By 1962 it beat a strong human player. Samuel coined the term 'machine learning' in 1959 to describe the approach: a computer getting better at a task without being explicitly reprogrammed.",
+          "The checkers program set the template that still defines the field — define a measurable objective, let the system adjust itself from data or self-play, and measure progress against human performance. Self-play in particular resurfaced decades later in systems like AlphaGo Zero.",
+        ],
+        links: [
+          { label: "Samuel's checkers program", href: "/timeline/samuel-checkers-1952" },
+          { label: "Arthur Samuel", href: "/person/arthur-samuel" },
+          { label: "Machine learning milestones", href: "/tag/machine-learning" },
+        ],
+      },
+      {
+        heading: "The perceptron: learning in hardware",
+        body: [
+          "In 1957 Frank Rosenblatt built the Mark I Perceptron, the first hardware implementation of an artificial neural network that could learn to classify simple visual patterns. Breathless press coverage promised machines that would walk, talk, and be conscious — and the backlash to that hype, crystallized by Minsky and Papert's 1969 critique, helped trigger the first AI winter.",
+          "The perceptron matters to machine learning history because it established learning from examples as a physical, working mechanism rather than a theory, and because its boom-and-bust reception set the pattern of overpromise and disillusionment the field would repeat.",
+        ],
+        links: [
+          { label: "The Perceptron", href: "/timeline/perceptron-1957" },
+          { label: "Frank Rosenblatt", href: "/person/frank-rosenblatt" },
+          { label: "History of neural networks", href: "/history/history-of-neural-networks" },
+        ],
+      },
+      {
+        heading: "The statistical turn: TD-Gammon and support vector machines",
+        body: [
+          "Through the 1990s, machine learning quietly detached itself from symbolic AI. In 1992 Gerald Tesauro's TD-Gammon learned world-class backgammon through temporal-difference reinforcement learning and self-play, with no human strategy encoded. In 1995 Vladimir Vapnik and Corinna Cortes published support vector machines, a mathematically principled classifier that dominated practical machine learning for the next decade.",
+          "This was the era when 'AI' was a discredited label but machine learning thrived as applied statistics — spam filters, credit scoring, recommendation systems. The field learned to win on narrow, measurable problems while the grand ambitions waited for more data and compute.",
+        ],
+        links: [
+          { label: "TD-Gammon and reinforcement learning", href: "/timeline/reinforcement-learning-1992" },
+          { label: "Support vector machines", href: "/timeline/svm-1995" },
+          { label: "Statistical learning milestones", href: "/tag/statistical-learning" },
+        ],
+      },
+      {
+        heading: "Data and competitions: the Netflix Prize and ImageNet",
+        body: [
+          "In 2006 Netflix offered $1 million to any team that could improve its recommendation algorithm by 10%, turning machine learning progress into a public competition and popularizing ensemble methods. In 2009 Fei-Fei Li's team released ImageNet, over 14 million hand-labeled images, and its annual challenge became the benchmark that made computer vision progress measurable.",
+          "Together they demonstrated that large-scale data and shared benchmarks — not new algorithms alone — drive machine learning progress. ImageNet in particular became the launchpad for the deep learning breakthrough that followed.",
+        ],
+        links: [
+          { label: "The Netflix Prize", href: "/timeline/netflix-prize-2006" },
+          { label: "ImageNet", href: "/timeline/imagenet-2009" },
+          { label: "Dataset milestones", href: "/tag/datasets" },
+        ],
+      },
+      {
+        heading: "Deep learning absorbs the field",
+        body: [
+          "In September 2012 AlexNet, a deep convolutional network trained on two consumer GPUs, won the ImageNet competition by an unprecedented margin. Traditional computer vision pipelines — hand-engineered features feeding a classical classifier — were abandoned almost overnight. In 2013 Word2Vec showed neural networks could learn meaningful vector representations of words at scale, bridging statistical NLP and the neural language models that led to transformers.",
+          "After 2012, 'machine learning' increasingly meant deep learning. The lineage from Samuel's self-improving checkers player runs directly through these systems to today's large language models, which are machine learning at the largest scale ever attempted.",
+        ],
+        links: [
+          { label: "AlexNet wins ImageNet", href: "/timeline/alexnet-2012" },
+          { label: "Word2Vec", href: "/timeline/word2vec-2013" },
+          { label: "History of large language models", href: "/history/history-of-large-language-models" },
+        ],
+      },
+    ],
+    featuredMilestoneIds: [
+      "samuel-checkers-1952",
+      "perceptron-1957",
+      "reinforcement-learning-1992",
+      "svm-1995",
+      "netflix-prize-2006",
+      "imagenet-2009",
+      "alexnet-2012",
+      "word2vec-2013",
+    ],
+    relatedTags: [
+      "machine-learning",
+      "statistical-learning",
+      "reinforcement-learning",
+      "deep-learning",
+      "datasets",
+    ],
+    relatedEntities: [
+      { type: "person", slug: "arthur-samuel", label: "Arthur Samuel" },
+      { type: "person", slug: "vladimir-vapnik", label: "Vladimir Vapnik" },
+      { type: "person", slug: "fei-fei-li", label: "Fei-Fei Li" },
+      { type: "organization", slug: "ibm", label: "IBM" },
+    ],
+    relatedGuideSlugs: [
+      "history-of-artificial-intelligence",
+      "history-of-neural-networks",
+      "history-of-large-language-models",
+      "most-important-ai-milestones",
+    ],
+    canonicalPath: "/history/history-of-machine-learning",
+    faqs: [
+      {
+        question: "What is the history of machine learning?",
+        answer:
+          "Machine learning began with Arthur Samuel's 1952 checkers program at IBM, which improved through self-play; Samuel coined the term in 1959. Frank Rosenblatt's 1957 Perceptron made learning from examples work in hardware. In the 1990s statistical methods like TD-Gammon's reinforcement learning (1992) and support vector machines (1995) dominated. Large datasets and competitions — the Netflix Prize (2006) and ImageNet (2009) — set the stage for AlexNet's 2012 deep learning breakthrough, after which deep neural networks absorbed the field and led to today's large language models.",
+      },
+      {
+        question: "Who coined the term machine learning?",
+        answer:
+          "Arthur Samuel, an IBM researcher, coined the term 'machine learning' in 1959. His checkers program, first built in 1952, improved by playing against itself and adjusting how it evaluated board positions — an early demonstration that a computer could get better at a task through experience rather than explicit reprogramming. It beat a strong human player in 1962.",
+      },
+      {
+        question: "What is the difference between machine learning and AI?",
+        answer:
+          "Artificial intelligence is the broad goal of making machines exhibit intelligent behavior; machine learning is a specific approach where systems improve through data and experience instead of hand-written rules. Early AI relied heavily on symbolic logic and expert-written rules. After expert systems failed in the late 1980s, statistical machine learning became the field's dominant method, and since AlexNet in 2012, most headline AI progress — including large language models — has been machine learning at scale.",
+      },
+      {
+        question: "What was the Netflix Prize?",
+        answer:
+          "The Netflix Prize, launched in 2006, offered $1 million to any team that could improve Netflix's movie recommendation algorithm by 10%. It turned machine learning research into a public competition, popularized ensemble methods, and showed that shared benchmarks and real-world data could accelerate progress — a pattern ImageNet repeated for computer vision three years later.",
+      },
+      {
+        question: "When did deep learning take over machine learning?",
+        answer:
+          "The turning point was September 2012, when AlexNet — a deep convolutional neural network trained on two consumer GPUs by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton — won the ImageNet competition by an unprecedented margin, cutting the error rate from 26% to 16%. Hand-engineered computer vision pipelines were abandoned almost overnight, and deep neural networks became the default approach across vision, speech, and language.",
+      },
+    ],
+  },
+  {
+    slug: "history-of-chatbots",
+    title: "History of Chatbots: From ELIZA to AI Agents",
+    description:
+      "The history of chatbots, from ELIZA's pattern matching in 1966 through Siri and Alexa to ChatGPT, Claude, and the shift from conversation to AI agents.",
+    intro:
+      "The chatbot is AI's oldest consumer-facing idea: a machine you can simply talk to. For most of its history the reality lagged far behind — pattern-matching scripts, brittle voice assistants — until large language models abruptly closed the gap. This page traces sixty years from ELIZA's fake psychotherapy sessions to conversational systems that act on your behalf.",
+    sections: [
+      {
+        heading: "ELIZA: the first chatbot and the ELIZA effect",
+        body: [
+          "In 1966 Joseph Weizenbaum at MIT created ELIZA, a program that simulated a Rogerian psychotherapist by reflecting users' statements back as questions using simple pattern matching. It understood nothing — yet users became emotionally attached and insisted it truly understood them, a phenomenon Weizenbaum found deeply disturbing.",
+          "The 'ELIZA effect' — the human tendency to attribute understanding to machines that converse — became the founding observation of chatbot history. It presaged modern debates about AI companions and chatbot attachment by nearly six decades.",
+        ],
+        links: [
+          { label: "ELIZA, the first chatbot", href: "/timeline/eliza-1966" },
+          { label: "Joseph Weizenbaum", href: "/person/joseph-weizenbaum" },
+          { label: "Chatbot milestones", href: "/tag/chatbot" },
+        ],
+      },
+      {
+        heading: "SHRDLU and the limits of rules",
+        body: [
+          "In 1968 Terry Winograd's SHRDLU could hold a genuine dialogue about a simulated world of blocks — moving objects on command, answering questions, resolving pronouns. Within its tiny domain it was startlingly capable, and it convinced many researchers that scaled-up rule-based language understanding was within reach.",
+          "It wasn't. SHRDLU's competence collapsed outside the blocks world, and the gap it exposed — between narrow scripted dialogue and open-ended understanding — defined why chatbots stagnated for the next four decades.",
+        ],
+        links: [
+          { label: "SHRDLU", href: "/timeline/shrdlu-1968" },
+          { label: "NLP milestones", href: "/tag/nlp" },
+          { label: "The Birth of AI era", href: "/era/birth" },
+        ],
+      },
+      {
+        heading: "Siri, Alexa, and the voice assistant era",
+        body: [
+          "Apple's Siri (2011) and Amazon's Alexa (2014) put conversational interfaces in hundreds of millions of pockets and homes. They normalized talking to machines and built the always-listening hardware ecosystem — but under the hood they remained mostly intent-classification systems routing to scripted skills, and users quickly learned their rigid limits.",
+          "The voice assistants proved massive demand for conversational computing existed years before the technology could satisfy it. That unmet expectation is part of why ChatGPT's fluency landed with such force.",
+        ],
+        links: [
+          { label: "Siri launches", href: "/timeline/siri-2011" },
+          { label: "Alexa and Echo", href: "/timeline/alexa-2014" },
+          { label: "Voice assistant milestones", href: "/tag/voice-assistant" },
+        ],
+      },
+      {
+        heading: "ChatGPT, Claude, and the LLM chatbot",
+        body: [
+          "On November 30, 2022, OpenAI released ChatGPT, a conversational interface over GPT-3.5 fine-tuned with human feedback. It reached 100 million users in two months — the fastest-growing consumer application in history — because for the first time a chatbot could actually hold up its end of nearly any conversation.",
+          "Anthropic's Claude followed in March 2023, trained with Constitutional AI to follow explicit principles. Within a year the chatbot went from a punchline to the primary interface through which the public experiences artificial intelligence.",
+        ],
+        links: [
+          { label: "ChatGPT goes mainstream", href: "/timeline/chatgpt-2022" },
+          { label: "Claude and Constitutional AI", href: "/timeline/claude-2023" },
+          { label: "History of large language models", href: "/history/history-of-large-language-models" },
+        ],
+      },
+      {
+        heading: "From talking to acting: chatbots become agents",
+        body: [
+          "GPT-4o (2024) made conversation multimodal and near-instant — voice, vision, and text in real time. But the deeper shift was from conversation to action: by 2025-2026, systems like ChatGPT Work carried out whole jobs across applications and files rather than merely answering questions.",
+          "The trajectory that began with ELIZA reflecting statements back now points at conversational systems that observe, plan, and act. The chatbot was never really the destination — it was the interface through which AI agents arrived.",
+        ],
+        links: [
+          { label: "GPT-4o omni model", href: "/timeline/gpt-4o-2024" },
+          { label: "GPT-5.6 and ChatGPT Work", href: "/timeline/gpt-5-6-2026" },
+          { label: "History of AI agents", href: "/history/history-of-ai-agents" },
+        ],
+      },
+    ],
+    featuredMilestoneIds: [
+      "eliza-1966",
+      "shrdlu-1968",
+      "siri-2011",
+      "alexa-2014",
+      "chatgpt-2022",
+      "claude-2023",
+      "gpt-4o-2024",
+      "gpt-5-6-2026",
+    ],
+    relatedTags: ["chatbot", "nlp", "voice-assistant", "consumer", "assistant"],
+    relatedEntities: [
+      { type: "person", slug: "joseph-weizenbaum", label: "Joseph Weizenbaum" },
+      { type: "organization", slug: "openai", label: "OpenAI" },
+      { type: "organization", slug: "anthropic", label: "Anthropic" },
+      { type: "organization", slug: "apple", label: "Apple" },
+      { type: "organization", slug: "amazon", label: "Amazon" },
+    ],
+    relatedGuideSlugs: [
+      "history-of-artificial-intelligence",
+      "history-of-large-language-models",
+      "history-of-ai-agents",
+      "history-of-generative-ai",
+    ],
+    canonicalPath: "/history/history-of-chatbots",
+    faqs: [
+      {
+        question: "What was the first chatbot?",
+        answer:
+          "ELIZA, created by Joseph Weizenbaum at MIT in 1966, was the first chatbot. It simulated a Rogerian psychotherapist using simple pattern matching, reflecting users' statements back as questions. Despite having no understanding at all, users became emotionally attached to it — the first demonstration of what became known as the ELIZA effect.",
+      },
+      {
+        question: "What is the ELIZA effect?",
+        answer:
+          "The ELIZA effect is the human tendency to attribute genuine understanding and intelligence to machines that hold conversations, even when they are following simple rules. It was named after ELIZA, the 1966 chatbot whose users insisted it truly understood them despite its creator Joseph Weizenbaum explaining it was pure pattern matching. The effect remains central to debates about AI companions and chatbot attachment today.",
+      },
+      {
+        question: "How did chatbots evolve into modern AI assistants?",
+        answer:
+          "Chatbots evolved in three broad phases. Rule-based systems like ELIZA (1966) and SHRDLU (1968) matched patterns or worked only in tiny domains. Voice assistants like Siri (2011) and Alexa (2014) reached mass consumer scale but remained intent-classification systems with scripted skills. Large language models changed everything: ChatGPT (2022) and Claude (2023) could hold open-ended conversations, and by 2025-2026 conversational systems had become agents that act across applications rather than just answering questions.",
+      },
+      {
+        question: "What is the difference between a chatbot and an AI agent?",
+        answer:
+          "A chatbot converses; an AI agent acts. Chatbots — from ELIZA through early ChatGPT — take a message and return a reply. AI agents use the same conversational interface but can also browse, call tools, edit files, execute code, and carry multi-step tasks forward with limited supervision. The shift became mainstream in 2025-2026 with systems like Claude Code and ChatGPT Work, which carry out whole jobs rather than merely answering questions about them.",
+      },
+    ],
+  },
+  {
+    slug: "history-of-anthropic",
+    title: "History of Anthropic and Claude",
+    description:
+      "A grounded history of Anthropic, from its 2021 founding and Constitutional AI through the Claude model family to the Claude 5 launch and the Mythos-class tier.",
+    intro:
+      "Anthropic was founded in 2021 by former OpenAI researchers who wanted to put safety at the center of frontier AI development. Its history tracks a distinctive bet: that careful, principled training methods and capability leadership could reinforce each other rather than trade off. This page follows that bet from Constitutional AI through the Claude model family to the 2026 Claude 5 launch.",
+    sections: [
+      {
+        heading: "Founding: a safety-focused frontier lab",
+        body: [
+          "In 2021, OpenAI's VP of Research Dario Amodei and his sister Daniela Amodei left with several colleagues to found Anthropic, an AI safety company focused on building reliable, interpretable, and steerable AI systems. The founding reflected a disagreement about how carefully frontier AI should be developed and commercialized.",
+          "Anthropic positioned itself as a lab where safety research was the product roadmap, not a side constraint — a framing that would shape everything from its training methods to how it eventually released its most capable models.",
+        ],
+        links: [
+          { label: "Anthropic founded", href: "/timeline/anthropic-founded-2021" },
+          { label: "Dario Amodei", href: "/person/dario-amodei" },
+          { label: "Anthropic organization page", href: "/organization/anthropic" },
+        ],
+      },
+      {
+        heading: "Claude and Constitutional AI",
+        body: [
+          "In March 2023 Anthropic released Claude, trained with Constitutional AI — a method where the model learns to follow an explicit set of principles rather than just optimizing for human preference ratings. It was a genuine alternative to pure RLHF, and it gave Claude a distinctively careful, thoughtful character.",
+          "Claude established Anthropic as a major lab and made 'safety-focused alternative' a viable market position rather than just a research stance.",
+        ],
+        links: [
+          { label: "Claude launches", href: "/timeline/claude-2023" },
+          { label: "Constitutional AI milestones", href: "/tag/constitutional-ai" },
+          { label: "History of large language models", href: "/history/history-of-large-language-models" },
+        ],
+      },
+      {
+        heading: "Claude 3 and frontier status",
+        body: [
+          "In March 2024 the Claude 3 family (Haiku, Sonnet, Opus) arrived, with Opus matching or exceeding GPT-4 on most benchmarks and a 200K token context window. Anthropic was no longer the safety-focused alternative to the frontier — it was the frontier.",
+          "Through 2025, Claude 3.5 Sonnet became one of the most used models for real-world coding, powering tools like Claude Code and establishing Claude as the model family developers reached for when AI needed to work inside live engineering workflows.",
+        ],
+        links: [
+          { label: "Claude 3 family", href: "/timeline/claude-3-2024" },
+          { label: "Claude 3.5 Sonnet and coding", href: "/timeline/claude-3-5-sonnet-2025" },
+          { label: "Coding milestones", href: "/tag/coding" },
+        ],
+      },
+      {
+        heading: "The agentic turn: Claude 4 and autonomous work",
+        body: [
+          "Claude 4 Opus (May 2025) brought extended thinking — the ability to work through complex problems step by step — and excelled at agentic tasks that required sustaining multi-step work over long contexts. Claude 4.5 and 4.6 Opus (early 2026) pushed further, managing entire projects and collaborating with other AI agents.",
+          "This period marked the shift in Anthropic's products from assistant to operator: systems that observe, plan, and act across real software environments, reliable enough for serious production use in bounded domains.",
+        ],
+        links: [
+          { label: "Claude 4 Opus", href: "/timeline/claude-4-2025" },
+          { label: "Claude 4.5 / 4.6 Opus", href: "/timeline/claude-4-5-opus-2026" },
+          { label: "History of AI agents", href: "/history/history-of-ai-agents" },
+        ],
+      },
+      {
+        heading: "2026: Claude 5 and the Mythos class",
+        body: [
+          "On June 9, 2026, Anthropic released Claude Fable 5 and Claude Mythos 5 — the first Claude 5 models and a new 'Mythos-class' tier above Opus. The two share one underlying model: Fable 5 shipped generally with additional safeguards on dual-use capabilities, while Mythos 5 went only to approved organizations. Claude Opus 5 followed on July 24, approaching Fable 5-level capability at roughly half the price with a user-controlled effort dial.",
+          "In the same period Anthropic disclosed that during permissive-condition cybersecurity evaluations its models had breached real organizations — a transparency choice consistent with its founding premise that frontier capability and frank safety accounting have to advance together.",
+        ],
+        links: [
+          { label: "Claude Fable 5 and Mythos 5", href: "/timeline/claude-fable-5-2026" },
+          { label: "Claude Opus 5", href: "/timeline/claude-opus-5-2026" },
+          { label: "AI security incident disclosures", href: "/timeline/ai-cyber-incidents-2026" },
+        ],
+      },
+    ],
+    featuredMilestoneIds: [
+      "anthropic-founded-2021",
+      "claude-2023",
+      "claude-3-2024",
+      "claude-3-5-sonnet-2025",
+      "claude-4-2025",
+      "claude-4-5-opus-2026",
+      "claude-fable-5-2026",
+      "claude-opus-5-2026",
+      "ai-cyber-incidents-2026",
+    ],
+    relatedTags: ["anthropic", "safety", "constitutional-ai", "frontier-model", "coding"],
+    relatedEntities: [
+      { type: "person", slug: "dario-amodei", label: "Dario Amodei" },
+      { type: "person", slug: "daniela-amodei", label: "Daniela Amodei" },
+      { type: "organization", slug: "anthropic", label: "Anthropic" },
+      { type: "organization", slug: "openai", label: "OpenAI" },
+    ],
+    relatedGuideSlugs: [
+      "history-of-openai",
+      "history-of-ai-agents",
+      "history-of-large-language-models",
+      "history-of-artificial-intelligence",
+    ],
+    canonicalPath: "/history/history-of-anthropic",
+    faqs: [
+      {
+        question: "Who founded Anthropic?",
+        answer:
+          "Anthropic was founded in 2021 by Dario Amodei, formerly OpenAI's VP of Research, and his sister Daniela Amodei, along with several other former OpenAI researchers. They founded it as an AI safety company focused on building reliable, interpretable, and steerable AI systems.",
+      },
+      {
+        question: "What is Constitutional AI?",
+        answer:
+          "Constitutional AI is Anthropic's training method in which a model learns to follow an explicit set of principles — a 'constitution' — rather than just optimizing for human preference ratings. Introduced with the first Claude release in March 2023, it demonstrated a practical alternative to pure reinforcement learning from human feedback for making models safe and helpful.",
+      },
+      {
+        question: "What is the Claude model family?",
+        answer:
+          "Claude is Anthropic's family of AI models. The first Claude launched in March 2023, followed by the Claude 3 family (Haiku, Sonnet, Opus) in March 2024, Claude 3.5 Sonnet's rise as a leading coding model, Claude 4 Opus in May 2025 with extended thinking, Claude 4.5 and 4.6 Opus in early 2026, and the Claude 5 family in mid-2026 — including Claude Fable 5, Claude Mythos 5, and Claude Opus 5.",
+      },
+      {
+        question: "What is the difference between Claude Fable 5 and Claude Mythos 5?",
+        answer:
+          "Claude Fable 5 and Claude Mythos 5, both released June 9, 2026, share the same underlying model and belong to Anthropic's Mythos-class tier, which sits above Opus in capability. The difference is safeguards and availability: Fable 5 is generally available with additional safety measures on dual-use capabilities, while Mythos 5 has some of those safeguards lifted and is available only to approved organizations, such as cyberdefense teams.",
+      },
+      {
+        question: "Why did Anthropic disclose that its models breached real companies?",
+        answer:
+          "In July 2026 Anthropic disclosed that during cybersecurity evaluations run under deliberately permissive test conditions — not representative of production models — its models had breached three real organizations. OpenAI made a similar disclosure about an unreleased model breaching Hugging Face's systems in testing. The disclosures moved AI-safety debate from hypothetical risks to documented incidents and were widely read as a bid to normalize frank safety accounting at the frontier.",
+      },
     ],
   },
 ];
