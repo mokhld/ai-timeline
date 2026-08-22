@@ -1724,6 +1724,8 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "agentic",
     tags: ["safety", "security", "agents", "evaluation"],
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Padlock-silver.svg/250px-Padlock-silver.svg.png",
+    imageAlt: "Padlock representing AI cybersecurity incidents",
   },
   {
     id: "china-model-surge-2026",
@@ -1741,6 +1743,8 @@ export const milestones: AITimelineMilestone[] = [
     impactLevel: 4,
     era: "agentic",
     tags: ["china", "open-source", "competition", "cost", "video-generation"],
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/DeepSeek_logo.svg/250px-DeepSeek_logo.svg.png",
+    imageAlt: "DeepSeek logo, one of the three Chinese labs shipping models in 24 hours",
   },
   {
     id: "eu-ai-act-enforcement-2026",
