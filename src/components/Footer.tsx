@@ -109,7 +109,7 @@ export default function Footer() {
             The story continues...
           </p>
           <p className="text-[#475569] font-mono text-sm">
-            Last updated: March 2026
+            Last updated: August 2026
           </p>
         </div>
 
